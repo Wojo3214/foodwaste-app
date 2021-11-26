@@ -1,0 +1,56 @@
+@font-face {
+    font-family: plusJakartaSans-regular;
+    src: url(../src/fonts/PlusJakartaSans-Regular.woff) format('woff');;
+}
+
+@font-face {
+    font-family: plusJakartaSans-medium;
+    src: url(../src/fonts/PlusJakartaSans-Medium.woff) format('woff');;
+}
+
+@font-face {
+    font-family: plusJakartaSans-semiBold;
+    src: url(../src/fonts/PlusJakartaSans-SemiBold.woff) format('woff');;
+}
+
+@font-face {
+    font-family: plusJakartaSans-bold;
+    src: url(../src/fonts/PlusJakartaSans-Bold.woff) format('woff');;
+}
+
+:root{
+    --green: #80B918;
+    --light-green: #ACDB58;
+    --blue: #1889B9;
+    --form-background: #F1F1F1;
+    --error: #F04F4F;
+    --warning: #FAC43A;
+    --success: #49BB70;
+    --info: #589CDB;
+    --text-details: #858585;
+    --text-white: #FAFAFA;
+    --text-default: #2D2D2D;
+    --text-main-heading: #1B1B1B;
+    --link: #2D81CF;
+    --pjs-regular: plusJakartaSans-regular;
+    --pjs-medium: plusJakartaSans-medium;
+    --pjs-semi: plusJakartaSans-semiBold;
+    --pjs-bold: plusJakartaSans-bold;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-size: 16px;
+    font-family: var(--pjs-regular);
+}
+
+
+/* -----inputs -----*/
