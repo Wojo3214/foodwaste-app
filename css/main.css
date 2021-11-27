@@ -36,6 +36,7 @@
     --pjs-medium: plusJakartaSans-medium;
     --pjs-semi: plusJakartaSans-semiBold;
     --pjs-bold: plusJakartaSans-bold;
+    --shadow-primary: 0px 4px 20px 5px rgba(66, 68, 90, 0.14);
 }
 
 *{
@@ -57,6 +58,27 @@ h1, h2, h3, h4, h5, h6{
     color: var(--text-main-heading);
 }
 
+h1 {
+    text-align: center;
+}
+
+.text--centered {
+    text-align: center;
+}
+
+.logo {
+    width: 60%;
+}
+
+.link{
+    color: var(--link);
+    font-family: var(--pjs-medium);
+}
+
+.paragraph-link {
+    font-family: var(--pjs-bold);
+    color: var(--text-default);
+}
 
 /* ----- navigation -----*/
 .nav{
@@ -81,8 +103,8 @@ h1, h2, h3, h4, h5, h6{
     cursor: pointer;
 }
 
-.nav a:hover{
-    color: var(--green);
+.active{
+    color: var(--green) !important;
     transition: 0.3s ease-out;
 }
 
@@ -138,4 +160,88 @@ h1, h2, h3, h4, h5, h6{
     color: var(--text-white);
 }
 
+/* -----buttons -----*/
+.btn{
+    width: 100%;
+    padding: 16px;
+    font-family: var(--pjs-bold);
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 100px;
+    box-sizing: border-box;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.btn--primary{
+    background-color: var(--green);
+    color: var(--text-white);
+}
+
+.btn--secondary{
+    border: 2px solid var(--green);
+    color: var(--text-default);
+}
+
+.btn--delete{
+    background-color: var(--error);
+    color: var(--text-white);
+}
+
+.btns-container{
+    display: flex;
+    width: 100%;
+}
+
+.btns-container--vertical{
+    flex-direction: column;
+}
+
+.btns-container--horizontal{
+    flex-direction: row;
+}
+
 /* -----inputs -----*/
+form{
+    width: 100%;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    background-color: var(--form-background);
+    padding: 12px 16px;
+    margin-top: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+}
+
+input[type="submit"]{
+    border: none;
+}
+
+.input-label{
+    display: flex;
+    flex-direction: column;
+    font-family: var(--pjs-bold);
+    margin-bottom: 16px;
+}
+
+.input-label:last-child{
+    margin-bottom: 0px;  
+}
+
+/* -----pages -----*/
+.page{
+    display: none;
+    flex-direction: column;
+    margin: 64px 16px;
+    height: calc(100vh - 125px);
+}
+
+.page--centered {
+    align-items: center;
+    justify-content: space-between;
+}
