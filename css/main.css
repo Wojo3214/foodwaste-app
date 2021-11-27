@@ -50,7 +50,92 @@ html{
 body{
     font-size: 16px;
     font-family: var(--pjs-regular);
+    color: var(--text-default);
 }
 
+h1, h2, h3, h4, h5, h6{
+    color: var(--text-main-heading);
+}
+
+
+/* ----- navigation -----*/
+.nav{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 10px 50px;
+    grid-template-areas: 
+    ". . icon3 . ."
+    "icon1 icon2 . icon4 icon5";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--form-background);
+}
+
+.nav a{
+    padding: 10px;
+    color: var(--text-default);
+    justify-self: center;
+    align-self: center;
+    cursor: pointer;
+}
+
+.nav a:hover{
+    color: var(--green);
+    transition: 0.3s ease-out;
+}
+
+/** Focus navigation icon's dot **/
+
+/* .nav a::before{
+    content: '';
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.3s ease-out;
+    background-color: var(--green);
+    border-radius: 100px;
+}
+
+.nav a:hover::before{
+    bottom: 10px;
+} */
+
+.nav a:first-child{
+    grid-area: icon1;
+}
+
+.nav a:nth-child(2){
+    grid-area: icon2;
+}
+
+.nav a:nth-child(3){
+    grid-area: icon3;
+    padding: 4px;
+    background-color: var(--green);
+    border-radius: 100px;
+    border: 10px solid var(--form-background);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav a:nth-child(4){
+    grid-area: icon4;
+}
+
+.nav a:nth-child(5){
+    grid-area: icon5;
+}
+
+.plus{
+    color: var(--text-white);
+}
 
 /* -----inputs -----*/
