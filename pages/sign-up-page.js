@@ -5,15 +5,10 @@ class SignUpPage {
     constructor(domElement){
         this.domElement = domElement;
         this.currentTab = 0;
+        hideNav(false);
         this.render();
-        this.initTabs();
-        // this.showTabs();
-        // this.nextPrev();
-        // this.nextPrev();
-        // this.validateForm();
-        //this.fixStepIndicator(n);
-
-        hideNav();
+        this.showTabs(this.currentTab);
+        this.attachEvents();
     }
 
     render(){
@@ -21,18 +16,18 @@ class SignUpPage {
         /*html*/`
         <section id="signup" class="page page--centered">
             <img src="./src/img/logo.svg" class="logo" alt="Logo">
-            <input type="button" value="Prev" id="prev-btn" class="btn btn--primary btn--normal" onclick="nextPrev(-1)">
+            
             <h1>Tell us about you!</h1>
-            <form>
-                <div class="progress-bar">
+            <form id="signup-form">
+                <!-- <div class="progress-bar">
                     <div class="bar"></div>
-                </div>
+                </div> -->
                 <div class="tab">
                     <label class="input-label">Email
-                        <input type="email" name="mail" class="text-field" placeholder="Your email">
+                        <input type="email" name="mail" class="text-field" placeholder="Your email" oninput="this.className = ''">
                     </label>
                     <label class="input-label">Password
-                        <input type="password" name="password" class="text-field" placeholder="Your password">
+                        <input type="password" name="password" class="text-field" placeholder="Your password" oninput="this.className = ''">
                     </label>
                     <p class="text--centered">If you already are a part of the RawShare,<br><a href="#/login" class="paragraph-link">Log in to your account</a>.</p>
                 </div>
@@ -77,47 +72,52 @@ class SignUpPage {
                 </div>
             </form>
             
-            <div class="btns-container btns-container--vertical">
+            <div class="btns-container btns-container--horizontal">
+                <input type="button" value="Back" id="prev-btn" class="btn btn--secondary btn--normal" onclick="nextPrev(-1)">
                 <input type="button" value="Next" id="next-btn" class="btn btn--primary btn--normal" onclick="nextPrev(1)">
             </div>  
         </section>
         `;
     }
 
-    initTabs(){
-        this.showTabs(this.currentTab);
+    attachEvents(){
+        window.nextPrev = (tabNum) => this.nextPrev(tabNum);
     }
 
     showTabs(n){
         //this function will display the specified tab in the form
-        const tabs = document.getElementsByClassName("tab");
+        let tabs = document.querySelectorAll(".tab");
         tabs[n].style.display = "block";
 
         if(n == 0){
             document.getElementById("prev-btn").style.display = "none";
         } else {
-            document.getElementById("pev-btn").style.display = "block"
+            document.getElementById("prev-btn").style.display = "block"
         }
 
         if(n == (tabs.length - 1)){
             document.getElementById("next-btn").type = 'submit';
             document.getElementById("next-btn").value = "Finish";
+            document.getElementById("next-btn").href = "#/home";
         } else {
             document.getElementById("next-btn").value = "Next";
         }
+
+        //progressBar function
+        //this.progressBar(n);
     }
 
     nextPrev(n){
-        const tabs = document.getElementsByClassName("tab");
-        if(n == 1 && !this.valideForm()){
-            return false
-        };
+        let tabs = document.querySelectorAll(".tab");
+        //if(n == 1 && !this.validateForm()) return false;
         tabs[this.currentTab].style.display = "none";
         this.currentTab = this.currentTab + n;
         if(this.currentTab >= tabs.length){
             document.getElementById("signup-form").submit();
+            document.getElementById("next-btn").href = "#/home";
             return false;
-        }
+        } 
+        
         this.showTabs(this.currentTab);
     }
 
@@ -133,17 +133,24 @@ class SignUpPage {
             }
         }
         if(valid){
-            document.getElementsByClassName("step")[this.currentTab].className += " finish";
+            document.querySelector("bar")[this.currentTab].className += " finish";
         }
         return valid;
     }
 
-    // progressBar(){
+    // progressBar(n){
     //     let bar = document.querySelector(".bar");
     //     let nextButton = document.getElementById("next-btn");
-    
-        
+    //     let steps = document.querySelectorAll(".tab");
+    //     let i;
+    //     let width = "5px"
+
+    //     for (i = 0; i < steps.length; i++){
+    //         //bar.style.width = ((100+"%") / (steps.length)) * 100 + "%";
+    //     }
     // }
+
+    
 }
 
 export default SignUpPage;

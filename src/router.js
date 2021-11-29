@@ -74,8 +74,20 @@ class Router {
     }
 }
 
-export function hideNav(){
-    document.querySelector(".nav").style.display = "none";
+// export function hideNav(){
+//     document.querySelector(".nav").style.display = "none";
+// }
+
+// export function showNav(){
+//     document.querySelector(".nav").style.display = "grid";
+// }
+
+export function hideNav(hide){
+    if (hide) {
+        document.querySelector(".nav").style.display = "none";
+    } else {
+        document.querySelector(".nav").style.display = "grid";
+    }
 }
 
 export default Router;

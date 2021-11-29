@@ -5,7 +5,7 @@ class LoginPage {
     constructor(domElement){
         this.domElement = domElement;
         this.render();
-        hideNav();
+        hideNav(true);
     }
 
     render(){
@@ -28,7 +28,7 @@ class LoginPage {
             <p class="text--centered">If you are not a part of the RawShare yet,<br><a href="#/signup" class="paragraph-link">Create an account</a>.</p>
 
             <div class="btns-container btns-container--vertical">
-                <input type="submit" href="#/login" value="Log in" class="btn btn--primary btn--normal">
+                <input type="submit" href="#/home" value="Log in" class="btn btn--primary btn--normal">
             </div>  
         </section>
         `;

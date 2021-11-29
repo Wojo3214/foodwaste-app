@@ -46,6 +46,7 @@
 
 html{
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 body{
@@ -212,6 +213,7 @@ h1 {
 
 .btns-container--horizontal{
     flex-direction: row;
+    gap: 16px;
 }
 
 /* -----inputs -----*/
@@ -287,9 +289,15 @@ input.invalid {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 32px;
 }
 
 .content--horizontal {
     display: flex;
     flex-direction: row;
+}
+
+.map-container {
+    width: 100%;
+    height: 300px;
 }
