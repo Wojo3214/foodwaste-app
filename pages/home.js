@@ -14,20 +14,17 @@ class HomePage {
         /*html*/`
         <section id="home" class="page">
              <h2>Home Page</h2>
-             <div id="map-container"></div>
+             <div id="map"></div>
         </section>
-
-        
-            
-        
         `;
     }  
+
     initMap(){
-        mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWVsZSIsImEiOiJjazdkMWF3NjIwNTBiM2lud2k3cjY0Njl5In0.d6TBUltXIwgnMsKbwESW7g';
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWVsZSIsImEiOiJja3dreGd0YWQxa2dtMnZtbGRzZTdkMHRvIn0.NX_AW-qw5_D6wG-NuHfpBA';
         const map = new mapboxgl.Map({
-        container: "map-container", // container ID
-        style: 'mapbox://styles/madeele/ckwkolkxz4dpc14p3ss9uff6r', // style URL
-        center: [-74.5, 40], // starting position [lng, lat]
+        container: "map", // container ID
+        style: 'mapbox://styles/madeele/ckr68q2r40uu818pa4p2rn4w6', // style URL
+        center: [-76.5, 40], // starting position [lng, lat]
         zoom: 9 // starting zoom
         });
     }
