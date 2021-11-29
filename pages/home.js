@@ -20,7 +20,7 @@ class HomePage {
     }  
 
     initMap(){
-        mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWVsZSIsImEiOiJja3dreGd0YWQxa2dtMnZtbGRzZTdkMHRvIn0.NX_AW-qw5_D6wG-NuHfpBA';
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWVsZSIsImEiOiJja3dreTh1YnExd294Mm5xdnl6M3Vvb3FhIn0.H5kx7EZkM9bOdqx80ijEuA';
         const map = new mapboxgl.Map({
         container: "map", // container ID
         style: 'mapbox://styles/madeele/ckr68q2r40uu818pa4p2rn4w6', // style URL
