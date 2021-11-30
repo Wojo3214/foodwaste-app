@@ -5,6 +5,7 @@ class HomePage {
     constructor(domElement){
         this.domElement = domElement;
         this.render();
+        this.attachEvents();
         hideNav();
     }
 
@@ -12,11 +13,38 @@ class HomePage {
         this.domElement.innerHTML += 
         /*html*/`
         <section id="home" class="page">
-             <h2>Home Page</h2>
-             <div id="map">blabla</div>
+            <div class="tab-menu-container">
+                <button id="tabmenu1" class="tabmenu tabmenu--active" onclick="switchTabs('tabmenu1', 'map-container')">Map</button>
+                <button id="tabmenu2" class="tabmenu" onclick="switchTabs('tabmenu2', 'food-list')">List</button>
+            </div>
+            <div id="map-container" class="tab-content"> 
+                <div id="map"></div>
+            </div> 
+            <div id="food-list" class="tab-content" style="display:none;">
+                Food items in your area
+            </div>
         </section>
         `;
-    }  
+    }
+
+    attachEvents(){
+        window.switchTabs = (tabID, tabContent) => this.switchTabs(tabID, tabContent);
+    }
+
+    switchTabs(tabID, tabContent){
+        const tabsContent = document.getElementsByClassName("tab-content");
+        let i;
+        for(i=0; i < tabsContent.length; i++){
+            tabsContent[i].style.display = "none";
+        }
+        document.getElementById(tabContent).style.display = "block";
+
+        const tabsMenu = document.getElementsByClassName("tabmenu");
+        for(i=0; i < tabsMenu.length; i++){
+            tabsMenu[i].className = "tabmenu";
+        }
+        document.getElementById(tabID).className = "tabmenu tabmenu--active";
+    }
 }
 
 export default HomePage;

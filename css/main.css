@@ -99,6 +99,7 @@ h1 {
     left: 0;
     right: 0;
     background-color: var(--form-background);
+    z-index: 99999;
 }
 
 .nav a{
@@ -203,7 +204,7 @@ h1 {
     color: var(--text-white);
 }
 
-.btns-container{
+.btns-container, .tab-menu-container{
     display: flex;
     width: 100%;
 }
@@ -257,6 +258,34 @@ input.invalid {
     display: none;
 }
 
+/* ---- tabs menu ---- */
+.tab-menu-container{
+    box-shadow: var(--shadow-primary);
+}
+
+.tabmenu{
+    width: 50%;
+    padding: 10px 60px;
+    font-size: 14px;
+    font-family: var(--pjs-bold);
+    color: var(--text-details);
+    background-color: var(--form-background);
+    border: none;
+}
+
+.tabmenu--active{
+    color: var(--text-default);
+    background-color: var(--text-white);
+}
+
+#tabmenu1{
+    border-radius: 12px 0 0 12px;
+}
+
+#tabmenu2{
+    border-radius: 0 12px 12px 0;
+}
+
 /* -----pages -----*/
 .page{
     display: none;
@@ -304,7 +333,8 @@ input.invalid {
 
 #map {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    
 }
 
 canvas {
