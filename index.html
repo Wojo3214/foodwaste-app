@@ -16,7 +16,6 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.css' rel='stylesheet' />
 
 
-
     <title>RawShare app</title>
 </head>
 <body id="app">
@@ -30,11 +29,14 @@
     </nav>
     <main id="pages"></main>
 
-    <section id="orders" class="page">Orders</section>
+    <section id="orders" class="page">orders
+        <div id="map"></div>
+    </section>
 
     <script>
         feather.replace()
     </script>
     <script src="src/app.js" type="module"></script> 
+    <script src="components/map.js" type="module"></script>
 </body>
 </html>
