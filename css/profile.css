@@ -1,0 +1,46 @@
+@import "navigation.css";
+
+#profile {
+  margin: 0;
+}
+
+.header {
+  display: grid;
+  background-color: var(--green);
+  grid-template-columns: 20% 1fr 20%;
+  grid-template-rows: 60px 60px;
+  grid-template-areas:
+    ". . ."
+    "back profile-img settings";
+}
+
+.back-button {
+  grid-area: back;
+  justify-self: center;
+}
+
+.profile-image {
+  grid-area: profile-img;
+  justify-self: center;
+  border-radius: 50px;
+  border: solid 8px white;
+}
+
+.settings-button {
+  grid-area: settings;
+  justify-self: center;
+}
+
+.statistics {
+  background-color: var(--form-background);
+  width: 40%;
+  border-radius: 10px;
+}
+
+.statistics-header {
+  padding-bottom: 10px;
+}
+
+.food-shared {
+  color: var(--green);
+}
