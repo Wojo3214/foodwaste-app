@@ -31,9 +31,13 @@
   justify-self: center;
 }
 
+.profile-content {
+  padding: 0 16px;
+}
+
 .statistics {
   background-color: var(--form-background);
-  width: 40%;
+  width: 47%;
   border-radius: 10px;
 }
 
