@@ -48,3 +48,82 @@
 .food-shared {
   color: var(--green);
 }
+
+.sharing-container {
+  background-color: var(--form-background);
+  display: grid;
+  grid-template-columns: 100px 10px 1fr 10% 10%;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "photo . header amount unit"
+    "photo . time . ."
+    "photo . address . .";
+  border-radius: 10px;
+}
+
+.food-thumbnail {
+  grid-area: photo;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.food-header {
+  grid-area: header;
+  align-self: center;
+}
+
+.pick-time {
+  grid-area: time;
+}
+
+.pick-address {
+  grid-area: address;
+  color: var(--text-details);
+}
+
+.food-amount {
+  grid-area: amount;
+  justify-self: right;
+  padding-right: 5px;
+  color: var(--text-details);
+  align-self: center;
+}
+
+.unit {
+  grid-area: unit;
+  color: var(--text-details);
+  align-self: center;
+}
+
+/* ----- stars ratings -----*/
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+  color: var(--text-default);
+  font-size: 20px;
+  opacity: 0.3;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-size: 20px;
+  color: #fac43a;
+}
+
+.total-rating {
+  padding-left: 10px;
+}

@@ -325,6 +325,11 @@ input.invalid {
   margin: 0;
 }
 
+/* ----- food pages -----*/
+.food-thumbnail {
+  width: 100px;
+}
+
 /* ----- progress bar -----*/
 .progress-bar {
   width: 100%;
@@ -351,6 +356,10 @@ input.invalid {
 .content--horizontal {
   display: flex;
   flex-direction: row;
+}
+
+.align--center {
+  align-items: center;
 }
 
 .space--around {
