@@ -54,13 +54,13 @@ class ProfilePage {
                 </div>
 
                 <div class="review-container">
-                    <span class="rating">2.5</span>
+                    <span class="rating">1</span>
                 </div>
                 <div class="review-container">
                     <span class="rating">4</span>
                 </div>
                 <div class="review-container">
-                    <span class="rating">5</span>
+                    <span class="rating">1</span>
                 </div>
             </div>
             
