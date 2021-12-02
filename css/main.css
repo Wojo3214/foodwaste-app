@@ -267,6 +267,7 @@ input.invalid {
 /* ---- tabs menu ---- */
 .tab-menu-container {
   box-shadow: var(--shadow-primary);
+  z-index: 9999;
 }
 
 .tabmenu {
@@ -292,11 +293,21 @@ input.invalid {
   border-radius: 0 12px 12px 0;
 }
 
+#map-container{
+  position: absolute;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 /* -----pages -----*/
 .page {
   display: none;
   flex-direction: column;
-  margin: 64px 16px;
+  padding: 64px 16px;
+  box-sizing: border-box;
   height: calc(100vh - 125px);
 }
 
@@ -322,7 +333,7 @@ input.invalid {
 }
 
 #home {
-  margin: 0;
+  position: relative;
 }
 
 /* ----- food pages -----*/
@@ -369,6 +380,49 @@ input.invalid {
 .space--between {
   justify-content: space-between;
 }
+
+/* ----- carousel slider -----*/
+.carousel-slider{
+  display: flex;
+  width: 100%;
+  height: 150px;
+  overflow-x: scroll;
+  position: absolute;
+  bottom: 0;
+}
+
+.carousel-slider-item{
+  flex: 1 0 auto;
+  width: 160px;
+  margin: 0 8px 0 16px;
+  background-color: var(--form-background);
+  border-radius: 10px;
+  -webkit-box-shadow: var(--shadow-primary); 
+  box-shadow: var(--shadow-primary);
+}
+
+.carousel-slider-item > img{
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.carousel-slider-details{
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.carousel-slider-details > p, .carousel-slider-details > span{
+  font-size: 14px;
+}
+
+.carousel-slider-details > p{
+  font-family: var(--pjs-bold);
+}
+
+
+/* ----- map -----*/
 
 #map {
   width: 100%;

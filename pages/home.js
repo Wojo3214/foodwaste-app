@@ -19,6 +19,50 @@ class HomePage {
             </div>
             <div id="map-container" class="tab-content"> 
                 <div id="map"></div>
+                <div class="carousel-slider">
+                    <div class="carousel-slider-item">
+                        <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
+                        <div class="carousel-slider-details">
+                            <p>Mint</p>
+                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slider-item">
+                        <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
+                        <div class="carousel-slider-details">
+                            <p>Mint</p>
+                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slider-item">
+                        <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
+                        <div class="carousel-slider-details">
+                            <p>Mint</p>
+                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slider-item">
+                        <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
+                        <div class="carousel-slider-details">
+                            <p>Mint</p>
+                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slider-item">
+                        <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
+                        <div class="carousel-slider-details">
+                            <p>Mint</p>
+                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slider-item">
+                        <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
+                        <div class="carousel-slider-details">
+                            <p>Mint</p>
+                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                        </div>
+                    </div>
+                </div>
             </div> 
             <div id="food-list" class="tab-content" style="display:none;">
                 Food items in your area
