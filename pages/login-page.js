@@ -40,26 +40,23 @@ class LoginPage {
 
     async login() {
         let email = document.getElementById('mail').value;
+        let password = document.getElementById('pass').value;
+        const loginObject = {email : email, password: password};
+        console.log(loginObject);
         const response = await fetch("../backend/login.php?action=loginUser", {
             method: "POST",
-            body: JSON.stringify(email) // parsing js object to json object
+            body: JSON.stringify(loginObject) // parsing js object to json object
         });
-
-
-        // let response = await fetch("../backend/login.php?action=search&value="), {
-        //     body: JSON.stringify(email)
-        //}); 
         
-        let data = await response.json();
+        const data = await response.json();
         console.log(data);
 
-        // if(data.status == "success") {
-        //     for (const user of data.data) {
-        //         document.querySelector("#searchResult").innerHTML += user.firstName + "<br>";
-        //     }
-        // } else {
-        //     document.querySelector("#searchResult").innerHTML += data.errorCode;
-        // }
+        if (data.authenticated) {
+            localStorage.setItem("userIsAuthenticated", true);
+            localStorage.setItem("authUser", JSON.stringify(data.userData));
+            //resetMessage();
+            navigateTo("#/home");
+        }
     }
     
 }
