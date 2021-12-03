@@ -1,9 +1,11 @@
+import MapBox from "../components/map.js";
 import Router from "../src/router.js";
 import { hideNav } from "../src/router.js";
 
 class ProfilePage {
     constructor(domElement){
         this.domElement = domElement;
+        this.mapBox = new MapBox("profile-map");
         this.render();
         hideNav();
     }
@@ -40,7 +42,9 @@ class ProfilePage {
                 </div>
                 <h2 class="padding--top--md padding--bottom--sm">Pick-up location</h2>
                 <p>Pottemagertoften 6</p>
-                <div id="profileMap"></div>
+                <div id="profileMap">
+                    ${this.mapBox.render()}
+                </div>
 
                 <div class="total-review padding--top--md padding--bottom--sm content--horizontal space--between">
                     <h2>Reviews</h2>
@@ -50,7 +54,7 @@ class ProfilePage {
                         </div>
                         <h2 class="total-rating"></h2>
                     </div>
-                    
+
                 </div>
 
                 <div class="review-container">
@@ -66,6 +70,10 @@ class ProfilePage {
             
         </section>
         `;
+        
+        this.mapBox.init();
+
+
 
         //calculating avarage person's rating from all ratings
         let ratings = document.querySelectorAll('.rating');

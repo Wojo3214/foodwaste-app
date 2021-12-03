@@ -1,9 +1,11 @@
+import MapBox from "../components/map.js";
 import Router from "../src/router.js";
 import { hideNav } from "../src/router.js";
 
 class HomePage {
     constructor(domElement){
         this.domElement = domElement;
+        this.mapBox = new MapBox("map");
         this.render();
         this.attachEvents();
         hideNav();
@@ -18,7 +20,7 @@ class HomePage {
                 <button id="tabmenu2" class="tabmenu" onclick="switchTabs('tabmenu2', 'food-list')">List</button>
             </div>
             <div id="map-container" class="tab-content"> 
-                <div id="map"></div>
+                ${this.mapBox.render()}
                 <div class="carousel-slider">
                     <div class="carousel-slider-item">
                         <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
@@ -69,6 +71,7 @@ class HomePage {
             </div>
         </section>
         `;
+        this.mapBox.init();
     }
 
     attachEvents(){
