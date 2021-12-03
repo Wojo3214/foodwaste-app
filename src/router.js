@@ -91,3 +91,4 @@ export function hideNav(hide){
 }
 
 export default Router;
+export const navigateTo = Router.prototype.navigateTo;

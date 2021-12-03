@@ -3,47 +3,53 @@
     include("mysql.php");
     include("users.php");
 
-    // $userEmail = $_POST["mail"];
-    // $userPassword = $_POST["password"];
+    session_start();
 
-    // $hashkey;
+    // ******* Log Out - GET method called ********//
+    if (isset($_GET['action'])) {
+        $action = $_GET['action'];
     
-    // $userData = "";
-    
-    // while ($row = $result->fetch_object()) {
-    //     if ($userEmail == $row->email ) {
-    //         $hashkey = $row -> userPassword;
-    //         $userData = $row;
-    //     }
-    // }
+        if ($action == "logout") {
+            session_destroy();
+            $response['authenticated'] = FALSE;
+            echo json_encode($response);
+        }
+    }
 
-    // $passVerify = password_verify($userPassword, $hashkey);
-    
-    // if($passVerify) {
-    //     $_SESSION ['userID'] = $userData->PK_id;
-    //     header("location: ../pages/home.js");
-    //     exit;  
-    // }
-    // else {
-    //     header("location: index.php?error=loginFailed");
-    //     exit;  
-    // }
 
-    // $json = file_get_contents("php://input");
-    // $data = json_encode($json);
-    // $data;
-
+    // ******* Log In - GET method called ********//
     if($_GET['action'] == "loginUser") {
-        // SQL query to search for users with firstnames matching the user's search input (LIKE is the keyword to do searches)
-        //$sql = "SELECT * FROM userInfo WHERE email LIKE('%" . $_GET['mail'] . "%')";                
-        $logedInUser = json_encode(file_get_contents("php://input"));
-          
-        // if(empty($logedInUser)) {
-        //     $logedInUser['status'] = "error";
-        //     $logedInUser['errorCode'] = "Missing input"; 
-        //     $encoded = json_encode($logedInUser);
 
-        // }
+        $loginObject = json_decode(file_get_contents("php://input"));
+        $email = $loginObject->email;
+        $password = $loginObject->password;
+
+        // SQL query to get user information
+        $sql = "SELECT * FROM userInfo WHERE email = '$email' LIMIT 1)";  
+        $result = $mySQL->query($sql);
+        
+        // Checking if the email exists
+        if ($result->num_rows == 1) {
+            $data = $result->fetch_object();
+
+            // Checking if the password fits the given email
+            if (password_verify($password, $data->pass)) {
+                $sql = "SELECT * FROM userInfo WHERE PK_id = " . $data->id;
+                $user = $mySQL->query($sql)->fetch_object();
+                $response['authenticated'] = TRUE;
+                $response['userData'] = $user;
+                echo json_encode($response);
+            } else {
+                $response['authenticated'] = FALSE;
+                $response['error'] = "Wrong password";
+                echo json_encode($response);
+            }
+        } else {
+            $response['authenticated'] = FALSE;
+            $response['error'] = "User doesn't exist";
+            echo json_encode($response);
+        }
+
         echo $logedInUser;
 
         // while($userInfo = true) {
@@ -56,8 +62,6 @@
         // }
 
         
-        //exit;
-        //$jsonInput = file_get_contents('php://input');
 
         // If the user did not input anything
         // if(empty($jsonInput) || $jsonInput == "") {
@@ -66,14 +70,14 @@
         //     $jsonInput['errorCode'] = "Missing input";      
         // } 
         // echo json_encode($jsonInput); 
-        while ($row = $result->fetch_assoc()) {
-            if($row["email"] == $logedInUser) {
-                $logedInUser['status'] = "success";
-                echo json_encode($logedInUser);
-            }
-        };
+        // while ($row = $result->fetch_assoc()) {
+        //     if($row["email"] == $logedInUser) {
+        //         $logedInUser['status'] = "success";
+        //         echo json_encode($logedInUser);
+        //     }
+        // };
 
-        exit;
+        // exit;
 
     //     // Check if the SQL call was a success
     //     if($result = $mySQL->query($sql)) {
@@ -105,29 +109,3 @@
     //         echo json_encode($array);
     //     }
      }
-
-        // foreach($userInfo as $user) {
-        //     if ( $user['email'] == 'kris@email.com' )
-        //     {
-        //         echo $user;
-        //     }
-        // }
-        
-
-        // while($userInfo){
-        //     break;
-        //     echo $row["PK_id"];
-        //     echo $row["firstName"];
-        // }
-
-        // $site = '1';
-
-        // $mysites = array('1', '2', '3', '4', '5', '6');
-        // foreach($mysites as $mysite) 
-        // {
-        //     if ( $mysite !== '1' )
-        //     {
-        //         echo $mysite;
-        //     }
-        // }
-?>

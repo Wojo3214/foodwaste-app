@@ -1,12 +1,16 @@
 import Router from "../src/router.js";
 import { hideNav } from "../src/router.js";
+import { navigateTo } from "../src/router.js";
 
 class LoginPage {
     constructor(domElement){
         this.domElement = domElement;
         this.render();
-        hideNav(true);
+        //hideNav(true);s
         this.attachEvents();
+        
+        this.router = new Router(app, "#/");
+        router.navigateTo();
     }
 
     render(){
@@ -58,7 +62,14 @@ class LoginPage {
             navigateTo("#/home");
         }
     }
-    
+
+    logout() {
+        //reset localStorage
+        localStorage.removeItem("userIsAuthenticated");
+        localStorage.removeItem("authUser");
+        //navigate to login
+        navigateTo("#/login");
+    }
 }
 
 export default LoginPage;
