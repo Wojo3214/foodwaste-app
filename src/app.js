@@ -4,11 +4,15 @@ import LoginPage from "../pages/login-page.js";
 import SignUpPage from "../pages/sign-up-page.js";
 import HomePage from "../pages/home.js";
 import ProfilePage from "../pages/profile.js";
+import Nav from "../components/nav.js";
 
 
 
-const pages = document.querySelector("#pages");
 const app = document.querySelector("#app");
+const nav = new Nav(app);
+nav.render();
+const pages = document.querySelector("#pages");
+
 
 const startPage = new StartPage(pages);
 const homePage = new HomePage(pages);
