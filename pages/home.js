@@ -26,52 +26,63 @@ class HomePage {
                         <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
                         <div class="carousel-slider-details">
                             <p>Mint</p>
-                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                            <span><i data-feather="map-pin" class="map-pin icon-small"></i> Haslegardsvej 24A</span>
                         </div>
                     </div>
                     <div class="carousel-slider-item">
                         <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
                         <div class="carousel-slider-details">
                             <p>Mint</p>
-                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                            <span><i data-feather="map-pin" class="map-pin icon-small"></i> Haslegardsvej 24A</span>
                         </div>
                     </div>
                     <div class="carousel-slider-item">
                         <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
                         <div class="carousel-slider-details">
                             <p>Mint</p>
-                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                            <span><i data-feather="map-pin" class="map-pin icon-small"></i> Haslegardsvej 24A</span>
                         </div>
                     </div>
                     <div class="carousel-slider-item">
                         <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
                         <div class="carousel-slider-details">
                             <p>Mint</p>
-                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                            <span><i data-feather="map-pin" class="map-pin icon-small"></i> Haslegardsvej 24A</span>
                         </div>
                     </div>
                     <div class="carousel-slider-item">
                         <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
                         <div class="carousel-slider-details">
                             <p>Mint</p>
-                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                            <span><i data-feather="map-pin" class="map-pin icon-small"></i> Haslegardsvej 24A</span>
                         </div>
                     </div>
                     <div class="carousel-slider-item">
                         <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
                         <div class="carousel-slider-details">
                             <p>Mint</p>
-                            <span><i data-feather="user"></i> Haslegardsvej 24A</span>
+                            <span><i data-feather="map-pin" class="map-pin icon-small"></i> Haslegardsvej 24A</span>
                         </div>
                     </div>
                 </div>
             </div> 
             <div id="food-list" class="tab-content" style="display:none;">
-                Food items in your area
+                <div class="food-sharing-area">
+                    <div class="sharing-container">
+                        <img class="food-thumbnail" src="../src/img/foodImg/placeholder/placeholder.png">
+                        <h3 class="food-header">Cherries</h3>
+                        <p class="pick-time">8:00 - 12:00</p>
+                        <i data-feather="map-pin" class="map-pin icon-small"></i>
+                        <p class="pick-address">Pottemagertoften 6</p>
+                        <p class="food-amount">3stars</p>
+                        <p class="unit">stk</p>
+                    </div>
+                </div>
             </div>
         </section>
         `;
         this.mapBox.init();
+        this.iconsInit();
     }
 
     attachEvents(){
@@ -91,6 +102,10 @@ class HomePage {
             tabsMenu[i].className = "tabmenu";
         }
         document.getElementById(tabID).className = "tabmenu tabmenu--active";
+    }
+
+    iconsInit(){
+        feather.replace();
     }
 }
 

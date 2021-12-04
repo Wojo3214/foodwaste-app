@@ -90,6 +90,21 @@ h1 {
   color: var(--text-default);
 }
 
+/* ----- icons ----- */
+.icon-small{
+  color: var(--text-default);
+  width: 16px;
+  height: 16px;
+  stroke-width: 1px;
+}
+
+.icon-medium{
+  color: var(--text-default);
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.5px;
+}
+
 /* ----- navigation -----*/
 .nav {
   display: grid;
@@ -267,6 +282,7 @@ input.invalid {
 /* ---- tabs menu ---- */
 .tab-menu-container {
   box-shadow: var(--shadow-primary);
+  border-radius: 10px;
   z-index: 9999;
 }
 
@@ -286,11 +302,11 @@ input.invalid {
 }
 
 #tabmenu1 {
-  border-radius: 12px 0 0 12px;
+  border-radius: 10px 0 0 10px;
 }
 
 #tabmenu2 {
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 10px 10px 0;
 }
 
 #map-container{
