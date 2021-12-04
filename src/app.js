@@ -3,6 +3,7 @@ import StartPage from "../pages/start-page.js";
 import LoginPage from "../pages/login-page.js";
 import SignUpPage from "../pages/sign-up-page.js";
 import HomePage from "../pages/home.js";
+import OrderPage from "../pages/orders.js";
 import ProfilePage from "../pages/profile.js";
 import Nav from "../components/nav.js";
 
@@ -16,6 +17,7 @@ const pages = document.querySelector("#pages");
 
 const startPage = new StartPage(pages);
 const homePage = new HomePage(pages);
+const orderPage = new OrderPage(pages);
 const profilePage = new ProfilePage(pages);
 const loginPage = new LoginPage(pages);
 const signupPage = new SignUpPage(pages);

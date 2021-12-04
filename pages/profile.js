@@ -15,26 +15,26 @@ class ProfilePage {
         /*html*/`
         <section id="profile" class="page">
             <div class="header">
-                <p class="back-button">back</p>
-                <img class="profile-image" src="../src/img/avatar.svg">
-                <p class="settings-button">sett</p>
+                <a href="#" class="back-button"><i data-feather="arrow-left"></i></a>
+                <img class="profile-image" src="src/img/avatar.svg">
+                <a href="#" class="settings-button"><i data-feather="settings"></i></a>
             </div>
             <h1 class="profile-username padding--top--md text--centered">Ana Smith</h1>
             <div class="profile-content">
                 <div id="statistics" class="content--horizontal space--between padding--top--md">
                     <div class="statistics content--vertical padding--top--sm padding--bottom--sm">
                         <p class="statistics-header">Food Shared</p>
-                        <h2 class="food-shared">05</h2>
+                        <h2 class="food-shared text--bold">05</h2>
                     </div>
                     <div class="statistics content--vertical padding--top--sm padding--bottom--sm">
                         <p class="statistics-header">Food Collected</p>
-                        <h2>12/14</h2>
+                        <h2 class="text--bold">12/14</h2>
                     </div>
                 </div>
                 <h2 class="padding--bottom--sm">Ana is sharing</h2>
-                <div class="sharing-container">
-                    <img class="food-thumbnail" src="../src/img/foodImg/placeholder/placeholder.png">
-                    <h3 class="food-header">Cherries</h3>
+                <div class="sharing-container container">
+                    <img class="food-thumbnail" src="src/foodImg/placeholder/placeholder.png">
+                    <h3 class="food-header text--bold">Cherries</h3>
                     <p class="pick-time">8:00 - 12:00</p>
                     <p class="pick-address">Pottemagertoften 6</p>
                     <p class="food-amount">2</p>
@@ -48,7 +48,7 @@ class ProfilePage {
 
                 <div class="total-review padding--top--md padding--bottom--sm content--horizontal space--between">
                     <h2>Reviews</h2>
-                    <div class="content--horizontal align--center">
+                    <div class="content--horizontal align--center padding--bottom--sm">
                         <div class="stars-outer">
                             <div class="stars-inner"></div>
                         </div>
@@ -58,13 +58,17 @@ class ProfilePage {
                 </div>
 
                 <div class="review-container">
-                    <span class="rating">1</span>
-                </div>
-                <div class="review-container">
-                    <span class="rating">4</span>
-                </div>
-                <div class="review-container">
-                    <span class="rating">1</span>
+                    <div class="review-header content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
+                        <img class="small--photo" src="src/img/avatar.svg">
+                        <h3>Michael Scott</h3>
+                        <p>Exchange verified</p>
+                    </div>
+                    <div class="padding--bottom--sm">
+                        <div class="star-full"></div>
+                        <span class="rating">5</span>
+                    </div>
+                    <h2 class="padding--bottom--sm text--med-bold">Trustorthy user!</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adispiscing elit. Nam eu venenatis metus. Donec in lacus mauris.</p>
                 </div>
             </div>
             
@@ -103,7 +107,11 @@ class ProfilePage {
         let starPercentageRounded = Math.round(starPercentage / 10) * 10;
         document.querySelector('.stars-inner').style.width = starPercentageRounded + '%'; 
 
+        this.init();
     } 
+    init(){
+        feather.replace();
+    }
 }
 
 export default ProfilePage;
