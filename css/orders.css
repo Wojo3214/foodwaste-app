@@ -1,0 +1,73 @@
+@import "navigation.css";
+
+/* ----- ordered food section -----*/
+.ordered-food {
+  padding: 20px;
+  background-color: var(--text-white) !important;
+}
+
+.ordered-food-item {
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  grid-template-areas: "item-info delete";
+  padding-left: 10px;
+}
+
+.item-info {
+  grid-area: item-info;
+}
+
+.delete-item {
+  grid-area: delete;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  justify-self: center;
+  margin-left: 20px;
+  width: 100%;
+  height: 100%;
+  align-self: center;
+  justify-self: center;
+  position: relative;
+}
+
+.delete-icon {
+  position: absolute;
+  z-index: 10;
+  top: 35%;
+  left: 24%;
+}
+
+/* ----- shared food section -----*/
+.shared-food {
+  padding: 20px;
+  background-color: var(--text-white) !important;
+}
+
+.shared-food-container {
+  padding: 0 10px;
+}
+
+.order-accepted {
+  display: grid;
+  grid-template-columns: 35px 1fr;
+  grid-template-rows: 30px 1fr;
+  grid-template-areas:
+    "check confirmation"
+    ". cancel";
+}
+
+.check-mark {
+  grid-area: check;
+  justify-self: center;
+  align-self: flex-start;
+}
+
+.confirmation-text {
+  grid-area: confirmation;
+  align-self: flex-start;
+}
+
+.cancel-text {
+  grid-area: cancel;
+  align-self: flex-end;
+}

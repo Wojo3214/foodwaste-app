@@ -17,6 +17,7 @@
 .back-button {
   grid-area: back;
   justify-self: center;
+  color: var(--text-white);
 }
 
 .profile-image {
@@ -29,6 +30,7 @@
 .settings-button {
   grid-area: settings;
   justify-self: center;
+  color: var(--text-white);
 }
 
 .profile-content {
@@ -50,7 +52,6 @@
 }
 
 .sharing-container {
-  background-color: var(--form-background);
   display: grid;
   grid-template-columns: 100px 10px 1fr 10% 10%;
   grid-template-rows: 1fr 1fr 1fr;
@@ -58,7 +59,6 @@
     "photo . header amount unit"
     "photo . time . ."
     "photo . address . .";
-  border-radius: 10px;
 }
 
 .food-thumbnail {
@@ -126,4 +126,18 @@
 
 .total-rating {
   padding-left: 10px;
+}
+
+/* ----- ratings -----*/
+.review-container {
+  box-shadow: 0px 1px 1px 0px #0000001a;
+  padding: 20px;
+}
+
+.star-full {
+  font-family: FontAwesome;
+  content: "f005";
+  font-size: 20px;
+  color: #fac43a;
+  width: 100%;
 }
