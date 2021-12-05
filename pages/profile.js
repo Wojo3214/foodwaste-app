@@ -65,7 +65,7 @@ class ProfilePage {
                         <div class="star-full"></div>
                         <span class="rating">5</span>
                     </div>
-                    <h2 class="padding--bottom--sm text--med-bold">Trustorthy user!</h2>
+                    <h2 class="padding--bottom--sm text--med-bold">Trustworthy user!</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adispiscing elit. Nam eu venenatis metus. Donec in lacus mauris.</p>
                 </div>
             </div>

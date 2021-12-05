@@ -13,7 +13,7 @@ class ProductPage {
         /*html*/`
         <section id="product" class="page">
             <div class="product-header">
-                <a href="#" class="product-back-button"><i data-feather="arrow-left"></i></a>
+                <button class="back-button--absolute"><i data-feather="arrow-left"></i></button>
                 <img class="product-image" src="src/img/product.png">
             </div>
             <div class="profile-content">
@@ -45,7 +45,9 @@ class ProductPage {
                 <p>Pottemagertoften 6</p>
                 ${this.mapBox.render()}
 
-                
+                <div class="btns-container btns-container--vertical">
+                    <input type="button" value="Book" class="btn btn--primary btn--normal">
+                </div>  
 
                 </div>
             </div>
