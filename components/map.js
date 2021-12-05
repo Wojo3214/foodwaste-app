@@ -18,7 +18,7 @@ export default class MapBox {
             const map = new mapboxgl.Map({
                 container: this.id, // container ID
                 style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                center: [-74.5, 40], // starting position [lng, lat]
+                center: [10.158, 56.143], // starting position [lng, lat]
                 zoom: 9 // starting zoom
             });
             map.addControl(
@@ -32,6 +32,24 @@ export default class MapBox {
                 showUserHeading: true
                 })
             );
+            
+            // create DOM element for the marker
+            const el = document.createElement('div');
+            el.id = 'marker';
+
+            // create DOM element for the marker
+            const el2 = document.createElement('div');
+            el2.id = 'marker';
+            
+            // create the marker
+            new mapboxgl.Marker(el)
+            .setLngLat([10.160233998398176 , 56.17225728978783 ]).addTo(map);
+
+            new mapboxgl.Marker(el2)
+            .setLngLat([10.136315371414938 , 56.170949304057594]).addTo(map);
+
         }, 100);
+        
+        
     }
 }
