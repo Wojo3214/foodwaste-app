@@ -5,7 +5,7 @@ import { hideNav } from "../src/router.js";
 class ProfilePage {
     constructor(domElement){
         this.domElement = domElement;
-        this.mapBox = new MapBox("maps");
+        this.mapBox = new MapBox("profileMap");
         this.render();
         hideNav();
     }
@@ -42,9 +42,7 @@ class ProfilePage {
                 </div>
                 <h2 class="padding--top--md padding--bottom--sm">Pick-up location</h2>
                 <p>Pottemagertoften 6</p>
-                <div id="profileMap">
-                    ${this.mapBox.render()}
-                </div>
+                ${this.mapBox.render()}
 
                 <div class="total-review padding--top--md padding--bottom--sm content--horizontal space--between">
                     <h2>Reviews</h2>

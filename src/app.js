@@ -5,6 +5,7 @@ import SignUpPage from "../pages/sign-up-page.js";
 import HomePage from "../pages/home.js";
 import OrderPage from "../pages/orders.js";
 import ProfilePage from "../pages/profile.js";
+import ProductPage from "../pages/product-page.js";
 import Nav from "../components/nav.js";
 
 
@@ -19,6 +20,7 @@ const startPage = new StartPage(pages);
 const homePage = new HomePage(pages);
 const orderPage = new OrderPage(pages);
 const profilePage = new ProfilePage(pages);
+const productPage = new ProductPage(pages);
 const loginPage = new LoginPage(pages);
 const signupPage = new SignUpPage(pages);
 

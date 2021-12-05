@@ -13,6 +13,7 @@ class Router {
             "#/orders" : "orders",
             "#/add" : "add",
             "#/profile" : "profile",
+            "#/product" : "product",
             "#/more" : "more",
             "#/settings" : "settings",
             "#/start" : "start",

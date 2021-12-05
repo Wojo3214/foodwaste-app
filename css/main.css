@@ -89,12 +89,25 @@ h1 {
   text-align: center;
 }
 
+.text--left {
+  text-align: left;
+}
+
+.sub-heading {
+  font-size: 18px;
+  padding: 16px 0 8px 0;
+}
+
 .logo {
   width: 60%;
 }
 
 .profile-pic {
   width: 80px;
+}
+
+.profile-pic--small {
+  width: 40px;
 }
 
 .link {
@@ -364,43 +377,43 @@ input.invalid {
 }
 
 .padding--top--xs {
-  padding-top: 10px;
+  padding-top: 8px;
 }
 
 .padding--top--sm {
-  padding-top: 20px;
+  padding-top: 16px;
 }
 
 .padding--top--md {
-  padding-top: 40px;
+  padding-top: 32px;
 }
 
 .padding--bottom--xs {
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 .padding--bottom--sm {
-  padding-bottom: 20px;
+  padding-bottom: 16px;
 }
 
 .padding--bottom--md {
-  padding-bottom: 40px;
+  padding-bottom: 32px;
 }
 
 .margin--top--sm {
-  margin-top: 20px;
+  margin-top: 8px;
 }
 
 .margin--top--md {
-  margin-top: 40px;
+  margin-top: 32px;
 }
 
 .margin--bottom--sm {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .margin--bottom--md {
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 #home {
@@ -452,6 +465,11 @@ input.invalid {
 .content--horizontal {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+.gap--8px {
+  gap: 8px;
 }
 
 .flex--wrap {
@@ -525,4 +543,40 @@ input.invalid {
 canvas {
   width: 100%;
   height: 300px;
+}
+
+
+/* ----- PRODUCT PAGE -----*/
+#product {
+  padding: 0;
+  height: 120vh;
+}
+
+.product-image {
+  width: 100%;
+}
+
+.product-header {
+  display: flex;
+}
+
+.product-back-button {
+  position: absolute;
+  color: var(--text-white);
+  margin: 64px 16px;
+}
+
+#productMap {
+  height: 150px;
+  border-radius: 10px;
+  margin: 16px 0;
+}
+
+.user-banner {
+  padding: 16px;
+  display: flex;
+  background-color: var(--form-background);
+  border-radius: 10px;
+  align-items: center;
+  gap: 8px;
 }

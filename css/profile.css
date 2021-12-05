@@ -4,6 +4,12 @@
   padding: 0;
 }
 
+#profileMap {
+  height: 150px;
+  border-radius: 10px;
+  margin: 16px 0;
+}
+
 .header {
   display: grid;
   background-color: var(--green);
