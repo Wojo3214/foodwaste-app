@@ -17,7 +17,7 @@ class ProfilePage {
             <div class="header">
                 <a href="#" class="back-button"><i data-feather="arrow-left"></i></a>
                 <img class="profile-image" src="src/img/avatar.svg">
-                <a href="#" class="settings-button"><i data-feather="settings"></i></a>
+                <a href="#/settings" class="settings-button"><i data-feather="settings"></i></a>
             </div>
             <h1 class="profile-username padding--top--md text--centered">Ana Smith</h1>
             <div class="profile-content">

@@ -6,9 +6,7 @@ class LoginPage {
     constructor(domElement){
         this.domElement = domElement;
         this.render();
-        //hideNav(true);s
         this.attachEvents();
-        
         this.router = new Router(app, "#/");
         router.navigateTo();
     }

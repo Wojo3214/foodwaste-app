@@ -2,12 +2,12 @@ class Router {
 
     constructor(app, defaultPage){
         this.defaultPage = defaultPage;
-        this.basePath = location.pathname.replace("index.html","");
+        this.basePath = location.pathname.replace("index.html","");  //hiding "index.html" from URL
 
         this.pages = app.querySelectorAll(".page");
         this.navItems = app.querySelectorAll(".nav-link");
 
-        //Setting the routes for SPA navigation
+        //Setting the routes "pages" for SPA navigation
         this.routes = {
             "#/home": "home",
             "#/orders" : "orders",
@@ -52,18 +52,21 @@ class Router {
         this.showPage(path);
     }
 
+    // Showing page with the path and setting Tab to active
     showPage(path){
         this.hideAllPages();
         document.querySelector(`#${this.routes[path]}`).style.display = "flex";
         this.setActiveTab(path);
     }
     
+    // Looping through 'pages' and hiding them
     hideAllPages(){
         for (const page of this.pages) {
             page.style.display="none";
         }
     }
 
+    // Looping through navItems and adding/removing the 'active' class if pathname is equal to navItem 'href'
     setActiveTab(pathname){
         for (const link of this.navItems) {
             if(pathname === link.getAttribute("href")){
@@ -74,14 +77,6 @@ class Router {
         }
     }
 }
-
-// export function hideNav(){
-//     document.querySelector(".nav").style.display = "none";
-// }
-
-// export function showNav(){
-//     document.querySelector(".nav").style.display = "grid";
-// }
 
 export function hideNav(hide){
     if (hide) {

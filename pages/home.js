@@ -8,7 +8,6 @@ class HomePage {
         this.mapBox = new MapBox("map");
         this.render();
         this.attachEvents();
-        hideNav();
     }
 
     render(){
@@ -79,7 +78,7 @@ class HomePage {
                         <h3 class="food-header">Cherries</h3>
                         <p class="pick-time">8:00 - 12:00</p>
                         <i data-feather="map-pin" class="map-pin icon-small"></i>
-                        <p class="pick-address">Pottemagertoften 6</p>
+                        <p class="pick-address">3 km</p>
                         <p class="food-amount">3stars</p>
                         <p class="unit">stk</p>
                     </div>
@@ -95,6 +94,7 @@ class HomePage {
         window.switchTabs = (tabID, tabContent) => this.switchTabs(tabID, tabContent);
     }
 
+    //Functionality for the Tabs chaning on Home Page -> MAP|LIST
     switchTabs(tabID, tabContent){
         const tabsContent = document.getElementsByClassName("tab-content");
         let i;
