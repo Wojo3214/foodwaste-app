@@ -25,16 +25,19 @@
         $password = $loginObject->password;
 
         // SQL query to get user information
-        $sql = "SELECT * FROM userInfo WHERE email = '$email' LIMIT 1)";  
+        $sql = "SELECT * FROM userInfo WHERE email = '$email' LIMIT 1";  
         $result = $mySQL->query($sql);
         
         // Checking if the email exists
         if ($result->num_rows == 1) {
             $data = $result->fetch_object();
+            $userPassword = $data->userPassword;
+            $passVerify = ($password == $userPassword);
+            // $passVerify = password_verify($userPassword, $password);
 
             // Checking if the password fits the given email
-            if (password_verify($password, $data->pass)) {
-                $sql = "SELECT * FROM userInfo WHERE PK_id = " . $data->id;
+            if ($passVerify) {
+                $sql = "SELECT * FROM userInfo WHERE PK_id = '$data->PK_id'";
                 $user = $mySQL->query($sql)->fetch_object();
                 $response['authenticated'] = TRUE;
                 $response['userData'] = $user;
