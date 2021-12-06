@@ -6,6 +6,7 @@ import HomePage from "../pages/home.js";
 import OrderPage from "../pages/orders.js";
 import ProfilePage from "../pages/profile.js";
 import ProductPage from "../pages/product-page.js";
+import AddItemPage from "../pages/add-page.js";
 import Nav from "../components/nav.js";
 
 
@@ -21,8 +22,11 @@ const homePage = new HomePage(pages);
 const orderPage = new OrderPage(pages);
 const profilePage = new ProfilePage(pages);
 const productPage = new ProductPage(pages);
+const addPage = new AddItemPage(pages);
 const loginPage = new LoginPage(pages);
+
 const signupPage = new SignUpPage(pages);
+
 
 
 const router = new Router(app, "#/");
