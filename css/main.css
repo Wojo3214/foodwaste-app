@@ -317,6 +317,8 @@ h1 {
   border: none;
   border-radius: 10px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
 .btns-container--vertical {

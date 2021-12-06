@@ -24,11 +24,11 @@ class LoginPage {
                 <label class="input-label">Password
                 <input type="password" name="password" id="pass" class="text-field" placeholder="Your password">
                 </label>
-                <a href="" class="link">Forgot my password</a>
+                <a href="" class="link padding--top--sm ">Forgot my password</a>
 
-                <p class="text--centered">If you are not a part of the RawShare yet,<br><a href="#/signup" class="paragraph-link">Create an account</a>.</p>
+                <p class="text--centered padding--top--md">If you are not a part of the RawShare yet,<br><a href="#/signup" class="paragraph-link">Create an account</a>.</p>
 
-                <div class="btns-container btns-container--vertical">
+                <div class="btns-container btns-container--vertical padding--top--md">
                     <input type="button" onclick="login()" value="Log in" class="btn btn--primary btn--normal">
                 </div>  
             </form> 

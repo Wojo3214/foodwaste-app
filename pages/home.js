@@ -19,8 +19,8 @@ class HomePage {
                 <button id="tabmenu2" class="tabmenu" onclick="switchTabs('tabmenu2', 'food-list')">List</button>
             </div>
             <div class="filters-menu-container">
-                <button id="filter" class="filter">Search</button>
-                <button id="filter" class="filter">Filters</button>
+                <button id="filter" class="filter"><i data-feather="search" class="icon-medium"></i></button>
+                <button id="filter" class="filter"><i data-feather="filter" class="icon-medium"></i></button>
                 <button id="filter" class="filter">Sort by: Nearest</button>
                 <button id="filter" class="filter">Category: Vegetarian</button>
             </div>
@@ -77,7 +77,6 @@ class HomePage {
                         <img class="food-thumbnail" src="../src/foodImg/placeholder/placeholder.png">
                         <h3 class="food-header">Cherries</h3>
                         <p class="pick-time">8:00 - 12:00</p>
-                        <i data-feather="map-pin" class="map-pin icon-small"></i>
                         <p class="pick-address">3 km</p>
                         <p class="food-amount">3stars</p>
                         <p class="unit">stk</p>
