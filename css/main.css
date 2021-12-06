@@ -477,6 +477,7 @@ textarea{
 
 #home {
   position: relative;
+  overflow-y: unset;
 }
 
 .container {
@@ -559,7 +560,6 @@ textarea{
   overflow-x: scroll;
   position: absolute;
   bottom: 0;
-  margin-bottom: -32px;
   padding: 32px 0;
 }
 
