@@ -9,16 +9,19 @@
 
             // SQL query to get user information
             $sql = "SELECT * FROM foodItems";  
-            $result = $mysql->query($sql);
+            $result = $mySQL->query($sql);
 
             if($result){
-                while($data = $result->fetch_object()){
-                    $foodName = $data->foodName;
-                    $fromTime = $data->fromTime;
-                    $untilTime = $data->untilTime;
-                    $response['foodData'] += $foodName;
+                while($row = $result->fetch_object()){
+                    // echo $foodName = $row->foodName;
+                    // echo $fromTime = $row->fromTime;
+                    // echo $untilTime = $row->untilTime;
+                    $data[] = $row;
+                    $response['foodData'] = $data;
+                    //$response['foodData'] = $fromTime;
                 }
-                //$response['foodData'] = $data;
+                //$response['foodData'] += $foodName;
+                
                 echo json_encode($response);
             }
         }

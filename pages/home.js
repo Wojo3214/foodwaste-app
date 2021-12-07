@@ -87,7 +87,7 @@ class HomePage {
         `;
         this.mapBox.init();
         this.iconsInit();
-        //this.getFoodProducts();
+        this.getFoodProducts();
     }
 
     attachEvents(){
