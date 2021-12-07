@@ -1,5 +1,5 @@
 //Importing Classes from JS files
-import Router from "./router.js";
+import router from "./router.js";
 import StartPage from "../pages/start-page.js";
 import LoginPage from "../pages/login-page.js";
 import SignUpPage from "../pages/sign-up-page.js";
@@ -30,6 +30,8 @@ const loginPage = new LoginPage(pages);
 
 const signupPage = new SignUpPage(pages);
 
+router.initRouter();
 
 
-const router = new Router(app, "#/");
+
+

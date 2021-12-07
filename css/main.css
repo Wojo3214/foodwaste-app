@@ -264,13 +264,18 @@ h1 {
 }
 
 .back-button--normal{
-  color: var(--text-main-heading);
   margin: 64px 16px;
   background-color: var(--form-background);
   border-radius: 100%;
   padding: 8px;
   border: none;
   display: flex;
+  height: 40px;
+  width: 40px;
+}
+
+.back-button--normal a{
+  color: var(--text-main-heading);
 }
 
 .back-button--absolute {

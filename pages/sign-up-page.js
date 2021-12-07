@@ -1,5 +1,5 @@
-import Router from "../src/router.js";
-import { hideNav } from "../src/router.js";
+import router from "../src/router.js";
+//import { hideNav } from "../src/router.js";
 
 class SignUpPage {
     constructor(domElement){

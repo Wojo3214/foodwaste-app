@@ -1,13 +1,12 @@
 import MapBox from "../components/map.js";
-import Router from "../src/router.js";
-import { hideNav } from "../src/router.js";
+import router from "../src/router.js";
 
 class ProfilePage {
     constructor(domElement){
         this.domElement = domElement;
         this.mapBox = new MapBox("profileMap");
         this.render();
-        hideNav();
+        this.getData();
     }
 
     render(){
@@ -31,9 +30,9 @@ class ProfilePage {
                         <h2 class="text--bold">12/14</h2>
                     </div>
                 </div>
-                <h2 class="padding--bottom--sm">Ana is sharing</h2>
+                <h2 class="person-sharing padding--bottom--sm">Ana is sharing</h2>
                 <div class="sharing-container container">
-                    <img class="food-thumbnail" src="src/foodImg/placeholder/placeholder.png">
+                    <img class="food-thumbnail" src="https://images.pexels.com/photos/35629/bing-cherries-ripe-red-fruit.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
                     <h3 class="food-header text--bold">Cherries</h3>
                     <p class="pick-time">8:00 - 12:00</p>
                     <p class="pick-address">Pottemagertoften 6</p>
@@ -41,12 +40,12 @@ class ProfilePage {
                     <p class="unit">stk</p>
                 </div>
                 <h2 class="padding--top--md padding--bottom--sm">Pick-up location</h2>
-                <p>Pottemagertoften 6</p>
+                <p class="address-street">Pottemagertoften 6</p>
                 ${this.mapBox.render()}
 
-                <div class="total-review padding--top--md padding--bottom--sm content--horizontal space--between">
+                <div class="total-review padding--top--md content--horizontal space--between">
                     <h2>Reviews</h2>
-                    <div class="content--horizontal align--center padding--bottom--sm">
+                    <div class="content--horizontal align--center">
                         <div class="stars-outer">
                             <div class="stars-inner"></div>
                         </div>
@@ -74,6 +73,8 @@ class ProfilePage {
         `;
 
         this.mapBox.init();
+
+        
 
 
 
@@ -107,9 +108,23 @@ class ProfilePage {
 
         this.init();
     } 
+
     init(){
         feather.replace();
     }
+
+    getData(){
+        let firstName = localStorage.getItem("firstName");
+        console.log(firstName);
+        let lastName = localStorage.getItem("lastName");
+        console.log(lastName);
+        let address = localStorage.getItem("address");
+        console.log(address);
+
+        document.querySelector(".profile-username").innerHTML = firstName + " " + lastName;
+        document.querySelector(".person-sharing").innerHTML = firstName + " is sharing";
+        document.querySelector(".address-street").innerHTML = address;
+    };
 }
 
 export default ProfilePage;

@@ -1,11 +1,10 @@
-import Router from "../src/router.js";
-import { hideNav } from "../src/router.js";
+import router from "../src/router.js";
+//import { hideNav } from "../src/router.js";
 
 class StartPage {
     constructor(domElement){
         this.domElement = domElement;
         this.render();
-        hideNav();
     }
 
     render(){

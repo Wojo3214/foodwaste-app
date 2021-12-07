@@ -1,5 +1,5 @@
 import MapBox from "../components/map.js";
-import Router from "../src/router.js";
+import router from "../src/router.js";
 
 class ProductPage {
     constructor(domElement){

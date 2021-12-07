@@ -4,8 +4,7 @@ class Router {
         this.defaultPage = defaultPage;
         this.basePath = location.pathname.replace("index.html","");  //hiding "index.html" from URL
 
-        this.pages = app.querySelectorAll(".page");
-        this.navItems = app.querySelectorAll(".nav-link");
+        
 
         //Setting the routes "pages" for SPA navigation
         this.routes = {
@@ -20,11 +19,13 @@ class Router {
             "#/login" : "login",
             "#/signup" : "signup"
         };
-        this.initRouter();
+        // this.initRouter();
     }
 
     //Router functionality
     initRouter(){
+        this.pages = app.querySelectorAll(".page");
+        this.navItems = app.querySelectorAll(".nav-link");
         this.attachNavLinkEvents();
         window.addEventListener("popstate", () => this.showPage(location.hash));
 
@@ -48,15 +49,26 @@ class Router {
 
     // Navigating to new page by getting its href
     navigateTo(path){
+        console.log(path);
         window.history.pushState({}, path, this.basePath + path);
         this.showPage(path);
     }
 
     // Showing page with the path and setting Tab to active
     showPage(path){
-        this.hideAllPages();
-        document.querySelector(`#${this.routes[path]}`).style.display = "flex";
-        this.setActiveTab(path);
+        if(path == "#/login" || path == "#/signup" || path == "#/start"){
+            console.log(this.routes[path]);
+            this.hideAllPages();
+            document.querySelector(`#${this.routes[path]}`).style.display = "flex";
+            this.setActiveTab(path);
+            this.hideNav(true);
+        } else {
+            console.log(this.routes[path]);
+            this.hideAllPages();
+            document.querySelector(`#${this.routes[path]}`).style.display = "flex";
+            this.setActiveTab(path);
+            this.hideNav(false);
+        }
     }
     
     // Looping through 'pages' and hiding them
@@ -76,15 +88,25 @@ class Router {
             }
         }
     }
-}
 
-export function hideNav(hide){
-    if (hide) {
-        document.querySelector(".nav").style.display = "none";
-    } else {
-        document.querySelector(".nav").style.display = "grid";
+    hideNav(hide){
+        if (hide) {
+            document.querySelector(".nav").style.display = "none";
+        } else {
+            document.querySelector(".nav").style.display = "grid";
+        }
     }
 }
 
-export default Router;
-export const navigateTo = Router.prototype.navigateTo;
+// export function hideNav(hide){
+//     if (hide) {
+//         document.querySelector(".nav").style.display = "none";
+//     } else {
+//         document.querySelector(".nav").style.display = "grid";
+//     }
+// }
+
+
+const app = document.querySelector("#app");
+const router = new Router(app, "#/");
+export default router;

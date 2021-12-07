@@ -1,14 +1,10 @@
-import Router from "../src/router.js";
-import { hideNav } from "../src/router.js";
-import { navigateTo } from "../src/router.js";
+import router from "../src/router.js";
 
 class LoginPage {
     constructor(domElement){
         this.domElement = domElement;
         this.render();
         this.attachEvents();
-        this.router = new Router(app, "#/");
-        router.navigateTo();
     }
 
     render(){
@@ -43,30 +39,28 @@ class LoginPage {
     async login() {
         let email = document.getElementById('mail').value;
         let password = document.getElementById('pass').value;
-        const loginObject = {email : email, password: password};
+        const loginObject = { email: email, password: password };
         console.log(loginObject);
-        const response = await fetch("../backend/login.php?action=loginUser", {
+        const response = await fetch("http://localhost:3000//backend/login.php?action=loginUser", {
             method: "POST",
-            body: JSON.stringify(loginObject) // parsing js object to json object
+            body: JSON.stringify(loginObject)
         });
         
         const data = await response.json();
         console.log(data);
+        console.log(data.userData.firstName);
 
         if (data.authenticated) {
             localStorage.setItem("userIsAuthenticated", true);
             localStorage.setItem("authUser", JSON.stringify(data.userData));
             //resetMessage();
-            navigateTo("#/home");
-        }
-    }
+            router.navigateTo("#/home");
 
-    logout() {
-        //reset localStorage
-        localStorage.removeItem("userIsAuthenticated");
-        localStorage.removeItem("authUser");
-        //navigate to login
-        navigateTo("#/login");
+            localStorage.setItem("firstName",data.userData.firstName);
+            localStorage.setItem("lastName",data.userData.lastName);
+            localStorage.setItem("address",data.userData.street + data.userData.buildingNum);
+
+        }
     }
 }
 

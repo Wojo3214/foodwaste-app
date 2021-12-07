@@ -1,11 +1,9 @@
-import Router from "../src/router.js";
-import { hideNav } from "../src/router.js";
+import router from "../src/router.js";
 
 class AddItemPage {
     constructor(domElement){
         this.domElement = domElement;
         this.currentTab = 0;
-        hideNav(false);
         this.render();
         this.showTabs(this.currentTab);
         this.attachEvents();

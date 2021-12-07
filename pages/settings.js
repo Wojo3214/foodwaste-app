@@ -1,9 +1,10 @@
-import Router from "../src/router.js";
+import router from "../src/router.js";
 
 class SettingsPage {
     constructor(domElement){
         this.domElement = domElement;
         this.render();
+        this.attachEvents();
     }
 
     render(){
@@ -35,6 +36,18 @@ class SettingsPage {
         this.iconsInit();
         
     } 
+
+    attachEvents(){
+        window.logOut = () => this.logOut();
+    }
+
+    logOut() {
+        //reset localStorage
+        localStorage.removeItem("userIsAuthenticated");
+        localStorage.removeItem("authUser");
+        //navigate to login
+        router.navigateTo("#/login");
+    }
     
     iconsInit(){
         feather.replace();

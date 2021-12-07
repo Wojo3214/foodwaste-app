@@ -1,6 +1,5 @@
 import MapBox from "../components/map.js";
-import Router from "../src/router.js";
-import { hideNav } from "../src/router.js";
+import router from "../src/router.js";
 
 class HomePage {
     constructor(domElement){
@@ -8,6 +7,7 @@ class HomePage {
         this.mapBox = new MapBox("map");
         this.render();
         this.attachEvents();
+        //this.getFoodProducts();
     }
 
     render(){
@@ -87,10 +87,12 @@ class HomePage {
         `;
         this.mapBox.init();
         this.iconsInit();
+        //this.getFoodProducts();
     }
 
     attachEvents(){
         window.switchTabs = (tabID, tabContent) => this.switchTabs(tabID, tabContent);
+        //window.getFoodProducts = () => this.getFoodProducts();
     }
 
     //Functionality for the Tabs chaning on Home Page -> MAP|LIST
@@ -107,6 +109,14 @@ class HomePage {
             tabsMenu[i].className = "tabmenu";
         }
         document.getElementById(tabID).className = "tabmenu tabmenu--active";
+    }
+
+    async getFoodProducts(){
+        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getFoodProducts");
+
+        const data = await response.json();
+        console.log(data);
+        console.log(data.foodData.foodName);
     }
 
     iconsInit(){

@@ -1,12 +1,10 @@
-import Router from "../src/router.js";
-import { hideNav } from "../src/router.js";
+import router from "../src/router.js";
 
 class OrderPage {
     constructor(domElement){
         this.domElement = domElement;
         this.render();
         this.attachEvents();
-        hideNav();
     }
 
     render(){

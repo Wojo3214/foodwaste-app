@@ -3,7 +3,6 @@
     include("mysql.php");
     include("users.php");
 
-    session_start();
 
     // ******* Log Out - GET method called ********//
     if (isset($_GET['action'])) {
@@ -20,7 +19,10 @@
     // ******* Log In - GET method called ********//
     if($_GET['action'] == "loginUser") {
 
-        $loginObject = json_decode(file_get_contents("php://input"));
+        $loginObject = json_decode(file_get_contents('php://input'));
+        // var_dump($loginObject);
+
+
         $email = $loginObject->email;
         $password = $loginObject->password;
 
@@ -41,6 +43,7 @@
                 $user = $mySQL->query($sql)->fetch_object();
                 $response['authenticated'] = TRUE;
                 $response['userData'] = $user;
+                $response['loginObject'] = $loginObject;
                 echo json_encode($response);
             } else {
                 $response['authenticated'] = FALSE;
@@ -52,8 +55,6 @@
             $response['error'] = "User doesn't exist";
             echo json_encode($response);
         }
-
-        echo $logedInUser;
 
         // while($userInfo = true) {
         //     // Save every row from the result as a new array index
