@@ -78,8 +78,6 @@
 .food-header {
   grid-area: header;
   align-self: center;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .food-details {
@@ -150,10 +148,13 @@
 
 .star-full {
   font-family: FontAwesome;
-  content: "f005";
+  width: 25px;
+}
+
+.star-full::before {
+  content: "\f005 ";
   font-size: 20px;
   color: #fac43a;
-  width: 100%;
 }
 
 .user-pic {

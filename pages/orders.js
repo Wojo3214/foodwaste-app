@@ -18,7 +18,7 @@ class OrderPage {
             </div>
 
             <div id="ordered-food" class="tab-content"> 
-                <div class="ordered-food container margin--top--sm">
+                <div class="ordered-food container margin--top--xs">
                     <div class="ordered-header content--horizontal flex--wrap align--center space--between">
                         <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
                             <img class="small--photo" src="src/img/avatar.svg">
@@ -44,13 +44,13 @@ class OrderPage {
                             <i class="delete-icon" data-feather="trash"></i>
                         </div>
                     </div>
-                    <button class="btn btn--small btn--cancel content--centered">Cancel</button>
+                    <button class="btn btn--small btn--cancel content--centered margin--top--sm">Cancel</button>
                 </div>
                 
             </div>
 
             <div id="food-shared" class="tab-content" style="display:none;">
-            <div class="shared-food container margin--top--sm">
+            <div class="shared-food container margin--top--xs">
                     <div class="shared-header content--horizontal flex--wrap align--center space--between">
                         <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
                             <img class="small--photo" src="src/img/avatar.svg">
@@ -74,12 +74,19 @@ class OrderPage {
                             <p class="pick-address padding--top--xs padding--bottom--xs">Haslegarsvej 24A</p>
                         </div>
                     </div>
-                    <div class="order-accepted container--green margin--top--sm padding--top--xs">
-                        <i class="check-mark text--green text--med-bold" data-feather="check"></i>
-                        <p class="confirmation-text text--green text--med-bold">You accepted the order</p>
-                        <p class="cancel-text padding--bottom--xs">If you want to cancel it, you have:<span class="text--semi-bold"> 30min</span></p>
+                    <div class="not-accepted content--horizontal flex--wrap space--around">
+                        <button class="btn btn--small btn--cancel">X Reject</button>
+                        <button class="btn btn--small btn--primary">Accept</button>
                     </div>
-                    <button class="btn btn--small btn--cancel content--centered">X Cancel the order</button>
+                    <div class="accepted">
+                        <div class="order-accepted container--green margin--top--xs padding--top--xs">
+                            <i class="check-mark text--green text--med-bold" data-feather="check"></i>
+                            <p class="confirmation-text text--green text--med-bold">You accepted the order</p>
+                            <p class="cancel-text padding--bottom--xs">If you want to cancel it, you have:<span class="text--semi-bold"> 30min</span></p>
+                        </div>
+                        <button class="btn btn--small btn--cancel content--centered margin--top--sm">X Cancel the order</button>
+                    </div>
+                    
                 </div>
             </div>
         </section>

@@ -25,7 +25,7 @@ class ProductPage {
                     <p class="text--semi-bold ">Expiriting date:</p>
                     <p>20.12.2021</p>
                 </div>
-                <div class="content--horizontal margin--top--sm gap--8px">
+                <div class="content--horizontal margin--top--xs gap--8px">
                     <p class="text--semi-bold ">Prefered Pick-up Time:</p>
                     <p>15:00-17:00</p>
                 </div>

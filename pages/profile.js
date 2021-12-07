@@ -66,7 +66,7 @@ class ProfilePage {
                         <h3>Michael Scott</h3>
                         <p>Exchange verified</p>
                     </div>
-                    <div class="padding--bottom--sm">
+                    <div class="padding--bottom--sm content--horizontal">
                         <div class="star-full"></div>
                         <span class="rating">5</span>
                     </div>
