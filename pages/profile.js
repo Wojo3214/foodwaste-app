@@ -18,7 +18,7 @@ class ProfilePage {
                 <div class="profile-image"></div>
                 <a href="#/settings" class="settings-button"><i data-feather="settings"></i></a>
             </div>
-            <h1 class="profile-username padding--top--md text--centered">Ana Smith</h1>
+            <h1 class="profile-username padding--top--md text--centered"></h1>
             <div class="profile-content">
                 <div id="statistics" class="content--horizontal space--between padding--top--md">
                     <div class="statistics content--vertical padding--top--sm padding--bottom--sm">
@@ -30,17 +30,23 @@ class ProfilePage {
                         <h2 class="text--bold">12/14</h2>
                     </div>
                 </div>
-                <h2 class="person-sharing padding--bottom--sm">Ana is sharing</h2>
-                <div class="sharing-container container">
-                    <img class="food-thumbnail" src="https://images.pexels.com/photos/35629/bing-cherries-ripe-red-fruit.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                    <h3 class="food-header text--bold">Cherries</h3>
-                    <p class="pick-time">8:00 - 12:00</p>
-                    <p class="pick-address">Pottemagertoften 6</p>
-                    <p class="food-amount">2</p>
-                    <p class="unit">stk</p>
+                <h2 class="person-sharing padding--bottom--sm"></h2>
+                <div>
+                    <div class="sharing-container container margin--bottom--sm">
+                        <img class="food-thumbnail" src="https://images.pexels.com/photos/35629/bing-cherries-ripe-red-fruit.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                        <div class="food-header content--horizontal flex--wrap space--between">
+                            <h3 class="text--bold">Cherries</h3>
+                            <div class="food-details content--horizontal">
+                                <p class="food-amount">2</p>
+                                <p class="unit">stk</p>
+                            </div>
+                        </div>
+                        <p class="pick-time">8:00 - 12:00</p>
+                        <p class="pick-address">Pottemagertoften 6</p>
+                    </div>
                 </div>
                 <h2 class="padding--top--md padding--bottom--sm">Pick-up location</h2>
-                <p class="address-street">Pottemagertoften 6</p>
+                <p class="address-street">/p>
                 ${this.mapBox.render()}
 
                 <div class="total-review padding--top--md content--horizontal space--between">
