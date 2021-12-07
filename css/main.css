@@ -682,6 +682,10 @@ canvas {
   width: 50%;
 }
 
+.add-form > .tab > .quantity > .input-label{
+  margin-bottom: 0px;
+}
+
 /* input[type="file"]{
   display: none;
 }
@@ -869,3 +873,5 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/* MORE PAGE */

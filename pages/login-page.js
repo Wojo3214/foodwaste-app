@@ -20,7 +20,7 @@ class LoginPage {
                 <label class="input-label">Password
                 <input type="password" name="password" id="pass" class="text-field" placeholder="Your password">
                 </label>
-                <a href="" class="link padding--top--sm ">Forgot my password</a>
+                <!-- <a href="" class="link padding--top--sm ">Forgot my password</a> -->
 
                 <p class="text--centered padding--top--md">If you are not a part of the RawShare yet,<br><a href="#/signup" class="paragraph-link">Create an account</a>.</p>
 
@@ -58,6 +58,7 @@ class LoginPage {
 
             localStorage.setItem("firstName",data.userData.firstName);
             localStorage.setItem("lastName",data.userData.lastName);
+            localStorage.setItem("profileImg",data.userData.profileImg);
             localStorage.setItem("address",data.userData.street + data.userData.buildingNum);
 
         }

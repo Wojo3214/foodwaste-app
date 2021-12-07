@@ -5,8 +5,8 @@ class SignUpPage {
     constructor(domElement){
         this.domElement = domElement;
         this.currentTab = 0;
-        this.render();
         this.showTabs(this.currentTab);
+        this.render();
         this.attachEvents();
     }
 

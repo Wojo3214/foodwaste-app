@@ -15,7 +15,7 @@ class ProfilePage {
         <section id="profile" class="page">
             <div class="header">
                 <a href="#" class="back-button"><i data-feather="arrow-left"></i></a>
-                <img class="profile-image" src="src/img/avatar.svg">
+                <div class="profile-image"></div>
                 <a href="#/settings" class="settings-button"><i data-feather="settings"></i></a>
             </div>
             <h1 class="profile-username padding--top--md text--centered">Ana Smith</h1>
@@ -120,10 +120,13 @@ class ProfilePage {
         console.log(lastName);
         let address = localStorage.getItem("address");
         console.log(address);
+        let profileImg = localStorage.getItem("profileImg");
+        console.log(profileImg);
 
         document.querySelector(".profile-username").innerHTML = firstName + " " + lastName;
         document.querySelector(".person-sharing").innerHTML = firstName + " is sharing";
         document.querySelector(".address-street").innerHTML = address;
+        document.querySelector(".profile-image").innerHTML = "<img class='user-pic' src=" + profileImg + "></img>";
     };
 }
 

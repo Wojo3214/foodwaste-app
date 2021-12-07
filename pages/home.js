@@ -27,7 +27,7 @@ class HomePage {
             <div id="map-container" class="tab-content"> 
                 ${this.mapBox.render()}
                 <div class="carousel-slider">
-                    <div class="carousel-slider-item">
+                    <!-- <div class="carousel-slider-item">
                         <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
                         <div class="carousel-slider-details">
                             <p>Pizza</p>
@@ -68,19 +68,19 @@ class HomePage {
                             <p>Mint</p>
                             <span><i data-feather="map-pin" class="map-pin icon-small"></i> Haslegardsvej 24A</span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div> 
             <div id="food-list" class="tab-content" style="display:none;">
                 <div class="food-sharing-area">
-                    <div class="sharing-container">
+                    <!-- <div class="sharing-container">
                         <img class="food-thumbnail" src="../src/foodImg/placeholder/placeholder.png">
                         <h3 class="food-header">Cherries</h3>
                         <p class="pick-time">8:00 - 12:00</p>
                         <p class="pick-address">3 km</p>
                         <p class="food-amount">3stars</p>
                         <p class="unit">stk</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -116,7 +116,55 @@ class HomePage {
 
         const data = await response.json();
         console.log(data);
-        console.log(data.foodData.foodName);
+
+        let foodItems = data.foodData;
+        let foodItemTemplate = "";
+        let foodItemTemplateSlider = "";
+
+        // for(i = 0; i <= foodItem.length; i++){
+        //     console.log(foodItem[i].foodName);
+        //     foodItemTemplate = `
+        //         <div class="sharing-container">
+    //             <img class="food-thumbnail" src="../src/foodImg/placeholder/placeholder.png">
+        //             <h3 class="food-header">${foodItem[i].foodName}</h3>
+        //             <p class="pick-time">${foodItem[i].fromTime} - ${foodItem[i].untilTime}</p>
+        //             <p class="pick-address">3 km</p>
+        //             <p class="food-amount">3stars</p>
+        //             <p class="unit">stk</p>
+        //         </div>
+        //     `;
+        // }
+        
+        for (const item of foodItems) {
+            foodItemTemplateSlider += `
+                <div class="carousel-slider-item">
+                    <img src="${item.foodImg}" alt="Food product image">
+                    <div class="carousel-slider-details">
+                        <p>${item.foodName}</p>
+                        <span><i data-feather="map-pin" class="map-pin icon-small"></i> 0,5km</span>
+                    </div>
+                </div>
+            `;
+        }
+        
+        document.querySelector(".carousel-slider").innerHTML = foodItemTemplateSlider;
+
+        for (const item of foodItems) {
+            foodItemTemplate += `
+                <div class="sharing-container">
+                     <img class="food-thumbnail" src="${item.foodImg}">
+                    <h3 class="food-header">${item.foodName}</h3>
+                    <p class="pick-time">${item.fromTime} - ${item.untilTime}</p>
+                     <p class="pick-address">3 km</p>
+                     <p class="food-amount">3stars</p>
+                     <p class="unit">stk</p>
+                </div>
+            `;
+        }
+        
+        document.querySelector(".food-sharing-area").innerHTML = foodItemTemplate;
+        console.log(foodItemTemplate);
+
     }
 
     iconsInit(){

@@ -42,6 +42,22 @@ class AddItemPage {
                     <label class="input-label">Expiration date
                         <input type="date" name="product-name" id="expiration-date" class="text-field" oninput="this.className = ''">
                     </label>
+                    <div class="content--horizontal quantity">
+                        <label class="input-label">Amount
+                            <input type="number" name="amount" id="product-amount" class="text-field">
+                        </label>
+                        <label class="input-label">Unit
+                        <select name="food-unit" id="food-unit" class="text-field">
+                            <option selected disabled>Choose one</option>
+                            <option value="stk">stk</option>
+                            <option value="kg">kg</option>
+                            <option value="dag">dag</option>
+                            <option value="g">g</option>
+                            <option value="l">l</option>
+                            <option value="ml">ml</option>
+                        </select>
+                    </label>
+                    </div>
                 </div>
                 <div class="tab">
                     <label class="input-label">Add image
@@ -143,11 +159,13 @@ class AddItemPage {
     //Function displays all put information about new food item
     shareOverview(){
         console.log("Function works!");
-        const productName = document.querySelector("#food-name").value;
         console.log(document.querySelector("#food-name").value);
+        const productName = document.querySelector("#food-name").value;
         const foodType = document.querySelector("#food-type").value;
         const foodDesc = document.querySelector("#food-desc").value;
         const foodExpirationDate = document.querySelector("#expiration-date").value;
+        const foodAmount = document.querySelector("#product-amount").value;
+        const foodUnit= document.querySelector("#food-unit").value;
         const foodImg = document.querySelector("#food-img").value;
         const pickUpTimeFrom = document.querySelector("#food-time-from").value;
         const pickUpTimeTo = document.querySelector("#food-time-to").value;
@@ -162,6 +180,8 @@ class AddItemPage {
                 <p>${productName}</p>
                 <p class="overview-list-header text--bold">Food type</p>
                 <p>${foodType}</p>
+                <p class="overview-list-header text--bold">Quantity</p>
+                <p>${foodAmount} ${foodUnit}</p>
                 <p class="overview-list-header text--bold">Description</p>
                 <p>${foodDesc}</p>
                 <p class="overview-list-header text--bold">Expiration Date</p>
@@ -170,7 +190,6 @@ class AddItemPage {
                 <p>${pickUpTimeFrom} - ${pickUpTimeTo}</p>
                 <p class="overview-list-header text--bold">Pick up address</p>
                 <p>${foodAddress}</p>
-                
             </div>
         `;
         document.getElementById("overview").innerHTML = overviewTemplate;
