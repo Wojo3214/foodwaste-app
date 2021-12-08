@@ -1,12 +1,12 @@
 import router from "../src/router.js";
-//import { hideNav } from "../src/router.js";
 
 class SignUpPage {
     constructor(domElement){
         this.domElement = domElement;
         this.currentTab = 0;
-        this.showTabs(this.currentTab);
         this.render();
+        this.showTabs(this.currentTab);
+        
         this.attachEvents();
     }
 
@@ -21,7 +21,7 @@ class SignUpPage {
                 <!-- <div class="progress-bar">
                     <div class="bar"></div>
                 </div> -->
-                <div class="tab">
+                <div class="tab-su">
                     <label class="input-label">Email
                         <input type="email" name="mail" class="text-field" placeholder="Your email" oninput="this.className = ''">
                     </label>
@@ -30,7 +30,7 @@ class SignUpPage {
                     </label>
                     <p class="text--centered">If you already are a part of the RawShare,<br><a href="#/login" class="paragraph-link">Log in to your account</a>.</p>
                 </div>
-                <div class="tab">
+                <div class="tab-su">
                     <div class="content--vertical">
                         <img src="../src/img/avatar.svg" alt="Profile picture" class="profile-pic">
                         <input type="submit" value="Add your profile image" class="btn btn--secondary btn--small">
@@ -45,7 +45,7 @@ class SignUpPage {
                         <input type="number" name="phoneNumber" class="text-field" placeholder="Your phone number">
                     </label>
                 </div>
-                <div class="tab">
+                <div class="tab-su">
                     <label class="input-label">Street name
                         <input type="text" name="street" class="text-field" placeholder="Your street name">
                     </label>
@@ -72,8 +72,8 @@ class SignUpPage {
             </form>
             
             <div class="btns-container btns-container--horizontal">
-                <input type="button" value="Back" id="prev-btn" class="btn btn--secondary btn--normal" onclick="nextPrev(-1)">
-                <input type="button" value="Next" id="next-btn" class="btn btn--primary btn--normal" onclick="nextPrev(1)">
+                <input type="button" value="Back" id="su-prev-btn" class="btn btn--secondary btn--normal" onclick="nextPrev(-1)">
+                <input type="button" value="Next" id="su-next-btn" class="btn btn--primary btn--normal" onclick="nextPrev(1)">
             </div>  
         </section>
         `;
@@ -85,21 +85,22 @@ class SignUpPage {
 
     showTabs(n){
         //this function will display the specified tab in the form
-        let tabs = document.querySelectorAll(".tab");
+        let tabs = document.querySelectorAll(".tab-su");
         tabs[n].style.display = "block";
+        console.log(tabs[n]);
 
         if(n == 0){
-            document.getElementById("prev-btn").style.display = "none";
+            document.getElementById("su-prev-btn").style.display = "none";
         } else {
-            document.getElementById("prev-btn").style.display = "block"
+            document.getElementById("su-prev-btn").style.display = "block";
         }
 
         if(n == (tabs.length - 1)){
-            document.getElementById("next-btn").type = 'submit';
-            document.getElementById("next-btn").value = "Finish";
-            document.getElementById("next-btn").href = "#/home";
+            document.getElementById("su-next-btn").type = 'submit';
+            document.getElementById("su-next-btn").value = "Finish";
+            document.getElementById("su-next-btn").href = "#/home";
         } else {
-            document.getElementById("next-btn").value = "Next";
+            document.getElementById("su-next-btn").value = "Next";
         }
 
         //progressBar function
@@ -107,13 +108,13 @@ class SignUpPage {
     }
 
     nextPrev(n){
-        let tabs = document.querySelectorAll(".tab");
+        let tabs = document.querySelectorAll(".tab-su");
         //if(n == 1 && !this.validateForm()) return false;
         tabs[this.currentTab].style.display = "none";
         this.currentTab = this.currentTab + n;
         if(this.currentTab >= tabs.length){
             document.getElementById("signup-form").submit();
-            document.getElementById("next-btn").href = "#/home";
+            document.getElementById("su-next-btn").href = "#/home";
             return false;
         } 
         
@@ -122,7 +123,7 @@ class SignUpPage {
 
     validateForm(){
         let tabs, y, i, valid = true;
-        tabs = document.getElementsByClassName("tab");
+        tabs = document.getElementsByClassName("tab-su");
         y = tabs[this.currentTab].getElementsByTagName("input");
 
         for(i = 0; i < y.length; i++){

@@ -6,8 +6,8 @@ class AddItemPage {
         this.currentTab = 0;
         this.render();
         this.showTabs(this.currentTab);
-        this.attachEvents();
         this.getCurrentDate();
+        this.attachEvents();
     }
 
     render(){
@@ -102,11 +102,12 @@ class AddItemPage {
         //this function will display the specified tab in the form
         let tabs = document.querySelectorAll(".tab");
         tabs[n].style.display = "block";
+        console.log(tabs[n]);
 
         if(n == 0){
             document.getElementById("prev-btn").style.display = "none";
         } else {
-            document.getElementById("prev-btn").style.display = "block"
+            document.getElementById("prev-btn").style.display = "block";
         }
 
         if(n == (tabs.length - 2)){
@@ -131,7 +132,8 @@ class AddItemPage {
         tabs[this.currentTab].style.display = "none";
         this.currentTab = this.currentTab + n;
         if(this.currentTab >= tabs.length){
-            document.getElementById("add-form").submit();
+            console.log("Form is sent!");
+            // document.getElementById("add-form").submit();
             document.getElementById("next-btn").href = "#/home";
             return false;
         } 
