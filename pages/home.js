@@ -163,8 +163,6 @@ class HomePage {
         }
         
         document.querySelector(".food-sharing-area").innerHTML = foodItemTemplate;
-        console.log(foodItemTemplate);
-
     }
 
     iconsInit(){

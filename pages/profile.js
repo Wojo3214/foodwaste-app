@@ -121,13 +121,10 @@ class ProfilePage {
 
     getData(){
         let firstName = localStorage.getItem("firstName");
-        console.log(firstName);
         let lastName = localStorage.getItem("lastName");
-        console.log(lastName);
         let address = localStorage.getItem("address");
-        console.log(address);
         let profileImg = localStorage.getItem("profileImg");
-        console.log(profileImg);
+        console.log(localStorage);
 
         document.querySelector(".profile-username").innerHTML = firstName + " " + lastName;
         document.querySelector(".person-sharing").innerHTML = firstName + " is sharing";

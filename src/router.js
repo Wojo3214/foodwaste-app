@@ -49,7 +49,6 @@ class Router {
 
     // Navigating to new page by getting its href
     navigateTo(path){
-        console.log(path);
         window.history.pushState({}, path, this.basePath + path);
         this.showPage(path);
     }
@@ -57,13 +56,11 @@ class Router {
     // Showing page with the path and setting Tab to active
     showPage(path){
         if(path == "#/login" || path == "#/signup" || path == "#/start"){
-            console.log(this.routes[path]);
             this.hideAllPages();
             document.querySelector(`#${this.routes[path]}`).style.display = "flex";
             this.setActiveTab(path);
             this.hideNav(true);
         } else {
-            console.log(this.routes[path]);
             this.hideAllPages();
             document.querySelector(`#${this.routes[path]}`).style.display = "flex";
             this.setActiveTab(path);
