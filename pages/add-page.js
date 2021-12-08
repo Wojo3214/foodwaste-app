@@ -85,8 +85,8 @@ class AddItemPage {
             </form>
             
             <div class="btns-container btns-container--horizontal">
-                <input type="button" value="Back" id="prev-btn" class="btn btn--secondary btn--normal" onclick="nextPrev(-1)">
-                <input type="button" value="Next" id="next-btn" class="btn btn--primary btn--normal" onclick="nextPrev(1)">
+                <input type="button" value="Back" class="btn btn--secondary btn--normal prev-btn" onclick="nextPrevAdd(-1)">
+                <input type="button" value="Next" class="btn btn--primary btn--normal next-btn" onclick="nextPrevAdd(1)">
             </div>  
         </section>
         `;
@@ -94,32 +94,32 @@ class AddItemPage {
     }
 
     attachEvents(){
-        window.nextPrev = (tabNum) => this.nextPrev(tabNum);
+        window.nextPrevAdd = (tabNum) => this.nextPrev(tabNum);
         window.shareOverview = () => this.shareOverview();
     }
 
     showTabs(n){
         //this function will display the specified tab in the form
-        let tabs = document.querySelectorAll(".tab");
+        let tabs = document.querySelectorAll("#add .tab");
         tabs[n].style.display = "block";
         console.log(tabs[n]);
 
         if(n == 0){
-            document.getElementById("prev-btn").style.display = "none";
+            document.querySelector("#add .prev-btn").style.display = "none";
         } else {
-            document.getElementById("prev-btn").style.display = "block";
+            document.querySelector("#add .prev-btn").style.display = "block";
         }
 
         if(n == (tabs.length - 2)){
-            document.getElementById("next-btn").addEventListener("click", this.shareOverview);
+            document.querySelector("#add .next-btn").addEventListener("click", this.shareOverview);
         }
 
         if(n == (tabs.length - 1)){
-            document.getElementById("next-btn").type = 'submit';
-            document.getElementById("next-btn").value = "Finish";
-            document.getElementById("next-btn").href = "#/home";
+            document.querySelector("#add .next-btn").type = 'submit';
+            document.querySelector("#add .next-btn").value = "Finish";
+            document.querySelector("#add .next-btn").href = "#/home";
         } else {
-            document.getElementById("next-btn").value = "Next";
+            document.querySelector("#add .next-btn").value = "Next";
         }
 
         //progressBar function
@@ -127,14 +127,14 @@ class AddItemPage {
     }
 
     nextPrev(n){
-        let tabs = document.querySelectorAll(".tab");
+        let tabs = document.querySelectorAll("#add .tab");
         //if(n == 1 && !this.validateForm()) return false;
         tabs[this.currentTab].style.display = "none";
         this.currentTab = this.currentTab + n;
         if(this.currentTab >= tabs.length){
             console.log("Form is sent!");
             // document.getElementById("add-form").submit();
-            document.getElementById("next-btn").href = "#/home";
+            document.querySelector("#add .next-btn").href = "#/home";
             return false;
         } 
         
@@ -143,7 +143,7 @@ class AddItemPage {
 
     validateForm(){
         let tabs, y, i, valid = true;
-        tabs = document.getElementsByClassName("tab");
+        tabs = document.querySelector("#add .tab")
         y = tabs[this.currentTab].getElementsByTagName("input");
 
         for(i = 0; i < y.length; i++){
