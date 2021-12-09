@@ -69,7 +69,7 @@
 
                 $currentUserID = "get an ID for current user";
 
-                $sql = "CALL addFoodItem('$foodName', '$foodDescription', '$amount', '$unit', '$foodType', '$expirationDate', '$fromTime', '$untilTime', '$currentUserID', '$foodImg')";
+                $sql = "CALL addFoodItem('$foodName', '$foodDescription', '$amount', '$unit', '$foodType', '$expirationDate', '$fromTime', '$untilTime', '$currentUserID', '$foodImg', '$pickUpAddress')";
                 if ($mySQL->query($sql) === TRUE) {
                     $response['addItemSuccess'] = TRUE;
                     echo json_encode($response);

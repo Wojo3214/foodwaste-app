@@ -155,7 +155,7 @@ class ProfilePage {
                             </div>
                         </div>
                         <p class="pick-time">${item.fromTime} - ${item.untilTime}</p>
-                        <p class="pick-address">${item.pickAddress}</p>
+                        <p class="pick-address">${item.pickUpAddress}</p>
                     </div>
                 `;
             }
