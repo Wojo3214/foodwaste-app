@@ -113,3 +113,42 @@
     //         echo json_encode($array);
     //     }
      }
+
+     if (isset($_GET['action'])) {
+        $action = $_GET['action'];
+    
+        // adding products to the database
+        if ($action == "addUser") {
+            $newUser = json_decode(file_get_contents('php://input'));
+            $newEmail = $newUser->email;
+            $newPassword = $newUser->password;
+            $newFirstname = $newUser->firstname;
+            $newLastname = $newUser->lastname;
+            $newUserImg = "";
+            $newPhone = $newUser->phone;
+            $newStreet = $newUser->street;
+            $newBuilding = $newUser->buildingNumber;
+            $newPostalCode = $newUser->postalCode;
+            $newCity = $newUser->city;
+            $newCountry = $newUser->country;
+
+            if (!empty($newEmail && $newPassword && $newFirstname && $newLastname && $newUserImg && $newPhone && $newStreet && $newPassword && $newBuilding && $newCity && $newCountry)) {
+
+                $sql = "CALL addNewUser('$newFirstname', '$newLastname', '$newPhone', '$newUserImg', '$newEmail', '$newPassword', '$newStreet', '$newBuilding', '$newPostalCode', '$newCity', '$newCountry')";
+                if ($mySQL->query($sql) === TRUE) {
+                    $response['addUser'] = TRUE;
+                    echo json_encode($response);
+                } else {
+                    $response['addUser'] = FALSE;
+                    $response['error'] = "Adding user failed.";
+                    echo json_encode($response);
+                }
+            } else {
+                $response['addUserSuccess'] = FALSE;
+                $response['error'] = "Adding user failed. Please fill out all fields.";
+                echo json_encode($response);
+            }
+        }
+    }
+
+?>
