@@ -291,7 +291,11 @@ class AddItemPage {
         let addSuccess = foodData.addItemSuccess;
 
         if(addSuccess == true) {
+            alert('New food item is added. You can see your food items in the profile');
             router.navigateTo('#/home');
+        }
+        else {
+            alert('Please fill out all fields');
         }
     }
 

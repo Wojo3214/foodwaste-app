@@ -65,7 +65,7 @@
             $foodImg = "../src/foodImg/" . $FoodItemObject->foodImg;
             $pickUpAddress = $FoodItemObject->foodAddress;
 
-            if (!empty($foodName)) {
+            if (!empty($foodName && $foodDescription && $amount && $unit && $unit && $foodType && $expirationDate && $fromTime && $untilTime && $pickUpAddress)) {
 
                 $currentUserID = "get an ID for current user";
 
