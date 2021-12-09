@@ -1,5 +1,4 @@
 <?php
-
     class FileUpload {
 
         private $file = "";
@@ -58,5 +57,4 @@
             
         }
     }
-
 ?>
