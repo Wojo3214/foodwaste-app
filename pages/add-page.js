@@ -8,6 +8,8 @@ class AddItemPage {
         this.showTabs(this.currentTab);
         this.getCurrentDate();
         this.attachEvents();
+        this.previewFile();
+        // this.addEvent();
     }
 
     render(){
@@ -61,8 +63,9 @@ class AddItemPage {
                 </div>
                 <div class="tab">
                     <label class="input-label">Add image
-                        <input type="file" name="image" id="food-image" class="file-field" accept="image/png, image/jpeg">
+                        <input type="file" name="image" id="food-image" onchange="previewFile()" class="file-field" accept="image/png, image/jpeg">
                     </label>
+                    <img id="img-preview" src="" height="200" alt="Image preview...">
                     <!-- <label for="image" class="get-file-input">
                         <i data-feather="plus" class="plus--black"></i>
                     </label> -->
@@ -87,22 +90,44 @@ class AddItemPage {
             <div class="btns-container btns-container--horizontal">
                 <input type="button" value="Back" class="btn btn--secondary btn--normal prev-btn" onclick="nextPrevAdd(-1)">
                 <input type="button" value="Next" class="btn btn--primary btn--normal next-btn" onclick="nextPrevAdd(1)">
+                <input type="button" value="Finish" class="btn btn--primary btn--normal finish-btn" onclick="addFoodItems()">
             </div>  
         </section>
         `;
         this.iconsInit();
+        
+        document.querySelector("#add .finish-btn").style.display = "none";
+        
+    }
+
+    previewFile() {
+        var preview = document.querySelector('#img-preview');
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+      
+        reader.onloadend = function () {
+          preview.src = reader.result;
+        }
+      
+        if (file) {
+          reader.readAsDataURL(file);
+          console.log(document.querySelector('input[type=file]').files[0]);
+        } else {
+          preview.src = "";
+        }
     }
 
     attachEvents(){
         window.nextPrevAdd = (tabNum) => this.nextPrev(tabNum);
         window.shareOverview = () => this.shareOverview();
+        window.addFoodItems = () => this.addFoodItems();
+        window.previewFile = () => this.previewFile();
     }
 
     showTabs(n){
         //this function will display the specified tab in the form
         let tabs = document.querySelectorAll("#add .tab");
         tabs[n].style.display = "block";
-        console.log(tabs[n]);
 
         if(n == 0){
             document.querySelector("#add .prev-btn").style.display = "none";
@@ -115,9 +140,8 @@ class AddItemPage {
         }
 
         if(n == (tabs.length - 1)){
-            document.querySelector("#add .next-btn").type = 'submit';
-            document.querySelector("#add .next-btn").value = "Finish";
-            document.querySelector("#add .next-btn").href = "#/home";
+            document.querySelector("#add .next-btn").style.display = "none";
+            document.querySelector("#add .finish-btn").style.display = "block";
         } else {
             document.querySelector("#add .next-btn").value = "Next";
         }
@@ -168,7 +192,7 @@ class AddItemPage {
         const foodExpirationDate = document.querySelector("#expiration-date").value;
         const foodAmount = document.querySelector("#product-amount").value;
         const foodUnit= document.querySelector("#food-unit").value;
-        const foodImg = document.querySelector("#food-img").value;
+        const foodImg = document.querySelector("#img-preview").value;
         const pickUpTimeFrom = document.querySelector("#food-time-from").value;
         const pickUpTimeTo = document.querySelector("#food-time-to").value;
         const foodAddress = document.querySelector("#food-address").value;
@@ -218,6 +242,40 @@ class AddItemPage {
     iconsInit(){
         feather.replace();
     }
+
+    // addEvent() {
+    //     let finishButton = document.getElementById("next-btn");
+    //     if(finishButton.value == "Finish") {
+    //         document.getElementById("next-btn").addEventListener("click", this.addFoodItems);
+    //     }
+    // }
+
+    async addFoodItems() {
+        let foodName = document.querySelector("#food-name").value;
+        let foodType = document.querySelector("#food-type").value;
+        let foodDescription = document.querySelector("#food-desc").value;
+        let foodExpirationDate = document.querySelector("#expiration-date").value;
+        let foodAmount = document.querySelector("#product-amount").value;
+        let foodUnit = document.querySelector("#food-unit").value;
+        let foodImg = document.querySelector('input[type=file]').files[0].name;
+        let pickUpTimeFrom = document.querySelector("#food-time-from").value;
+        let pickUpTimeTo = document.querySelector("#food-time-to").value;
+        let foodAddress = document.querySelector("#food-address").value;
+
+        const FoodItemObject = { foodName, foodDescription, foodAmount, foodUnit, foodImg, foodType, foodExpirationDate, pickUpTimeFrom, pickUpTimeTo, foodAddress };
+        console.log(FoodItemObject);
+        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=addFoodItems", {
+            method: "POST",
+            body: JSON.stringify(FoodItemObject)
+        });
+
+        
+        const foodData = await response.json();
+        console.log(foodData);
+    }
+
+   
+
 
     // goBack(){
     //     window.history.back();
