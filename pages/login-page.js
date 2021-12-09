@@ -56,6 +56,7 @@ class LoginPage {
             //resetMessage();
             router.navigateTo("#/home");
 
+            localStorage.setItem("userID",data.userData.PK_id);
             localStorage.setItem("firstName",data.userData.firstName);
             localStorage.setItem("lastName",data.userData.lastName);
             localStorage.setItem("profileImg",data.userData.profileImg);

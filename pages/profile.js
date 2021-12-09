@@ -31,19 +31,7 @@ class ProfilePage {
                     </div>
                 </div>
                 <h2 class="person-sharing padding--bottom--sm"></h2>
-                <div>
-                    <div class="sharing-container container margin--bottom--sm">
-                        <img class="food-thumbnail" src="https://images.pexels.com/photos/35629/bing-cherries-ripe-red-fruit.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                        <div class="food-header content--horizontal flex--wrap space--between">
-                            <h3 class="text--bold">Cherries</h3>
-                            <div class="food-details content--horizontal">
-                                <p class="food-amount">2</p>
-                                <p class="unit">stk</p>
-                            </div>
-                        </div>
-                        <p class="pick-time">8:00 - 12:00</p>
-                        <p class="pick-address">Pottemagertoften 6</p>
-                    </div>
+                <div id="profile-shared-container">
                 </div>
                 <h2 class="padding--top--md padding--bottom--sm">Pick-up location</h2>
                 <p class="address-street">/p>
@@ -113,24 +101,65 @@ class ProfilePage {
         document.querySelector('.stars-inner').style.width = starPercentageRounded + '%'; 
 
         this.init();
+        this.getFoodProducts();
+        this.getData();
+
+        
+
     } 
 
     init(){
         feather.replace();
     }
+    
 
     getData(){
         let firstName = localStorage.getItem("firstName");
         let lastName = localStorage.getItem("lastName");
         let address = localStorage.getItem("address");
         let profileImg = localStorage.getItem("profileImg");
-        console.log(localStorage);
-
         document.querySelector(".profile-username").innerHTML = firstName + " " + lastName;
         document.querySelector(".person-sharing").innerHTML = firstName + " is sharing";
         document.querySelector(".address-street").innerHTML = address;
         document.querySelector(".profile-image").innerHTML = "<img class='user-pic' src=" + profileImg + "></img>";
+        
     };
+
+    async getFoodProducts(){
+        let authUserID = localStorage.getItem("userID");
+        console.log(authUserID);
+        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getFoodProducts");
+
+        const data = await response.json();
+        console.log(data);
+
+        let foodItems = data.foodData;
+        let foodItemTemplate = "";
+        let foodItemTemplateSlider = "";
+        
+        document.querySelector(".carousel-slider").innerHTML = foodItemTemplateSlider;
+
+        for (const item of foodItems) {
+            if(item.userID == authUserID) {
+                foodItemTemplate += `
+                    <div class="sharing-container container margin--bottom--sm" onclick="displayProduct(${item.PK_foodID})">
+                        <img class="food-thumbnail" src="${item.foodImg}">
+                        <div class="food-header content--horizontal flex--wrap space--between">
+                            <h3 class="text--bold">${item.foodName}</h3>
+                            <div class="food-details content--horizontal">
+                                <p class="food-amount">${item.amount}</p>
+                                <p class="unit">${item.unit}</p>
+                            </div>
+                        </div>
+                        <p class="pick-time">${item.fromTime} - ${item.untilTime}</p>
+                        <p class="pick-address">${item.pickAddress}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        document.querySelector("#profile-shared-container").innerHTML = foodItemTemplate;
+    }
 }
 
 export default ProfilePage;
