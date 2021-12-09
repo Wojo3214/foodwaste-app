@@ -118,10 +118,18 @@ class ProfilePage {
         let lastName = localStorage.getItem("lastName");
         let address = localStorage.getItem("address");
         let profileImg = localStorage.getItem("profileImg");
+        let placeholder = "../src/img/avatar.svg";
+        console.log(placeholder);
+        console.log(profileImg);
+        if(profileImg == "") {
+            document.querySelector(".profile-image").innerHTML = "<img class='user-pic' src='../src/img/avatar.svg'></img>";
+        }
+        else {
+            document.querySelector(".profile-image").innerHTML = "<img class='user-pic' src=" + profileImg + "></img>";
+        }
         document.querySelector(".profile-username").innerHTML = firstName + " " + lastName;
         document.querySelector(".person-sharing").innerHTML = firstName + " is sharing";
         document.querySelector(".address-street").innerHTML = address;
-        document.querySelector(".profile-image").innerHTML = "<img class='user-pic' src=" + profileImg + "></img>";
         
     };
 
