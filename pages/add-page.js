@@ -65,7 +65,7 @@ class AddItemPage {
                     <label class="input-label">Add image
                         <input type="file" name="image" id="food-image" onchange="previewFile()" class="file-field" accept="image/png, image/jpeg">
                     </label>
-                    <img id="img-preview" src="" height="200" alt="Image preview...">
+                    <img id="img-preview" src="" height="200">
                     <!-- <label for="image" class="get-file-input">
                         <i data-feather="plus" class="plus--black"></i>
                     </label> -->
@@ -100,6 +100,7 @@ class AddItemPage {
         
     }
 
+    // preview for the uploaded image
     previewFile() {
         var preview = document.querySelector('#img-preview');
         var file    = document.querySelector('input[type=file]').files[0];
@@ -189,8 +190,6 @@ class AddItemPage {
     
     //Function displays all put information about new food item
     shareOverview(){
-        console.log("Function works!");
-        console.log(document.querySelector("#food-name").value);
         const productName = document.querySelector("#food-name").value;
         const foodType = document.querySelector("#food-type").value;
         const foodDesc = document.querySelector("#food-desc").value;
@@ -238,7 +237,6 @@ class AddItemPage {
             dd = today.getDate();
         }
         let date = yyyy + "-" + mm + "-" + dd;
-        console.log(date);
 
         document.querySelector("#expiration-date").setAttribute("min", date);
         document.querySelector("#expiration-date").value=date;
@@ -248,13 +246,7 @@ class AddItemPage {
         feather.replace();
     }
 
-    // addEvent() {
-    //     let finishButton = document.getElementById("next-btn");
-    //     if(finishButton.value == "Finish") {
-    //         document.getElementById("next-btn").addEventListener("click", this.addFoodItems);
-    //     }
-    // }
-
+    // creating a json to pass to backend
     async addFoodItems() {
         let foodName = document.querySelector("#food-name").value;
         let foodType = document.querySelector("#food-type").value;
@@ -274,9 +266,16 @@ class AddItemPage {
             body: JSON.stringify(FoodItemObject)
         });
 
-        
+        //fetch the response
         const foodData = await response.json();
         console.log(foodData);
+
+        // success redirect to #/home
+        let addSuccess = foodData.addItemSuccess;
+
+        if(addSuccess == true) {
+            router.navigateTo('#/home');
+        }
     }
 
    
