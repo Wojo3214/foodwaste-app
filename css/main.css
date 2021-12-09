@@ -580,6 +580,11 @@ textarea {
   padding: 32px 0;
 }
 
+.carousel-slider--relative{
+  position: unset;
+  bottom: unset;
+}
+
 .carousel-slider-item {
   flex: 1 0 auto;
   width: 160px;
@@ -882,3 +887,35 @@ input:checked + .slider:before {
 }
 
 /* MORE PAGE */
+
+/* ----- BOOKING PAGE -----*/
+.booking-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 999999;
+}
+
+#booking > .tab{
+  width: 100%;
+}
+
+.hour-info{
+  display: flex;
+  background-color: #f04f4f0c;
+  color: var(--error);
+  box-sizing: border-box;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.alert-circle{
+  width: 100%;
+
+}

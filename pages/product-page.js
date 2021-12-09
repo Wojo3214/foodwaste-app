@@ -58,6 +58,17 @@ class ProductPage {
         this.iconsInit();
         
     } 
+
+    // displayProduct(productID){
+    //     const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getChoosenProduct&&productID=productID"+ productID);
+
+    //     const data = await response.json();
+    //     console.log(data);
+
+    //     let productTemplate = "";
+
+    // }
+
     iconsInit(){
         feather.replace();
     }

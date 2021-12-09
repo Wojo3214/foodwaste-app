@@ -120,20 +120,6 @@ class HomePage {
         let foodItems = data.foodData;
         let foodItemTemplate = "";
         let foodItemTemplateSlider = "";
-
-        // for(i = 0; i <= foodItem.length; i++){
-        //     console.log(foodItem[i].foodName);
-        //     foodItemTemplate = `
-        //         <div class="sharing-container">
-    //             <img class="food-thumbnail" src="../src/foodImg/placeholder/placeholder.png">
-        //             <h3 class="food-header">${foodItem[i].foodName}</h3>
-        //             <p class="pick-time">${foodItem[i].fromTime} - ${foodItem[i].untilTime}</p>
-        //             <p class="pick-address">3 km</p>
-        //             <p class="food-amount">3stars</p>
-        //             <p class="unit">stk</p>
-        //         </div>
-        //     `;
-        // }
         
         for (const item of foodItems) {
             foodItemTemplateSlider += `
@@ -151,13 +137,13 @@ class HomePage {
 
         for (const item of foodItems) {
             foodItemTemplate += `
-                <div class="sharing-container">
-                     <img class="food-thumbnail" src="${item.foodImg}">
+                <div class="sharing-container" onclick="displayProduct(${item.PK_foodID})">
+                    <img class="food-thumbnail" src="${item.foodImg}">
                     <h3 class="food-header">${item.foodName}</h3>
                     <p class="pick-time">${item.fromTime} - ${item.untilTime}</p>
-                     <p class="pick-address">3 km</p>
-                     <p class="food-amount">3stars</p>
-                     <p class="unit">stk</p>
+                    <p class="pick-address">3 km</p>
+                    <p class="food-amount">3stars</p>
+                    <p class="unit">stk</p>
                 </div>
             `;
         }

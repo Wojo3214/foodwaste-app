@@ -17,7 +17,8 @@ class Router {
             "#/settings" : "settings",
             "#/start" : "start",
             "#/login" : "login",
-            "#/signup" : "signup"
+            "#/signup" : "signup",
+            "#/booking" : "booking"
         };
         // this.initRouter();
     }

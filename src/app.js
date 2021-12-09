@@ -11,6 +11,8 @@ import ProductPage from "../pages/product-page.js";
 import SettingsPage from "../pages/settings.js";
 import MorePage from "../pages/more.js";
 import AddItemPage from "../pages/add-page.js";
+import BookingPage from "../pages/booking-page.js";
+
 import Nav from "../components/nav.js";
 
 
@@ -31,6 +33,7 @@ const settingsPage = new SettingsPage(pages);
 const morePage = new MorePage(pages);
 const signupPage = new SignUpPage(pages);
 const loginPage = new LoginPage(pages);
+const bookingPage = new BookingPage(pages);
 
 
 
