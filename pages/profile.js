@@ -31,7 +31,7 @@ class ProfilePage {
                     </div>
                 </div>
                 <h2 class="person-sharing padding--bottom--sm"></h2>
-                <div id="profile-shared-container">
+                <div class="profile-shared-container">
                 </div>
                 <h2 class="padding--top--md padding--bottom--sm">Pick-up location</h2>
                 <p class="address-street">/p>
@@ -127,18 +127,13 @@ class ProfilePage {
 
     async getFoodProducts(){
         let authUserID = localStorage.getItem("userID");
-        console.log(authUserID);
         const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getFoodProducts");
 
         const data = await response.json();
-        console.log(data);
 
         let foodItems = data.foodData;
         let foodItemTemplate = "";
-        let foodItemTemplateSlider = "";
         
-        document.querySelector(".carousel-slider").innerHTML = foodItemTemplateSlider;
-
         for (const item of foodItems) {
             if(item.userID == authUserID) {
                 foodItemTemplate += `
@@ -158,7 +153,7 @@ class ProfilePage {
             }
         }
         
-        document.querySelector("#profile-shared-container").innerHTML = foodItemTemplate;
+        document.querySelector(".profile-shared-container").innerHTML = foodItemTemplate;
     }
 }
 

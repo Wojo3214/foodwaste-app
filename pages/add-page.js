@@ -112,7 +112,6 @@ class AddItemPage {
       
         if (file) {
           reader.readAsDataURL(file);
-          console.log(document.querySelector('input[type=file]').files[0]);
         } else {
           preview.src = "";
         }
@@ -246,8 +245,26 @@ class AddItemPage {
         feather.replace();
     }
 
+    async savePhoto() {
+        let foodImg = document.querySelector('input[type=file]').files[0];
+
+        const foodPhoto = { foodImg };
+        console.log(foodPhoto);
+        const response = await fetch("http://localhost:3000//backend/fileUpload.php?action=upload", {
+            method: "POST",
+            enctype: "multipart/form-data",
+            body: JSON.stringify(foodPhoto)
+        });
+
+        const imgAdded = await response.text();
+        console.log(imgAdded);
+    }
+
     // creating a json to pass to backend
     async addFoodItems() {
+
+        this.savePhoto();
+
         let foodName = document.querySelector("#food-name").value;
         let foodType = document.querySelector("#food-type").value;
         let foodDescription = document.querySelector("#food-desc").value;
