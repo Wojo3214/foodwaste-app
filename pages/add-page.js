@@ -131,11 +131,16 @@ class AddItemPage {
 
         if(n == 0){
             document.querySelector("#add .prev-btn").style.display = "none";
+            document.querySelector("#add .finish-btn").style.display = "none";
+            document.querySelector("#add .next-btn").style.display = "block";
         } else {
             document.querySelector("#add .prev-btn").style.display = "block";
+            document.querySelector("#add .finish-btn").style.display = "none";
+            document.querySelector("#add .next-btn").style.display = "block";
         }
 
         if(n == (tabs.length - 2)){
+            document.querySelector("#add .next-btn").style.display = "block";
             document.querySelector("#add .next-btn").addEventListener("click", this.shareOverview);
         }
 
