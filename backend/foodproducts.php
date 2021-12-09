@@ -26,4 +26,44 @@
             }
         }
     }
+
+
+
+    if (isset($_GET['action'])) {
+        $action = $_GET['action'];
+    
+        // adding products to the database
+        if ($action == "addFoodItems") {
+            $FoodItemObject = json_decode(file_get_contents('php://input'));
+            $foodName = $FoodItemObject->foodName;
+            $foodDescription = $FoodItemObject->foodDescription;
+            $amount = $FoodItemObject->foodAmount;
+            $unit = $FoodItemObject->foodUnit;
+            $foodType = $FoodItemObject->foodType;
+            $expirationDate = $FoodItemObject->foodExpirationDate;
+            $fromTime = $FoodItemObject->pickUpTimeFrom;
+            $untilTime = $FoodItemObject->pickUpTimeTo;
+            $foodImg = "../src/foodImg/" . $FoodItemObject->foodImg;
+            $pickUpAddress = $FoodItemObject->foodAddress;
+
+            if (!empty($foodName)) {
+
+                $currentUserID = "get an ID for current user";
+
+                $sql = "CALL addFoodItem('$foodName', '$foodDescription', '$amount', '$unit', '$foodType', '$expirationDate', '$fromTime', '$untilTime', '$currentUserID', '$foodImg')";
+                if ($mySQL->query($sql) === TRUE) {
+                    $response['addItemSuccess'] = TRUE;
+                    echo json_encode($response);
+                } else {
+                    $response['addItemSuccess'] = FALSE;
+                    $response['error'] = "Adding food item failed.";
+                    echo json_encode($response);
+                }
+            } else {
+                $response['addItemSuccess'] = FALSE;
+                $response['error'] = "Adding food item failed. Please fill out all fields.";
+                echo json_encode($response);
+            }
+        }
+    }
 ?>
