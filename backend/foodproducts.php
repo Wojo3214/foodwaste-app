@@ -24,22 +24,23 @@
                 
                 echo json_encode($response);
             }
-        } else if ($action == "getChoosenProduct"){
-            $foodID = $_GET['productID'];
+        } 
+        
+        if ($action == "getProductContent"){
+
+            $productObject = json_decode(file_get_contents('php://input'));
+            $id = $productObject->productId;
+
             // SQL query to get user information
-            $sql = "SELECT * FROM foodItems WHERE PK_foodID = '$foodID'";  
+            $sql = "SELECT * FROM foodItems WHERE PK_foodID = '$id'";  
+            
             $result = $mySQL->query($sql);
 
             if($result){
                 while($row = $result->fetch_object()){
-                    // echo $foodName = $row->foodName;
-                    // echo $fromTime = $row->fromTime;
-                    // echo $untilTime = $row->untilTime;
                     $data[] = $row;
                     $response['foodData'] = $data;
-                    //$response['foodData'] = $fromTime;
                 }
-                //$response['foodData'] += $foodName;
                 
                 echo json_encode($response);
             }

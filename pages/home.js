@@ -1,5 +1,6 @@
 import MapBox from "../components/map.js";
 import router from "../src/router.js";
+import ProductPage from "./product-page.js";
 
 class HomePage {
     constructor(domElement){
@@ -92,6 +93,7 @@ class HomePage {
 
     attachEvents(){
         window.switchTabs = (tabID, tabContent) => this.switchTabs(tabID, tabContent);
+        window.getProductPage = (productID) => this.getProductPage(productID);
         //window.getFoodProducts = () => this.getFoodProducts();
     }
 
@@ -123,7 +125,7 @@ class HomePage {
         
         for (const item of foodItems) {
             foodItemTemplateSlider += `
-                <div class="carousel-slider-item">
+                <div class="carousel-slider-item" onclick="getProductPage(${item.PK_foodID})">
                     <img src="${item.foodImg}" alt="Food product image">
                     <div class="carousel-slider-details">
                         <p>${item.foodName}</p>
@@ -137,7 +139,7 @@ class HomePage {
 
         for (const item of foodItems) {
             foodItemTemplate += `
-                <div class="sharing-container" onclick="displayProduct(${item.PK_foodID})">
+                <div class="sharing-container" onclick="getProductPage(${item.PK_foodID})">
                     <img class="food-thumbnail" src="${item.foodImg}">
                     <h3 class="food-header">${item.foodName}</h3>
                     <p class="pick-time">${item.fromTime} - ${item.untilTime}</p>
@@ -149,6 +151,12 @@ class HomePage {
         }
         
         document.querySelector(".food-sharing-area").innerHTML = foodItemTemplate;
+    }
+
+    getProductPage(productID) {
+        sessionStorage.setItem("productID",productID);
+        router.navigateTo("#/product");
+        location.reload();
     }
 
     iconsInit(){
