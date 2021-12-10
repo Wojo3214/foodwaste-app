@@ -32,7 +32,7 @@
             $id = $productObject->productId;
 
             // SQL query to get user information
-            $sql = "SELECT * FROM foodItems WHERE PK_foodID = '$id'";  
+            $sql = "SELECT * FROM productInfo WHERE PK_foodID = '$id'";  
             
             $result = $mySQL->query($sql);
 

@@ -56,13 +56,11 @@ class ProductPage {
                             </div>
 
                             <div class="margin--top--md user-banner">
-                                <img src="../src/img/avatar.svg" class="profile-pic--small">
-                                <p>Tom Ellis</p>
-                                <div class="content--horizontal align--center">
-                                    <div class="stars-outer">
-                                        <div class="stars-inner"></div>
-                                    </div>
-                                    <h2 class="total-rating"></h2>
+                                <img src="${item.profileImg}" class="profile-pic--small">
+                                <p>${item.firstName} ${item.lastName}</p>
+                                <div class="content--horizontal">
+                                    <div class="star-full"></div>
+                                    <span class="rating">5</span>
                                 </div>
                             </div>
 
@@ -81,10 +79,7 @@ class ProductPage {
         
         this.mapBox.init();
         this.iconsInit();
-
-        console.log(productTemplate);
         document.querySelector("#product").innerHTML += productTemplate;
-        
     }
 
     iconsInit(){

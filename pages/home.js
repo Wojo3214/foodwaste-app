@@ -139,14 +139,18 @@ class HomePage {
 
         for (const item of foodItems) {
             foodItemTemplate += `
-                <div class="sharing-container" onclick="getProductPage(${item.PK_foodID})">
-                    <img class="food-thumbnail" src="${item.foodImg}">
-                    <h3 class="food-header">${item.foodName}</h3>
-                    <p class="pick-time">${item.fromTime} - ${item.untilTime}</p>
-                    <p class="pick-address">3 km</p>
-                    <p class="food-amount">3stars</p>
-                    <p class="unit">stk</p>
+            <div class="sharing-container container margin--bottom--sm" onclick="getProductPage(${item.PK_foodID})">
+            <img class="food-thumbnail" src="${item.foodImg}">
+            <div class="food-header content--horizontal flex--wrap space--between">
+                <h3 class="text--bold">${item.foodName}</h3>
+                <div class="food-details content--horizontal">
+                    <p class="food-amount">${item.amount}</p>
+                    <p class="unit">${item.unit}</p>
                 </div>
+            </div>
+            <p class="pick-time">${item.fromTime} - ${item.untilTime}</p>
+            <p class="pick-address">${item.pickUpAddress}</p>
+        </div>
             `;
         }
         
@@ -162,6 +166,7 @@ class HomePage {
     iconsInit(){
         feather.replace();
     }
+    
 }
 
 export default HomePage;

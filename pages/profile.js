@@ -145,7 +145,7 @@ class ProfilePage {
         for (const item of foodItems) {
             if(item.userID == authUserID) {
                 foodItemTemplate += `
-                    <div class="sharing-container container margin--bottom--sm" onclick="displayProduct(${item.PK_foodID})">
+                    <div class="sharing-container container margin--bottom--sm" onclick="getProductPage(${item.PK_foodID})">
                         <img class="food-thumbnail" src="${item.foodImg}">
                         <div class="food-header content--horizontal flex--wrap space--between">
                             <h3 class="text--bold">${item.foodName}</h3>
