@@ -249,7 +249,6 @@ class AddItemPage {
         let foodImg = document.querySelector('input[type=file]').files[0];
 
         const foodPhoto = { foodImg };
-        console.log(foodPhoto);
         const response = await fetch("http://localhost:3000//backend/fileUpload.php?action=upload", {
             method: "POST",
             enctype: "multipart/form-data",
@@ -265,6 +264,8 @@ class AddItemPage {
 
         this.savePhoto();
 
+        let authUserID = localStorage.getItem("userID");
+
         let foodName = document.querySelector("#food-name").value;
         let foodType = document.querySelector("#food-type").value;
         let foodDescription = document.querySelector("#food-desc").value;
@@ -276,7 +277,7 @@ class AddItemPage {
         let pickUpTimeTo = document.querySelector("#food-time-to").value;
         let foodAddress = document.querySelector("#food-address").value;
 
-        const FoodItemObject = { foodName, foodDescription, foodAmount, foodUnit, foodImg, foodType, foodExpirationDate, pickUpTimeFrom, pickUpTimeTo, foodAddress };
+        const FoodItemObject = { foodName, foodDescription, foodAmount, foodUnit, foodImg, foodType, foodExpirationDate, pickUpTimeFrom, pickUpTimeTo, foodAddress, authUserID };
         console.log(FoodItemObject);
         const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=addFoodItems", {
             method: "POST",
