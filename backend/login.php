@@ -151,4 +151,37 @@
         }
     }
 
+    if (isset($_GET['action'])) {
+        $action = $_GET['action'];
+    
+        // adding products to the database
+        if ($action == "updateUser") {
+            $newUser = json_decode(file_get_contents('php://input'));
+            $newEmail = $newUser->email;
+            $newPassword = $newUser->password;
+            $newFirstname = $newUser->firstname;
+            $newLastname = $newUser->lastname;
+            $newUserImg = "";
+            $newPhone = $newUser->phone;
+            $newStreet = $newUser->street;
+            $newBuilding = $newUser->buildingNumber;
+            $newPostalCode = $newUser->postalCode;
+            $newCity = $newUser->city;
+            $newCountry = $newUser->country;
+            $currentUserID = $newUser->authUserID;
+
+
+                $sql = "CALL updateUser('$newFirstname', '$newLastname', '$newPhone', '$newUserImg', '$newEmail', '$newPassword', '$newStreet', '$newBuilding', '$newPostalCode', '$newCity', '$newCountry', '$currentUserID')";
+                if ($mySQL->query($sql) === TRUE) {
+                    $response['updateUser'] = TRUE;
+                    echo json_encode($response);
+                } else {
+                    $response['updateUser'] = FALSE;
+                    $response['error'] = "Updating user failed.";
+                    echo json_encode($response);
+                }
+
+        }
+    }
+
 ?>
