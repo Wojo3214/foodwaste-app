@@ -65,10 +65,10 @@
             $untilTime = $FoodItemObject->pickUpTimeTo;
             $foodImg = "../src/foodImg/" . $FoodItemObject->foodImg;
             $pickUpAddress = $FoodItemObject->foodAddress;
+            $currentUserID = $FoodItemObject->authUserID;
 
-            if (!empty($foodName && $foodDescription && $amount && $unit && $unit && $foodType && $expirationDate && $fromTime && $untilTime && $pickUpAddress)) {
+            if (!empty($foodName && $foodDescription && $amount && $unit && $unit && $foodType && $foodImg && $currentUserID && $expirationDate && $fromTime && $untilTime && $pickUpAddress)) {
 
-                $currentUserID = "get an ID for current user";
 
                 $sql = "CALL addFoodItem('$foodName', '$foodDescription', '$amount', '$unit', '$foodType', '$expirationDate', '$fromTime', '$untilTime', '$currentUserID', '$foodImg', '$pickUpAddress')";
                 if ($mySQL->query($sql) === TRUE) {
