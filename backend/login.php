@@ -132,7 +132,7 @@
             $newCity = $newUser->city;
             $newCountry = $newUser->country;
 
-            if (!empty($newEmail && $newPassword && $newFirstname && $newLastname && $newUserImg && $newPhone && $newStreet && $newPassword && $newBuilding && $newCity && $newCountry)) {
+            if (!empty($newEmail && $newPassword && $newFirstname && $newLastname && $newPhone && $newStreet && $newPassword && $newBuilding && $newCity && $newCountry)) {
 
                 $sql = "CALL addNewUser('$newFirstname', '$newLastname', '$newPhone', '$newUserImg', '$newEmail', '$newPassword', '$newStreet', '$newBuilding', '$newPostalCode', '$newCity', '$newCountry')";
                 if ($mySQL->query($sql) === TRUE) {
