@@ -4,6 +4,7 @@ import StartPage from "../pages/start-page.js";
 import LoginPage from "../pages/login-page.js";
 
 import SignUpPage from "../pages/sign-up-page.js";
+import UpdateUserPage from "../pages/update-user.js";
 import HomePage from "../pages/home.js";
 import OrderPage from "../pages/orders.js";
 import ProfilePage from "../pages/profile.js";
@@ -32,6 +33,7 @@ const addPage = new AddItemPage(pages);
 const settingsPage = new SettingsPage(pages);
 const morePage = new MorePage(pages);
 const signupPage = new SignUpPage(pages);
+const updateUserPage = new UpdateUserPage(pages);
 const loginPage = new LoginPage(pages);
 const bookingPage = new BookingPage(pages);
 

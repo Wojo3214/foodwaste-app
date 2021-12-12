@@ -9,6 +9,8 @@ class ProfilePage {
         this.getData();
     }
 
+   
+
     render(){
         this.domElement.innerHTML += 
         /*html*/`
@@ -67,7 +69,6 @@ class ProfilePage {
         `;
 
         this.mapBox.init();
-
         
 
 

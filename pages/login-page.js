@@ -61,6 +61,16 @@ class LoginPage {
             localStorage.setItem("lastName",data.userData.lastName);
             localStorage.setItem("profileImg",data.userData.profileImg);
             localStorage.setItem("address",data.userData.street + data.userData.buildingNum);
+            localStorage.setItem("email",data.userData.email);
+            localStorage.setItem("password",data.userData.userPassword);
+            localStorage.setItem("phone",data.userData.phoneNumber);
+            localStorage.setItem("street",data.userData.street);
+            localStorage.setItem("building",data.userData.buildingNum);
+            localStorage.setItem("postalCode",data.userData.postalCode);
+            localStorage.setItem("city",data.userData.city);
+            localStorage.setItem("country",data.userData.country);
+
+
 
         }
     }

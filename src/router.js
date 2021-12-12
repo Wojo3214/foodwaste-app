@@ -18,7 +18,8 @@ class Router {
             "#/start" : "start",
             "#/login" : "login",
             "#/signup" : "signup",
-            "#/booking" : "booking"
+            "#/booking" : "booking",
+            "#/update" : "update"
         };
         // this.initRouter();
     }

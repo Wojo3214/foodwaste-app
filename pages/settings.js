@@ -15,7 +15,7 @@ class SettingsPage {
                 <button class="back-button--normal"><a href="#/profile"><i data-feather="arrow-left"></i></a></button>
                 <h2>Settings</h2>
             </div>
-            <a href="#" class="settings-heading">
+            <a href="#/update" class="settings-heading">
                 <h3>Personal Information</h3>
             </a>
             <div class="settings-heading">
