@@ -1,6 +1,10 @@
 import MapBox from "../components/map.js";
 import router from "../src/router.js";
 
+// if(localStorage.getItem("userIsAuthenticated") !== true) {
+//     router.navigateTo('#/login');
+// }
+
 class ProfilePage {
     constructor(domElement){
         this.domElement = domElement;
@@ -16,7 +20,7 @@ class ProfilePage {
         /*html*/`
         <section id="profile" class="page">
             <div class="header">
-                <a href="#" class="back-button"><i data-feather="arrow-left"></i></a>
+                <a href="#" class="back-button"></a>
                 <div class="profile-image"></div>
                 <a href="#/settings" class="settings-button"><i data-feather="settings"></i></a>
             </div>
@@ -145,6 +149,10 @@ class ProfilePage {
         
         for (const item of foodItems) {
             if(item.userID == authUserID) {
+                let fromTime = item.fromTime;
+                let untilTime = item.untilTime;
+                let time = fromTime.substring(0, fromTime.length-3) + ' - ' + untilTime.substring(0, untilTime.length-3);
+
                 foodItemTemplate += `
                     <div class="sharing-container container margin--bottom--sm" onclick="getProductPage(${item.PK_foodID})">
                         <img class="food-thumbnail" src="${item.foodImg}">
@@ -155,7 +163,7 @@ class ProfilePage {
                                 <p class="unit">${item.unit}</p>
                             </div>
                         </div>
-                        <p class="pick-time">${item.fromTime} - ${item.untilTime}</p>
+                        <p class="pick-time">${time}</p>
                         <p class="pick-address">${item.pickUpAddress}</p>
                     </div>
                 `;

@@ -36,6 +36,10 @@ class ProductPage {
         let productTemplate = "";
         
         for (const item of productObject) {
+            let fromTime = item.fromTime;
+            let untilTime = item.untilTime;
+            let time = fromTime.substring(0, fromTime.length-3) + ' - ' + untilTime.substring(0, untilTime.length-3);
+
                 productTemplate += /*html*/`
                     <div class="product-header">
                             <button class="back-button--absolute"><i data-feather="arrow-left"></i></button>
@@ -52,7 +56,7 @@ class ProductPage {
                             </div>
                             <div class="content--horizontal margin--top--xs gap--8px">
                                 <p class="text--semi-bold ">Prefered Pick-up Time:</p>
-                                <p>${item.fromTime} - ${item.untilTime}</p>
+                                <p>${time}</p>
                             </div>
 
                             <div class="margin--top--md user-banner">

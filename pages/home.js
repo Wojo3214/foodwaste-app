@@ -144,6 +144,9 @@ class HomePage {
         document.querySelector(".carousel-slider").innerHTML = foodItemTemplateSlider;
 
         for (const item of foodItems) {
+            let fromTime = item.fromTime;
+            let untilTime = item.untilTime;
+            let time = fromTime.substring(0, fromTime.length-3) + ' - ' + untilTime.substring(0, untilTime.length-3);
             foodItemTemplate += `
             <div class="sharing-container container margin--bottom--sm" onclick="getProductPage(${item.PK_foodID})">
             <img class="food-thumbnail" src="${item.foodImg}">
@@ -154,7 +157,7 @@ class HomePage {
                     <p class="unit">${item.unit}</p>
                 </div>
             </div>
-            <p class="pick-time">${item.fromTime} - ${item.untilTime}</p>
+            <p class="pick-time">${time}</p>
             <p class="pick-address">${item.pickUpAddress}</p>
         </div>
             `;
