@@ -93,7 +93,7 @@ class HomePage {
 
     attachEvents(){
         window.switchTabs = (tabID, tabContent) => this.switchTabs(tabID, tabContent);
-        window.getProductPage = (productID) => this.getProductPage(productID);
+        window.getProductPage = (productID, sellerID) => this.getProductPage(productID, sellerID);
         //window.getFoodProducts = () => this.getFoodProducts();
     }
 
@@ -131,7 +131,7 @@ class HomePage {
         
         for (const item of foodItems) {
             foodItemTemplateSlider += `
-                <div class="carousel-slider-item" onclick="getProductPage(${item.PK_foodID})">
+                <div class="carousel-slider-item" onclick="getProductPage(${item.PK_foodID},${item.userID})">
                     <img src="${item.foodImg}" alt="Food product image">
                     <div class="carousel-slider-details">
                         <p>${item.foodName}</p>
@@ -148,7 +148,7 @@ class HomePage {
             let untilTime = item.untilTime;
             let time = fromTime.substring(0, fromTime.length-3) + ' - ' + untilTime.substring(0, untilTime.length-3);
             foodItemTemplate += `
-            <div class="sharing-container container margin--bottom--sm" onclick="getProductPage(${item.PK_foodID})">
+            <div class="sharing-container container margin--bottom--sm" onclick="getProductPage(${item.PK_foodID},${item.userID})">
             <img class="food-thumbnail" src="${item.foodImg}">
             <div class="food-header content--horizontal flex--wrap space--between">
                 <h3 class="text--bold">${item.foodName}</h3>
@@ -166,8 +166,9 @@ class HomePage {
         document.querySelector(".food-sharing-area").innerHTML = foodItemTemplate;
     }
 
-    getProductPage(productID) {
+    getProductPage(productID, sellerID) {
         sessionStorage.setItem("productID",productID);
+        sessionStorage.setItem("sellerID",sellerID);
         router.navigateTo("#/product");
         location.reload();
     }

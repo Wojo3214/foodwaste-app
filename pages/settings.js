@@ -43,6 +43,8 @@ class SettingsPage {
 
     logOut() {
         //reset localStorage
+        sessionStorage.clear();
+        localStorage.clear();
         localStorage.removeItem("userIsAuthenticated");
         localStorage.removeItem("authUser");
         //navigate to login

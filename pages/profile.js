@@ -85,9 +85,6 @@ class ProfilePage {
         `;
 
         this.mapBox.init();
-        
-
-
 
         //calculating avarage person's rating from all ratings
         let ratings = document.querySelectorAll('.rating');
@@ -121,16 +118,12 @@ class ProfilePage {
         this.init();
         this.getFoodProducts();
         this.getData();
-
-        
-
     } 
 
     init(){
         feather.replace();
     }
     
-
     getData(){
         let firstName = localStorage.getItem("firstName");
         let lastName = localStorage.getItem("lastName");
@@ -148,16 +141,20 @@ class ProfilePage {
         document.querySelector(".profile-username").innerHTML = firstName + " " + lastName;
         document.querySelector(".person-sharing").innerHTML = firstName + " is sharing";
         document.querySelector(".address-street").innerHTML = address;
-        
+    
     };
 
     async getFoodProducts(){
         let authUserID = localStorage.getItem("userID");
-        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getFoodProducts");
+        let userProfile = {userID : authUserID};
+        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getFoodProductsProfile",{
+            method: "POST",
+            body: JSON.stringify(userProfile)
+        });
 
         const data = await response.json();
 
-        let foodItems = data.foodData;
+        let foodItems = data.foodProfileData;
         let foodItemTemplate = "";
         
         for (const item of foodItems) {

@@ -6,6 +6,7 @@ class ProductPage {
         this.domElement = domElement;
         this.mapBox = new MapBox("productMap");
         this.render();
+        this.attachEvents();
         this.getProductContent(this.productID);
     }
 
@@ -15,6 +16,10 @@ class ProductPage {
         
         </section>
         `;
+    }
+
+    attachEvents(){
+        window.getProductBooking = (productID) => this.getProductBooking(productID);
     }
 
     async getProductContent(productID){
@@ -73,18 +78,24 @@ class ProductPage {
                             ${this.mapBox.render()}
 
                             <div class="btns-container btns-container--vertical">
-                                <input type="button" value="Book" class="btn btn--primary btn--normal">
+                                <input type="button" value="Book" class="btn btn--primary btn--normal" onclick="getProductBooking()">
                             </div>  
 
                             </div>
                     </div>
             `;
         }
-        
+
         this.mapBox.init();
         this.iconsInit();
         document.querySelector("#product").innerHTML += productTemplate;
     }
+
+    getProductBooking() {
+        router.navigateTo("#/booking");
+        location.reload();
+    }
+    
 
     iconsInit(){
         feather.replace();

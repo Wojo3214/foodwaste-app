@@ -49,11 +49,12 @@ class LoginPage {
         const data = await response.json();
         console.log(data);
         console.log(data.userData.firstName);
+        
 
         if (data.authenticated) {
             localStorage.setItem("userIsAuthenticated", true);
             localStorage.setItem("authUser", JSON.stringify(data.userData));
-            //resetMessage();
+            
             router.navigateTo("#/home");
 
             localStorage.setItem("userID",data.userData.PK_id);
@@ -69,9 +70,6 @@ class LoginPage {
             localStorage.setItem("postalCode",data.userData.postalCode);
             localStorage.setItem("city",data.userData.city);
             localStorage.setItem("country",data.userData.country);
-
-
-
         }
     }
 }

@@ -7,6 +7,9 @@ class BookingPage {
         this.render();
         this.showTabs(this.currentTab);
         this.attachEvents();
+        this.getChosenContent(this.productID);
+        this.getChosenProduct(this.productID);
+        //this.basket = [];
     }
 
     render(){
@@ -19,7 +22,7 @@ class BookingPage {
                     <h2>Your product list</h2>
                 </header>
                 <div class="choosen-products-container">
-                    <div class="choosen-food-item container">
+                    <!-- <div class="choosen-food-item container">
                         <div class="item-info">
                             <div class="flex--wrap flex--gap space--between">
                                 <h3 class="padding--top--xs text--bold">Banana</h3>
@@ -99,11 +102,11 @@ class BookingPage {
                         <div class="btn--delete delete-item">
                             <i class="delete-icon" data-feather="trash"></i>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <h3>Other products of User</h3>
                 <div class="carousel-slider carousel-slider--relative">
-                    <div class="carousel-slider-item">
+                    <!-- <div class="carousel-slider-item">
                         <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
                         <div class="carousel-slider-details">
                             <p>Pizza</p>
@@ -130,12 +133,12 @@ class BookingPage {
                             <p>Mint</p>
                             <span><i data-feather="map-pin" class="map-pin icon-small"></i> Haslegardsvej 24A</span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="tab">
                 <header class="settings-header">
-                    <button class="back-button--normal"><a href="#/profile"><i data-feather="arrow-left"></i></a></button>
+                    <!-- <button class="back-button--normal"><a href="#/profile"><i data-feather="arrow-left"></i></a></button> -->
                     <h2>Pick up details</h2>
                 </header>
                 <form>
@@ -161,6 +164,7 @@ class BookingPage {
 
     attachEvents(){
         window.nextPrevBook = (tabNum) => this.nextPrev(tabNum);
+        window.addToBasket = (id, name, foodAmount, foodUnit) => this.addToBasket(id, name, foodAmount, foodUnit);
     }
 
     showTabs(n){
@@ -183,6 +187,7 @@ class BookingPage {
             document.querySelector("#booking .next-btn").type = 'submit';
             document.querySelector("#booking .next-btn").value = "Finish";
             document.querySelector("#booking .next-btn").href = "#/home";
+            document.querySelector("#booking .next-btn").addEventListener("click", this.CreateOrder);
         } else {
             document.querySelector("#booking .next-btn").value = "Next";
         }
@@ -199,7 +204,7 @@ class BookingPage {
         if(this.currentTab >= tabs.length){
             console.log("Form is sent!");
             // document.getElementById("add-form").submit();
-            document.querySelector("#booking .next-btn").href = "#/home";
+            router.navigateTo('#/home');
             return false;
         } 
         
@@ -222,6 +227,130 @@ class BookingPage {
         }
         return valid;
     }
+
+    async getChosenProduct(productID){
+        let specificProductID = sessionStorage.getItem("productID",productID); 
+
+        let product = {productId : specificProductID};
+        console.log(product);
+
+        const response = await fetch('http://localhost:3000//backend/foodproducts.php?action=getChosenProduct', {
+            method: "POST",
+            body: JSON.stringify(product)
+        });
+
+        const data = await response.json();
+        let productObject = data.productData;
+        console.log(productObject);
+
+        let productTemplate = "";
+        
+        for (const item of productObject) {
+            productTemplate += /*html*/`
+                    <div class="choosen-food-item container">
+                        <div class="item-info">
+                            <div class="flex--wrap flex--gap space--between">
+                                <h3 class="padding--top--xs text--bold">${item.foodName}</h3>
+                                <div class="content--horizontal flex--wrap padding--top--xs">
+                                    <p class="food-amount">${item.amount}</p>
+                                    <p class="unit">${item.unit}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="btn--delete delete-item">
+                            <i class="delete-icon" data-feather="trash"></i>
+                        </div> -->
+                    </div>
+            `;
+        }
+        
+        this.iconsInit();
+        document.querySelector(".choosen-products-container").innerHTML += productTemplate;
+    }
+
+
+    async getChosenContent(productID, sellerID){
+        let specificProductID = sessionStorage.getItem("productID",productID); 
+        let specificSellerID = sessionStorage.getItem("sellerID",sellerID); 
+        let specificBuyerID = localStorage.getItem("userID",sellerID); 
+
+        let product = {productId : specificProductID, sellerID : specificSellerID, buyerID : specificBuyerID};
+        console.log(product);
+
+        const response = await fetch('http://localhost:3000//backend/foodproducts.php?action=getChosenContent', {
+            method: "POST",
+            body: JSON.stringify(product)
+        });
+
+        let data = await response.json();
+        //console.log(data);
+        //let basket = [];
+        let productObject = data.productsData;
+        //basket = [productObject];
+        console.log(productObject);
+
+        let productTemplate = "";
+        
+        for (const item of productObject) {
+            productTemplate += /*html*/`
+                <div class="carousel-slider-item">
+                    <img src="${item.foodImg}" alt="Food product image">
+                    <!-- <div class="add-to-list-btn">
+                        <i data-feather="shopping-bag" class="shopping-bag"></i>
+                    </div> -->
+                    <div class="carousel-slider-details">
+                        <p>${item.foodName}</p>
+                        <span><i data-feather="map-pin" class="map-pin icon-small"></i> 0,5km</span>
+                    </div>
+                </div>
+            `;
+        }
+        
+        this.iconsInit();
+        document.querySelector(".carousel-slider--relative").innerHTML += productTemplate;
+    }
+
+    async CreateOrder() {
+        let productID = sessionStorage.getItem("productID");
+        let buyer = localStorage.getItem("userID");
+        let seller = sessionStorage.getItem("sellerID");
+        let pickUpDate = document.querySelector("#pickup-date").value;
+        let pickUpTime = document.querySelector("#pickup-time").value;
+
+        const orderObject = { productID, buyer, seller, pickUpDate, pickUpTime };
+        //console.log(orderObject);
+        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=createOrder", {
+            method: "POST",
+            body: JSON.stringify(orderObject)
+        });
+
+        //fetch the response
+        const orderData = await response.json();
+        console.log(orderData);
+
+        let addSuccess = orderData.addOrder;
+
+        if(addSuccess == true) {
+            alert('New order is added.');
+            router.navigateTo('#/home');
+        }
+        else {
+            alert('Please fill out all fields');
+        }
+
+    }
+
+    // addToBasket(id, name, foodAmount, foodUnit){
+    //     const newListProduct = {
+    //         PK_foodID: id,
+    //         foodName: name,
+    //         amount: foodAmount,
+    //         unit: foodUnit
+    //     }
+    //     this.basket.push(newListProduct);
+    //     console.log(this.basket);
+    //     getChosenContent(productID, sellerID);
+    // }
 
     iconsInit(){
         feather.replace();
