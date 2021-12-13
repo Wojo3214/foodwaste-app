@@ -114,7 +114,13 @@ class HomePage {
     }
 
     async getFoodProducts(){
-        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getFoodProducts");
+        let authUserID = localStorage.getItem("userID");
+        let user = {userID : authUserID};
+        
+        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getFoodProducts",{
+            method: "POST",
+            body: JSON.stringify(user)
+        });
 
         const data = await response.json();
         console.log(data);

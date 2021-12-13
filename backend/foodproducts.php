@@ -7,8 +7,11 @@
 
         if ($action == "getFoodProducts"){
 
+            $userObject = json_decode(file_get_contents('php://input'));
+            $id = $userObject->userID;
+
             // SQL query to get user information
-            $sql = "SELECT * FROM foodItems";  
+            $sql = "SELECT * FROM foodItems WHERE userID != '$id'";  
             $result = $mySQL->query($sql);
 
             if($result){
