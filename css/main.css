@@ -938,3 +938,9 @@ input:checked + .slider:before {
   left: 16px;
   right: 16px;
 }
+
+#img-prieview {
+  border-radius: 10px;
+  margin: 0 auto;
+  display: block;
+}

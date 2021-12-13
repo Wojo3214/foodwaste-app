@@ -41,6 +41,3 @@ const bookingPage = new BookingPage(pages);
 
 router.initRouter();
 
-
-
-

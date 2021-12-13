@@ -33,7 +33,7 @@ class SignUpPage {
                 <div class="tab-su">
                     <div class="content--vertical">
                         <img src="../src/img/avatar.svg" alt="Profile picture" class="profile-pic">
-                        <input type="submit" value="Add your profile image" class="btn btn--secondary btn--small">
+                        <input type="file" name="userPic" value="Add your profile image" accept="image/png, image/jpeg" class="btn btn--secondary btn--small">
                     </div>
                     <label class="input-label">First name
                         <input type="text" name="firstName" id="su-firstname" class="text-field" placeholder="Your first name">
@@ -145,13 +145,31 @@ class SignUpPage {
         return valid;
     }
 
+    async savePhoto() {
+        let userPhoto = document.querySelector('input[name=userPic]').files[0];
+        console.log(userPhoto);
+
+        const userImg = { userPhoto };
+        const response = await fetch("http://localhost:3000//backend/userPicUpload.php?action=uploadPic", {
+            method: "POST",
+            enctype: "multipart/form-data",
+            body: JSON.stringify(userImg)
+        });
+
+        const userImgAdded = await response.text();
+        console.log(userImgAdded);
+    }
+
     // add user to pass to php
     async addUser() {
+
+        this.savePhoto();
 
         let email = document.querySelector("#su-email").value;
         let password = document.querySelector("#su-password").value;
         let firstname = document.querySelector("#su-firstname").value;
         let lastname = document.querySelector("#su-lastname").value;
+        let userPhoto = document.querySelector('input[name=userPic]').files[0].name;
         let phone = document.querySelector("#su-phone").value;
         let street = document.querySelector("#su-street").value;
         let buildingNumber = document.querySelector("#su-building").value;
@@ -159,8 +177,9 @@ class SignUpPage {
         let city = document.querySelector("#su-city").value;
         let country = document.querySelector("#su-country").value;
 
-        const newUser = { email, password, firstname, lastname, phone, street, buildingNumber, postalCode, city, country};
+        const newUser = { email, password, firstname, lastname, userPhoto, phone, street, buildingNumber, postalCode, city, country};
         console.log(newUser);
+
         const response = await fetch("http://localhost:3000//backend/login.php?action=addUser", {
             method: "POST",
             body: JSON.stringify(newUser)
@@ -181,6 +200,8 @@ class SignUpPage {
             alert('Please fill out all fields');
         }
     }
+
+    
 
     // progressBar(n){
     //     let bar = document.querySelector(".bar");

@@ -13,8 +13,6 @@ class ProfilePage {
         this.getData();
     }
 
-   
-
     render(){
         this.domElement.innerHTML += 
         /*html*/`
