@@ -50,6 +50,7 @@ class ProfilePage {
                             <div class="stars-inner"></div>
                         </div>
                         <h2 class="total-rating"></h2>
+                        <h2 class="rating-sum"></h2>
                     </div>
 
                 </div>
@@ -63,6 +64,19 @@ class ProfilePage {
                     <div class="padding--bottom--sm content--horizontal">
                         <div class="star-full"></div>
                         <span class="rating">5</span>
+                    </div>
+                    <h2 class="padding--bottom--sm text--med-bold">Trustworthy user!</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adispiscing elit. Nam eu venenatis metus. Donec in lacus mauris.</p>
+                </div>
+                <div class="review-container">
+                    <div class="review-header content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
+                        <img class="small--photo" src="src/img/avatar.svg">
+                        <h3>Michael Scott</h3>
+                        <p>Exchange verified</p>
+                    </div>
+                    <div class="padding--bottom--sm content--horizontal">
+                        <div class="star-full"></div>
+                        <span class="rating">3</span>
                     </div>
                     <h2 class="padding--bottom--sm text--med-bold">Trustworthy user!</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adispiscing elit. Nam eu venenatis metus. Donec in lacus mauris.</p>
@@ -95,7 +109,8 @@ class ProfilePage {
             //calculating the avarage
             var avgRating = sum/ratingArray.length;
             //render inhtml
-            document.querySelector('.total-rating').innerHTML = avgRating.toFixed(1);
+            document.querySelector('.total-rating').innerHTML = avgRating.toFixed(1) ;
+            document.querySelector('.rating-sum').innerHTML = '&nbsp;(' + ratingArray.length + ')';
            
           });
         
