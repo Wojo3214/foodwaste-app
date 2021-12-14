@@ -442,7 +442,7 @@ textarea {
 .page {
   display: none;
   flex-direction: column;
-  padding: 64px 16px;
+  padding: 64px 16px 124px 16px;
   box-sizing: border-box;
   height: calc(100vh - 65px);
   overflow-y: scroll;
