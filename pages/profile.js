@@ -50,74 +50,21 @@ class ProfilePage {
                         <h2 class="total-rating"></h2>
                         <h2 class="rating-sum"></h2>
                     </div>
-
                 </div>
 
-                <div class="review-container">
-                    <div class="review-header content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
-                        <img class="small--photo" src="src/img/avatar.svg">
-                        <h3>Michael Scott</h3>
-                        <p>Exchange verified</p>
-                    </div>
-                    <div class="padding--bottom--sm content--horizontal">
-                        <div class="star-full"></div>
-                        <span class="rating">5</span>
-                    </div>
-                    <h2 class="padding--bottom--sm text--med-bold">Trustworthy user!</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adispiscing elit. Nam eu venenatis metus. Donec in lacus mauris.</p>
-                </div>
-                <div class="review-container">
-                    <div class="review-header content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
-                        <img class="small--photo" src="src/img/avatar.svg">
-                        <h3>Michael Scott</h3>
-                        <p>Exchange verified</p>
-                    </div>
-                    <div class="padding--bottom--sm content--horizontal">
-                        <div class="star-full"></div>
-                        <span class="rating">3</span>
-                    </div>
-                    <h2 class="padding--bottom--sm text--med-bold">Trustworthy user!</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adispiscing elit. Nam eu venenatis metus. Donec in lacus mauris.</p>
-                </div>
+                <div class="user-reviews"></div>
             </div>
             
         </section>
         `;
 
         this.mapBox.init();
-
-        //calculating avarage person's rating from all ratings
-        let ratings = document.querySelectorAll('.rating');
-        
-        //creating the array
-        let ratingArray = [];
-        Array.from(ratings).forEach(function(el) {
-            //pushing rating values to the array
-            ratingArray.push(el.innerHTML);
-
-            //declaring default sum to '0'
-            var sum = 0;
-            //loop through the array and convert to an integer
-            for( var i = 0; i < ratingArray.length; i++ ){
-                sum += parseInt( ratingArray[i], 10 );
-            }
-            //calculating the avarage
-            var avgRating = sum/ratingArray.length;
-            //render inhtml
-            document.querySelector('.total-rating').innerHTML = avgRating.toFixed(1) ;
-            document.querySelector('.rating-sum').innerHTML = '&nbsp;(' + ratingArray.length + ')';
-           
-          });
-        
-        // calculating % of the total score and displaying it in stars
-        let totalRating = document.querySelector(".total-rating").innerHTML;
-        let starPercentage = (totalRating / 0.1) * 2;
-        let starPercentageRounded = Math.round(starPercentage / 10) * 10;
-        document.querySelector('.stars-inner').style.width = starPercentageRounded + '%'; 
-
         this.init();
         this.getFoodProducts();
         this.getData();
+        this.getReviews();
+        
+
     } 
 
     init(){
@@ -182,6 +129,84 @@ class ProfilePage {
         
         document.querySelector(".profile-shared-container").innerHTML = foodItemTemplate;
     }
+
+    async getReviews(){
+        let authUserID = localStorage.getItem("userID");
+        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getReviews");
+
+        const data = await response.json();
+
+        let reviewItems = data.reviewData;
+        let reviewItemTemplate = "";
+        
+        for (const item of reviewItems) {
+            if(item.receiverID == authUserID) {
+                
+                reviewItemTemplate += `
+                <div class="review-container">
+                    <div class="review-header content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
+                        <img class="small--photo" src="${item.profileImg}">
+                        <h3>${item.firstName} ${item.lastName}</h3>
+                        <div class="content--horizontal"> 
+                            <img src="../src/img/shield.svg" class="shield-icon">
+                            <p class="reviewer-status">&nbsp;Exchange verified</p>
+                        </div>
+                    </div>
+                    <div class="padding--bottom--sm content--horizontal">
+                        <div class="star-full"></div>
+                        <span class="rating">${item.rating}</span>
+                    </div>
+                    <h2 class="padding--bottom--sm text--med-bold">${item.header}</h2>
+                    <p>${item.review}</p>
+                </div>
+                `;
+            }
+        }
+        
+        document.querySelector(".user-reviews").innerHTML = reviewItemTemplate;
+
+
+        // use avatar for the review photo if profile photo is empty
+        let reviewImg = document.querySelectorAll(".small--photo");
+
+        for(const img of reviewImg) {
+            if(img.src == "http://localhost:3000/") {
+                console.log("empty");
+                img.src = "../src/img/avatar.svg";
+            }
+        }
+        
+
+        //calculating avarage person's rating from all ratings
+        let ratings = document.querySelectorAll('.rating');
+        
+        //creating the array
+        let ratingArray = [];
+        Array.from(ratings).forEach(function(el) {
+            //pushing rating values to the array
+            ratingArray.push(el.innerHTML);
+
+            //declaring default sum to '0'
+            var sum = 0;
+            //loop through the array and convert to an integer
+            for( var i = 0; i < ratingArray.length; i++ ){
+                sum += parseInt( ratingArray[i], 10 );
+            }
+            //calculating the avarage
+            var avgRating = sum/ratingArray.length;
+            //render inhtml
+            document.querySelector('.total-rating').innerHTML = avgRating.toFixed(1) ;
+            document.querySelector('.rating-sum').innerHTML = '&nbsp;(' + ratingArray.length + ')';
+           
+          });
+        
+        // calculating % of the total score and displaying it in stars
+        let totalRating = document.querySelector(".total-rating").innerHTML;
+        let starPercentage = (totalRating / 0.1) * 2;
+        let starPercentageRounded = Math.round(starPercentage / 10) * 10;
+        document.querySelector('.stars-inner').style.width = starPercentageRounded + '%'; 
+    }
+
 }
 
 export default ProfilePage;

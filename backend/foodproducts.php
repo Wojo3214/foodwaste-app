@@ -138,6 +138,25 @@
         }
 
         } 
+
+        if ($action == "getReviews"){
+
+            $reviewObject = json_decode(file_get_contents('php://input'));
+
+            // SQL query to get user information
+            $sql = "SELECT * FROM ratings";  
+            
+            $result = $mySQL->query($sql);
+
+            if($result){
+                while($row = $result->fetch_object()){
+                    $data[] = $row;
+                    $response['reviewData'] = $data;
+                }
+                
+                echo json_encode($response);
+            }
+        } 
     }
 
 

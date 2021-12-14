@@ -157,6 +157,14 @@
   color: #fac43a;
 }
 
+.shield-icon {
+  color: var(--green);
+}
+
+.reviewer-status {
+  color: var(--text-details);
+}
+
 .user-pic {
   width: 80px;
   height: 80px;

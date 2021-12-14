@@ -386,7 +386,8 @@ textarea {
   height: 150px;
 }
 
-.tab, .tab-su {
+.tab,
+.tab-su {
   display: none;
 }
 
@@ -436,7 +437,6 @@ textarea {
   left: 0;
   right: 0;
 }
-
 
 /* -----pages -----*/
 .page {
@@ -514,6 +514,9 @@ textarea {
 
 .small--photo {
   width: 40px;
+  height: 40px;
+  border-radius: 80px;
+  object-fit: cover;
 }
 
 /* ----- food pages -----*/
@@ -587,7 +590,7 @@ textarea {
   padding: 32px 0;
 }
 
-.carousel-slider--relative{
+.carousel-slider--relative {
   position: unset;
   bottom: unset;
 }
@@ -912,11 +915,11 @@ input:checked + .slider:before {
   z-index: 999999;
 }
 
-#booking > .tab{
+#booking > .tab {
   width: 100%;
 }
 
-.hour-info{
+.hour-info {
   display: flex;
   background-color: #f04f4f0c;
   color: var(--error);
@@ -925,9 +928,8 @@ input:checked + .slider:before {
   border-radius: 10px;
 }
 
-.alert-circle{
+.alert-circle {
   width: 100%;
-
 }
 
 #food-list {
