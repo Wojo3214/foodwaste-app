@@ -40,15 +40,12 @@ class LoginPage {
         let email = document.getElementById('mail').value;
         let password = document.getElementById('pass').value;
         const loginObject = { email: email, password: password };
-        console.log(loginObject);
         const response = await fetch("http://localhost:3000//backend/login.php?action=loginUser", {
             method: "POST",
             body: JSON.stringify(loginObject)
         });
         
         const data = await response.json();
-        console.log(data);
-        console.log(data.userData.firstName);
         
 
         if (data.authenticated) {
@@ -56,6 +53,7 @@ class LoginPage {
             localStorage.setItem("authUser", JSON.stringify(data.userData));
             
             router.navigateTo("#/home");
+            location.reload();
 
             localStorage.setItem("userID",data.userData.PK_id);
             localStorage.setItem("firstName",data.userData.firstName);
