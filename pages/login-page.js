@@ -30,6 +30,7 @@ class LoginPage {
             </form> 
         </section>
         `;
+        this.login();
     }
     
     attachEvents(){

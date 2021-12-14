@@ -71,14 +71,23 @@ class ProfilePage {
         feather.replace();
     }
     
-    getData(){
-        let firstName = localStorage.getItem("firstName");
-        let lastName = localStorage.getItem("lastName");
-        let address = localStorage.getItem("address");
-        let profileImg = localStorage.getItem("profileImg");
-        let placeholder = "../src/img/avatar.svg";
-        console.log(placeholder);
-        console.log(profileImg);
+    async getData(){
+        let authUserID = localStorage.getItem("userID");
+        let userInfo = {userID : authUserID};
+        const response = await fetch("http://localhost:3000//backend/login.php?action=getUserData",{
+            method: "POST",
+            body: JSON.stringify(userInfo)
+        });
+
+        const data = await response.json();
+        let userData = data.userProfileData[0];
+
+
+        let firstName = userData.firstName;
+        let lastName = userData.lastName;
+        let address = userData.street + ' ' + userData.buildingNum;
+        let profileImg = userData.profileImg;
+        
         if(profileImg == "") {
             document.querySelector(".profile-image").innerHTML = "<img class='user-pic' src='../src/img/avatar.svg'></img>";
         }

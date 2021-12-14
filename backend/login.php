@@ -191,6 +191,27 @@
                 }
 
         }
+
+        if ($action == "getUserData"){
+
+            $userInfo = json_decode(file_get_contents('php://input'));
+            $id = $userInfo->userID;
+    
+            // SQL query to get user information
+            $sql = "SELECT * FROM userInfo WHERE PK_id = '$id'";  
+            $result = $mySQL->query($sql);
+    
+            if($result){
+                while($row = $result->fetch_object()){
+                    $data[] = $row;
+                    $response['userProfileData'] = $data;
+                }
+                
+                echo json_encode($response);
+            }
+        }
     }
+
+    
 
 ?>
