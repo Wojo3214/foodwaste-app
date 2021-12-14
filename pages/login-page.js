@@ -46,7 +46,6 @@ class LoginPage {
         });
         
         const data = await response.json();
-        
 
         if (data.authenticated) {
             localStorage.setItem("userIsAuthenticated", true);
@@ -54,7 +53,7 @@ class LoginPage {
             
             router.navigateTo("#/home");
             location.reload();
-
+            
             localStorage.setItem("userID",data.userData.PK_id);
             localStorage.setItem("firstName",data.userData.firstName);
             localStorage.setItem("lastName",data.userData.lastName);

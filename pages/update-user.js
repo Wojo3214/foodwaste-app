@@ -114,15 +114,28 @@ class UpdateUserPage {
 
         //fetch the response
         const userData = await response.json();
-        console.log(userData);
 
         // success redirect to #/profile
         let updateSuccess = userData.updateUser;
 
         if(updateSuccess == true) {
+
+            localStorage.setItem("userID",userData.userData.PK_id);
+            localStorage.setItem("firstName",userData.userData.firstName);
+            localStorage.setItem("lastName",userData.userData.lastName);
+            localStorage.setItem("profileImg",userData.userData.profileImg);
+            localStorage.setItem("address",userData.userData.street + userData.userData.buildingNum);
+            localStorage.setItem("email",userData.userData.email);
+            localStorage.setItem("password",userData.userData.userPassword);
+            localStorage.setItem("phone",userData.userData.phoneNumber);
+            localStorage.setItem("street",userData.userData.street);
+            localStorage.setItem("building",userData.userData.buildingNum);
+            localStorage.setItem("postalCode",userData.userData.postalCode);
+            localStorage.setItem("city",userData.userData.city);
+            localStorage.setItem("country",userData.userData.country);
+
             router.navigateTo('#/profile');
-            alert('Your information is updated');
-            window.location.reload();  
+            location.reload();
 
         }
     }

@@ -173,8 +173,17 @@
 
                 $sql = "CALL updateUser('$newFirstname', '$newLastname', '$newPhone', '$newUserImg', '$newEmail', '$newPassword', '$newStreet', '$newBuilding', '$newPostalCode', '$newCity', '$newCountry', '$currentUserID')";
                 if ($mySQL->query($sql) === TRUE) {
-                    $response['updateUser'] = TRUE;
-                    echo json_encode($response);
+                    $sql = "SELECT * FROM userInfo WHERE PK_id = '$newUser->authUserID'";
+                    $result = $mySQL->query($sql);
+
+                    if($result->num_rows == 1) {
+                        $user = $mySQL->query($sql)->fetch_object();
+                        $response['userData'] = $user;
+                        $response['loginObject'] = $newUser;
+                        $response['updateUser'] = TRUE;
+                        echo json_encode($response);
+                    }
+                    
                 } else {
                     $response['updateUser'] = FALSE;
                     $response['error'] = "Updating user failed.";
