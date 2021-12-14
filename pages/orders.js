@@ -84,7 +84,7 @@ class OrderPage {
                         <div class="accepted">
                             <div class="pick-up-order container--yellow margin--top--xs">
                                 <i class="check-mark text--yellow text--med-bold" data-feather="clock"></i>
-                                <p>Your orders is waiting for acceptance</p>
+                                <p>Your order is awaiting approval</p>
                             </div>
                         </div>
                         <div class="ordered-food-item container">
@@ -119,7 +119,7 @@ class OrderPage {
                             <div class="accepted">
                                 <div class="pick-up-order container--green margin--top--xs">
                                     <i class="check-mark text--green text--med-bold" data-feather="check"></i>
-                                    <p>Your order has been accepted!!!!!</p>
+                                    <p>Your order has been accepted!</p>
                                 </div>
                             </div>
                         </div>
