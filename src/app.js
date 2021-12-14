@@ -15,11 +15,14 @@ import AddItemPage from "../pages/add-page.js";
 import BookingPage from "../pages/booking-page.js";
 
 import Nav from "../components/nav.js";
+import Dialog from "../components/dialog.js";
 
 
 
 const app = document.querySelector("#app");
 const nav = new Nav(app);
+const dialog = new Dialog(app);
+dialog.render();
 nav.render();
 const pages = document.querySelector("#pages");
 

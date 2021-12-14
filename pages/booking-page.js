@@ -10,7 +10,6 @@ class BookingPage {
         this.getChosenContent(this.productID);
         this.getChosenProduct(this.productID);
         this.getCurrentDate();
-        //this.basket = [];
     }
 
     render(){
@@ -165,7 +164,6 @@ class BookingPage {
 
     attachEvents(){
         window.nextPrevBook = (tabNum) => this.nextPrev(tabNum);
-        window.addToBasket = (id, name, foodAmount, foodUnit) => this.addToBasket(id, name, foodAmount, foodUnit);
     }
 
     showTabs(n){
@@ -349,30 +347,16 @@ class BookingPage {
         let responseSeller = orderData.seller;
 
         if(addSuccess == true) {
-            alert('New order is added.');
             router.navigateTo('#/home');
+            document.querySelector("#order-dialog").style.display = "flex";
         }
         else {
             alert('Please fill out all fields');
         }
 
-        if(responseSeller == buyer) {
-            alert('You have one new order.');
-        }
+        
 
     }
-
-    // addToBasket(id, name, foodAmount, foodUnit){
-    //     const newListProduct = {
-    //         PK_foodID: id,
-    //         foodName: name,
-    //         amount: foodAmount,
-    //         unit: foodUnit
-    //     }
-    //     this.basket.push(newListProduct);
-    //     console.log(this.basket);
-    //     getChosenContent(productID, sellerID);
-    // }
 
     iconsInit(){
         feather.replace();

@@ -54,6 +54,15 @@
     ". cancel";
 }
 
+.pick-up-order{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
 .check-mark {
   grid-area: check;
   justify-self: center;

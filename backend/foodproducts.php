@@ -178,6 +178,18 @@
                 $response['orderAccepted'] = TRUE;
                 echo json_encode($response);
             }
+            
+        } else if ($action == "pickUpStatus"){
+            $orderObject = json_decode(file_get_contents('php://input'));
+            $id = $orderObject->orderFoodID;
+
+            $sql = "UPDATE orders SET orderStatus = 3 WHERE PK_orderID = '$id'";
+            
+            if ($mySQL->query($sql) === TRUE) {
+                $response['orderAccepted'] = TRUE;
+                echo json_encode($response);
+            }
+
         } else if ($action == "cancelStatus"){
             $orderObject = json_decode(file_get_contents('php://input'));
             $id = $orderObject->orderFoodID;

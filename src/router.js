@@ -1,10 +1,8 @@
 class Router {
 
-    constructor(app, defaultPage){
-        this.defaultPage = defaultPage;
+    constructor(app){
+        this.defaultPage = "#/start";
         this.basePath = location.pathname.replace("index.html","");  //hiding "index.html" from URL
-
-        
 
         //Setting the routes "pages" for SPA navigation
         this.routes = {

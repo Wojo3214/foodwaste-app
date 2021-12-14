@@ -20,77 +20,9 @@ class OrderPage {
                 <button id="tabmenuRight" class="tabmenu" onclick="switchTabs('tabmenuRight', 'food-shared')">Shared</button>
             </div>
 
-            <div id="ordered-food" class="tab-content"> 
-                <!-- <div class="ordered-food container margin--top--xs">
-                    <div class="ordered-header content--horizontal flex--wrap align--center space--between">
-                        <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
-                            <img class="small--photo" src="src/img/avatar.svg">
-                            <h3 class="text--bold">Wojo</h3>
-                        </div>
-                        <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
-                            <p>06.12.2021</p>
-                            <p>15:00</p>
-                        </div>
-                    </div>
-                    <div class="ordered-food-item container">
-                        <div class="item-info">
-                            <div class="content--horizontal flex--wrap flex--gap space--between">
-                                <h3 class="padding--top--xs text--bold">Banana</h3>
-                                <div class="content--horizontal flex--wrap padding--top--xs">
-                                    <p class="food-amount">2</p>
-                                    <p class="unit">stk</p>
-                                </div>
-                            </div>
-                            <p class="pick-address padding--top--xs padding--bottom--xs">Haslegarsvej 24A</p>
-                        </div>
-                        <div class="btn--delete delete-item">
-                            <i class="delete-icon" data-feather="trash"></i>
-                        </div>
-                    </div>
-                    <button class="btn btn--small btn--cancel content--centered margin--top--sm">Cancel</button>
-                </div> -->
-            </div>
+            <div id="ordered-food" class="tab-content"></div>
 
-            <div id="food-shared" class="tab-content" style="display:none;">
-            <!-- <div class="shared-food container margin--top--xs">
-                    <div class="shared-header content--horizontal flex--wrap align--center space--between">
-                        <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
-                            <img class="small--photo" src="src/img/avatar.svg">
-                            <h3 class="text--bold">Wojo</h3>
-                        </div>
-                        <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
-                            <p>06.12.2021</p>
-                            <p>15:00</p>
-                        </div>
-                    </div>
-                    <p class="padding--bottom--xs">Would like to get from you:</p>
-                    <div class="shared-food-item container">
-                        <div class="item-info shared-food-container">
-                            <div class="content--horizontal flex--wrap flex--gap space--between">
-                                <h3 class="padding--top--xs text--bold">Banana</h3>
-                                <div class="content--horizontal flex--wrap padding--top--xs">
-                                    <p class="food-amount">2</p>
-                                    <p class="unit">stk</p>
-                                </div>
-                            </div>
-                            <p class="pick-address padding--top--xs padding--bottom--xs">Haslegarsvej 24A</p>
-                        </div>
-                    </div>
-                    <div class="not-accepted content--horizontal flex--wrap space--around">
-                        <button class="btn btn--small btn--cancel">X Reject</button>
-                        <button class="btn btn--small btn--primary">Accept</button>
-                    </div>
-                    <div class="accepted">
-                        <div class="order-accepted container--green margin--top--xs padding--top--xs">
-                            <i class="check-mark text--green text--med-bold" data-feather="check"></i>
-                            <p class="confirmation-text text--green text--med-bold">You accepted the order</p>
-                            <p class="cancel-text padding--bottom--xs">If you want to cancel it, you have:<span class="text--semi-bold"> 30min</span></p>
-                        </div>
-                        <button class="btn btn--small btn--cancel content--centered margin--top--sm">X Cancel the order</button>
-                    </div>
-                    
-                </div> -->
-            </div>
+            <div id="food-shared" class="tab-content" style="display:none;"></div>
         </section>
         `;
     } 
@@ -98,6 +30,7 @@ class OrderPage {
     attachEvents(){
         window.switchTabs = (tabID, tabContent) => this.switchTabs(tabID, tabContent);
         window.acceptOrder = (orderID) => this.acceptOrder(orderID);
+        window.pickUpOrder = (orderID) => this.pickUpOrder(orderID);
         window.cancelOrder = (orderID) => this.cancelOrder(orderID);
     }
 
@@ -148,6 +81,12 @@ class OrderPage {
                                 <p>${item.pickUpTime}</p>
                             </div>
                         </div>
+                        <div class="accepted">
+                            <div class="pick-up-order container--yellow margin--top--xs">
+                                <i class="check-mark text--yellow text--med-bold" data-feather="clock"></i>
+                                <p>Your orders is waiting for acceptance</p>
+                            </div>
+                        </div>
                         <div class="ordered-food-item container">
                             <div class="item-info">
                                 <div class="content--horizontal flex--wrap flex--gap space--between">
@@ -163,7 +102,6 @@ class OrderPage {
                                 <i class="delete-icon" data-feather="trash"></i>
                             </div>
                         </div>
-                        <p>Your orders is waiting for acceptance</p>
                     </div>
                 `;
             } else if(`${item.orderStatus}` == 2){
@@ -178,7 +116,12 @@ class OrderPage {
                                 <p>${item.pickUpDate}</p>
                                 <p>${item.pickUpTime}</p>
                             </div>
-                            <p>Your order has been accepted!!!!!</p>
+                            <div class="accepted">
+                                <div class="pick-up-order container--green margin--top--xs">
+                                    <i class="check-mark text--green text--med-bold" data-feather="check"></i>
+                                    <p>Your order has been accepted!!!!!</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="ordered-food-item container">
                             <div class="item-info">
@@ -198,9 +141,43 @@ class OrderPage {
                         <button class="btn btn--small btn--cancel content--centered margin--top--sm" onclick="cancelOrder(${item.orderID})">Cancel</button>
                     </div>
                 `;
-            } else if(`${item.orderStatus}` == 0){
+
+            } else if(`${item.orderStatus}` == 3){
                 orderTemplate += /*html*/`
                     <div class="ordered-food container margin--top--xs">
+                        <div class="ordered-header content--horizontal flex--wrap align--center space--between">
+                            <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
+                                <img class="small--photo" src="${item.sellerImg}">
+                                <h3 class="text--bold">${item.sellerName}</h3>
+                            </div>
+                            <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
+                                <p>${item.pickUpDate}</p>
+                                <p>${item.pickUpTime}</p>
+                            </div>
+                        </div>
+                        <div class="accepted">
+                            <div class="pick-up-order container--green margin--top--xs">
+                                <i class="check-mark text--green text--med-bold" data-feather="check"></i>
+                                <p>Your food has been picked up!</p>
+                            </div>
+                        </div>
+                        <div class="ordered-food-item container">
+                            <div class="item-info">
+                                <div class="content--horizontal flex--wrap flex--gap space--between">
+                                    <h3 class="padding--top--xs text--bold">${item.foodName}</h3>
+                                    <div class="content--horizontal flex--wrap padding--top--xs">
+                                        <p class="food-amount">${item.amount}</p>
+                                        <p class="unit">${item.unit}</p>
+                                    </div>
+                                </div>
+                                <p class="pick-address padding--top--xs padding--bottom--xs">${item.pickUpAddress}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if(`${item.orderStatus}` == 0){
+                orderTemplate += /*html*/`
+                    <div class="ordered-food container margin--top--xs" style="display: none;">
                         <p>Your order has been canceled.</p>
                     </div>
                 `;
@@ -274,7 +251,13 @@ class OrderPage {
                             <p>${item.pickUpTime}</p>
                         </div>
                     </div>
-                    <p class="padding--bottom--xs">Would like to get from you:</p>
+                    <div class="accepted margin--bottom--xs">
+                        <div class="order-accepted container--green margin--top--xs padding--top--xs">
+                            <i class="check-mark text--green text--med-bold" data-feather="check"></i>
+                            <p class="confirmation-text text--green text--med-bold">You accepted the order</p>
+                            <p class="cancel-text padding--bottom--xs">If you want to cancel it, you have:<span class="text--semi-bold"> 30min</span></p>
+                        </div>
+                    </div>
                     <div class="shared-food-item container">
                         <div class="item-info shared-food-container">
                             <div class="content--horizontal flex--wrap flex--gap space--between">
@@ -287,13 +270,42 @@ class OrderPage {
                             <p class="pick-address padding--top--xs padding--bottom--xs">${item.pickUpAddress}</p>
                         </div>
                     </div>
-                    <div class="accepted">
+                    <div class="not-accepted content--horizontal flex--wrap space--around">
+                            <button class="btn btn--small btn--cancel" onclick="cancelOrder(${item.orderID})">Reject</button>
+                            <button class="btn btn--small btn--primary" onclick="pickUpOrder(${item.orderID})">Confirm pick up</button>
+                        </div>
+                </div>
+                `;
+            } else if(`${item.orderStatus}` == 3){
+                shareTemplate += /*html*/`
+                <div class="shared-food container margin--top--xs">
+                    <div class="shared-header content--horizontal flex--wrap align--center space--between">
+                        <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
+                            <img class="small--photo" src="${item.buyerImg}">
+                            <h3 class="text--bold">${item.buyerName}</h3>
+                        </div>
+                        <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
+                            <p>${item.pickUpDate}</p>
+                            <p>${item.pickUpTime}</p>
+                        </div>
+                    </div>
+                    <div class="accepted margin--bottom--xs">
                         <div class="order-accepted container--green margin--top--xs padding--top--xs">
                             <i class="check-mark text--green text--med-bold" data-feather="check"></i>
-                            <p class="confirmation-text text--green text--med-bold">You accepted the order</p>
-                            <p class="cancel-text padding--bottom--xs">If you want to cancel it, you have:<span class="text--semi-bold"> 30min</span></p>
+                            <p>This product has been picked up.</p>
                         </div>
-                        <button class="btn btn--small btn--cancel content--centered margin--top--sm" onclick="cancelOrder(${item.orderID})">Cancel the order</button>
+                    </div>
+                    <div class="shared-food-item container">
+                        <div class="item-info shared-food-container">
+                            <div class="content--horizontal flex--wrap flex--gap space--between">
+                                <h3 class="padding--top--xs text--bold">${item.foodName}</h3>
+                                <div class="content--horizontal flex--wrap padding--top--xs">
+                                    <p class="food-amount">${item.amount}</p>
+                                    <p class="unit">${item.unit}</p>
+                                </div>
+                            </div>
+                            <p class="pick-address padding--top--xs padding--bottom--xs">${item.pickUpAddress}</p>
+                        </div>
                     </div>
                 </div>
                 `;
@@ -358,6 +370,25 @@ class OrderPage {
 
         this.getShared();
     }
+
+    async pickUpOrder(orderID){
+        console.log(orderID);
+
+        let orderObject = {orderFoodID : orderID};
+        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=pickUpStatus", {
+            method: "POST",
+            body: JSON.stringify(orderObject)
+        });
+
+        let data = await response.json();
+        let feedback = data.orderCanceled;
+        console.log(feedback);
+
+
+        this.getShared();
+        //this.getOrdered();
+    }
+
     async cancelOrder(orderID){
         console.log(orderID);
 
