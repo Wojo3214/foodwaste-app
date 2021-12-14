@@ -9,6 +9,7 @@ class BookingPage {
         this.attachEvents();
         this.getChosenContent(this.productID);
         this.getChosenProduct(this.productID);
+        this.getCurrentDate();
         //this.basket = [];
     }
 
@@ -228,6 +229,22 @@ class BookingPage {
         return valid;
     }
 
+    getCurrentDate(){
+        let today = new Date();
+        let yyyy = today.getFullYear();
+        let mm = today.getMonth()+1;
+        let dd;
+        if(today.getDate()<10){
+            dd = "0"+today.getDate();
+        } else{
+            dd = today.getDate();
+        }
+        let date = yyyy + "-" + mm + "-" + dd;
+
+        document.querySelector("#pickup-date").setAttribute("min", date);
+        document.querySelector("#pickup-date").value=date;
+    }
+
     async getChosenProduct(productID){
         let specificProductID = sessionStorage.getItem("productID",productID); 
 
@@ -318,7 +335,7 @@ class BookingPage {
         let pickUpTime = document.querySelector("#pickup-time").value;
 
         const orderObject = { productID, buyer, seller, pickUpDate, pickUpTime };
-        //console.log(orderObject);
+        console.log(orderObject);
         const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=createOrder", {
             method: "POST",
             body: JSON.stringify(orderObject)
@@ -329,6 +346,7 @@ class BookingPage {
         console.log(orderData);
 
         let addSuccess = orderData.addOrder;
+        let responseSeller = orderData.seller;
 
         if(addSuccess == true) {
             alert('New order is added.');
@@ -336,6 +354,10 @@ class BookingPage {
         }
         else {
             alert('Please fill out all fields');
+        }
+
+        if(responseSeller == buyer) {
+            alert('You have one new order.');
         }
 
     }

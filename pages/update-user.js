@@ -10,10 +10,11 @@ class UpdateUserPage {
     render(){
         this.domElement.innerHTML += 
         /*html*/`
+        <section id="update" class="page page--centered">
             <div class="settings-header">
                 <button class="back-button--normal"><a href="#/settings"><i data-feather="arrow-left"></i></a></button>
                 <h2>Personal information</h2>
-            </div>        <section id="update" class="page page--centered">
+            </div>        
             <form id="update-form">
                 <!-- <div class="progress-bar">
                     <div class="bar"></div>

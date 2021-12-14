@@ -110,7 +110,7 @@ class ProfilePage {
                 let untilTime = item.untilTime;
                 let time = fromTime.substring(0, fromTime.length-3) + ' - ' + untilTime.substring(0, untilTime.length-3);
 
-                foodItemTemplate += `
+                foodItemTemplate += /*html*/`
                     <div class="sharing-container container margin--bottom--sm" onclick="getProductPage(${item.PK_foodID})">
                         <img class="food-thumbnail" src="${item.foodImg}">
                         <div class="food-header content--horizontal flex--wrap space--between">
@@ -142,11 +142,12 @@ class ProfilePage {
         for (const item of reviewItems) {
             if(item.receiverID == authUserID) {
                 
-                reviewItemTemplate += `
+                reviewItemTemplate += /*html*/`
                 <div class="review-container">
                     <div class="review-header content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
                         <img class="small--photo" src="${item.profileImg}">
                         <h3>${item.firstName} ${item.lastName}</h3>
+                        <!-- Do we even need that if we can only leave review after booking process? -->
                         <div class="content--horizontal"> 
                             <img src="../src/img/shield.svg" class="shield-icon">
                             <p class="reviewer-status">&nbsp;Exchange verified</p>
@@ -171,7 +172,7 @@ class ProfilePage {
 
         for(const img of reviewImg) {
             if(img.src == "http://localhost:3000/") {
-                console.log("empty");
+                //console.log("empty");
                 img.src = "../src/img/avatar.svg";
             }
         }

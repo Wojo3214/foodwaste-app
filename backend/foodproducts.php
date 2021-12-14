@@ -122,22 +122,74 @@
             $pickUpDate = $orderObject->pickUpDate;
             $pickUpTime = $orderObject->pickUpTime;
             
-
             if (!empty($orderTime && $orderStatus && $productID && $buyer && $seller && $pickUpDate && $pickUpTime)) {
 
-            $sql = "CALL addOrder('$orderTime', '$buyer', '$seller', '$pickUpDate', '$pickUpTime', '$productID', '$orderStatus')";
+                $sql = "CALL addOrder('$orderTime', '$buyer', '$seller', '$pickUpDate', '$pickUpTime', '$productID', '$orderStatus')";
+            
+                if ($mySQL->query($sql) === TRUE) {
+                    $response['addOrder'] = TRUE;
+                    $response['seller'] = $seller;
+                    echo json_encode($response);
+                } else {
+                    $response['addOrder'] = FALSE;
+                    $response['error'] = "Adding order failed.";
+                    echo json_encode($response);
+                }
+            } 
+        } else if ($action == "getOrders"){
+            $loggedInUser = json_decode(file_get_contents('php://input'));
+            $id = $loggedInUser->userID;
+
+            $sql = "SELECT * FROM orderInfo WHERE requestedUserID = '$id'";
+
+            $result = $mySQL->query($sql);
+            if($result){
+                while($row = $result->fetch_object()){
+                    $data[] = $row;
+                    $response['orderData'] = $data;
+                }
+                echo json_encode($response);
+            }
+        } else if ($action == "getShared"){
+            $loggedIn = json_decode(file_get_contents('php://input'));
+            $id = $loggedIn->userID;
+
+            $sql = "SELECT * FROM orderInfo WHERE sellerId = '$id'";
+
+            $result = $mySQL->query($sql);
+            if($result){
+                while($row = $result->fetch_object()){
+                    $data[] = $row;
+                    $response['sharedData'] = $data;
+                }
+                echo json_encode($response);
+            } //else {
+            //     $response['sharedData'] = FALSE;
+            //     //$response['error'] = "You have no shared orders.";
+            //     echo json_encode($response);
+            // }
+        } else if ($action == "updateStatus"){
+            $orderObject = json_decode(file_get_contents('php://input'));
+            $id = $orderObject->orderFoodID;
+
+            $sql = "UPDATE orders SET orderStatus = 2 WHERE PK_orderID = '$id'";
             
             if ($mySQL->query($sql) === TRUE) {
-                $response['addOrder'] = TRUE;
+                $response['orderAccepted'] = TRUE;
                 echo json_encode($response);
-            } else {
-                $response['addOrder'] = FALSE;
-                $response['error'] = "Adding order failed.";
+            }
+        } else if ($action == "cancelStatus"){
+            $orderObject = json_decode(file_get_contents('php://input'));
+            $id = $orderObject->orderFoodID;
+
+            $sql = "UPDATE orders SET orderStatus = 0 WHERE PK_orderID = '$id'";
+            
+            if ($mySQL->query($sql) === TRUE) {
+                $response['orderCanceled'] = TRUE;
                 echo json_encode($response);
             }
         }
-
-        } 
+    }
 
         if ($action == "getReviews"){
 
@@ -157,8 +209,6 @@
                 echo json_encode($response);
             }
         } 
-    }
-
 
 
     if (isset($_GET['action'])) {

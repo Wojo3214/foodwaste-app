@@ -6,7 +6,7 @@ class AddItemPage {
         this.currentTab = 0;
         this.render();
         this.showTabs(this.currentTab);
-        this.getCurrentDate();
+        //this.getCurrentDate("expiration-date");
         this.attachEvents();
         this.previewFile();
         // this.addEvent();
@@ -225,21 +225,7 @@ class AddItemPage {
     }
 
     //Function gets current date to enable users to choose expiration date starting from today
-    getCurrentDate(){
-        let today = new Date();
-        let yyyy = today.getFullYear();
-        let mm = today.getMonth()+1;
-        let dd;
-        if(today.getDate()<10){
-            dd = "0"+today.getDate();
-        } else{
-            dd = today.getDate();
-        }
-        let date = yyyy + "-" + mm + "-" + dd;
-
-        document.querySelector("#expiration-date").setAttribute("min", date);
-        document.querySelector("#expiration-date").value=date;
-    }
+    
 
     iconsInit(){
         feather.replace();
