@@ -54,67 +54,10 @@
             $response['authenticated'] = FALSE;
             $response['error'] = "User doesn't exist";
             echo json_encode($response);
-        }
+        } 
+    }
 
-        // while($userInfo = true) {
-        //     // Save every row from the result as a new array index
-        //     echo $userInfo;
-        // };
-
-        // while($row = $result->fetch_assoc()){
-        //     echo $row;
-        // }
-
-        
-
-        // If the user did not input anything
-        // if(empty($jsonInput) || $jsonInput == "") {
-        //     // Create an array and return it as json
-        //     $jsonInput['status'] = "error";
-        //     $jsonInput['errorCode'] = "Missing input";      
-        // } 
-        // echo json_encode($jsonInput); 
-        // while ($row = $result->fetch_assoc()) {
-        //     if($row["email"] == $logedInUser) {
-        //         $logedInUser['status'] = "success";
-        //         echo json_encode($logedInUser);
-        //     }
-        // };
-
-        // exit;
-
-    //     // Check if the SQL call was a success
-    //     if($result = $mySQL->query($sql)) {
-    //         // Make sure the SQL returned at least one row as a result
-    //         if(mysqli_num_rows($result) > 0) {
-    //             // Create an array to store the SQL result
-    //             $results = [];
-    //             while($row = $result->fetch_assoc()) {
-    //                 // Save every row from the result as a new array index
-    //                 $results[] = $row;
-    //             }
-
-    //             // Create an array and return it as json                
-    //             $array['status'] = "success";
-    //             $array['data'] = $results;
-    //             echo json_encode($array);
-    //             exit;
-    //         } else {
-    //             // Create an array and return it as json (if no results were returned)               
-    //             $array['status'] = "error";
-    //             $array['errorCode'] = "No results";
-    //             echo json_encode($array);
-    //             exit;
-    //         }
-    //     } else {
-    //         // Create an array and return it as json (if the SQL call failed)               
-    //         $array['status'] = "error";
-    //         $array['errorCode'] = "Wrong query";
-    //         echo json_encode($array);
-    //     }
-     }
-
-     if (isset($_GET['action'])) {
+    if (isset($_GET['action'])) {
         $action = $_GET['action'];
     
         // adding products to the database
@@ -171,25 +114,25 @@
             $currentUserID = $newUser->authUserID;
 
 
-                $sql = "CALL updateUser('$newFirstname', '$newLastname', '$newPhone', '$newUserImg', '$newEmail', '$newPassword', '$newStreet', '$newBuilding', '$newPostalCode', '$newCity', '$newCountry', '$currentUserID')";
-                if ($mySQL->query($sql) === TRUE) {
-                    $sql = "SELECT * FROM userInfo WHERE PK_id = '$newUser->authUserID'";
-                    $result = $mySQL->query($sql);
+            $sql = "CALL updateUser('$newFirstname', '$newLastname', '$newPhone', '$newUserImg', '$newEmail', '$newPassword', '$newStreet', '$newBuilding', '$newPostalCode', '$newCity', '$newCountry', '$currentUserID')";
 
-                    if($result->num_rows == 1) {
-                        $user = $mySQL->query($sql)->fetch_object();
-                        $response['userData'] = $user;
-                        $response['loginObject'] = $newUser;
-                        $response['updateUser'] = TRUE;
-                        echo json_encode($response);
-                    }
-                    
-                } else {
-                    $response['updateUser'] = FALSE;
-                    $response['error'] = "Updating user failed.";
+            if ($mySQL->query($sql) === TRUE) {
+                $sql = "SELECT * FROM userInfo WHERE PK_id = '$newUser->authUserID'";
+                $result = $mySQL->query($sql);
+
+                if($result->num_rows == 1) {
+                    $user = $mySQL->query($sql)->fetch_object();
+                    $response['userData'] = $user;
+                    $response['loginObject'] = $newUser;
+                    $response['updateUser'] = TRUE;
                     echo json_encode($response);
                 }
-
+                
+            } else {
+                $response['updateUser'] = FALSE;
+                $response['error'] = "Updating user failed.";
+                echo json_encode($response);
+            }
         }
 
         if ($action == "getUserData"){
@@ -211,7 +154,4 @@
             }
         }
     }
-
-    
-
 ?>

@@ -33,8 +33,8 @@ class SettingsPage {
             </a>
         </section>
         `;
+
         this.iconsInit();
-        
     } 
 
     attachEvents(){
@@ -47,6 +47,7 @@ class SettingsPage {
         localStorage.clear();
         localStorage.removeItem("userIsAuthenticated");
         localStorage.removeItem("authUser");
+        
         //navigate to login
         router.navigateTo("#/login");
     }

@@ -172,25 +172,6 @@ h1 {
   transition: 0.3s ease-out;
 }
 
-/** Focus navigation icon's dot **/
-
-/* .nav a::before{
-    content: '';
-    width: 6px;
-    height: 6px;
-    position: absolute;
-    bottom: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: 0.3s ease-out;
-    background-color: var(--green);
-    border-radius: 100px;
-}
-
-.nav a:hover::before{
-    bottom: 10px;
-} */
-
 .nav a:first-child {
   grid-area: icon1;
 }
@@ -227,6 +208,7 @@ h1 {
 .plus--black {
   color: var(--text-default);
 }
+
 /* -----buttons -----*/
 .btn {
   font-family: var(--pjs-bold);
@@ -726,22 +708,6 @@ canvas {
   margin-bottom: 0px;
 }
 
-/* input[type="file"]{
-  display: none;
-}
-
-.get-file-input{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--form-background);
-  border-radius: 10px;
-  width: 100px;
-  height: 100px;
-  cursor: pointer;
-  margin: 0 auto;
-} */
-
 .overview-list-header {
   margin-top: 16px;
 }
@@ -911,8 +877,6 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-
-/* MORE PAGE */
 
 /* ----- BOOKING PAGE -----*/
 .booking-header {

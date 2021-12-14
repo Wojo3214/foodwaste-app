@@ -1,4 +1,5 @@
 <?php
+    //File for future improvements
     class FileUpload {
 
         private $file = "";
@@ -26,10 +27,6 @@
         public function GetFileSize() {
             return $this->fileSize;
         }
-
-        // public function RenameFile($newName) {
-        //     return $this->fileName = $newName . '.' . $this->fileType;
-        // }
 
         public function UploadFile($targetFolder) {
             move_uploaded_file($this->file["tmp_name"], $targetFolder . $this->fileName);

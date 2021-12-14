@@ -17,14 +17,9 @@
 
             if($result){
                 while($row = $result->fetch_object()){
-                    // echo $foodName = $row->foodName;
-                    // echo $fromTime = $row->fromTime;
-                    // echo $untilTime = $row->untilTime;
                     $data[] = $row;
                     $response['foodData'] = $data;
-                    //$response['foodData'] = $fromTime;
                 }
-                //$response['foodData'] += $foodName;
                 
                 echo json_encode($response);
             }
@@ -41,14 +36,9 @@
 
             if($result){
                 while($row = $result->fetch_object()){
-                    // echo $foodName = $row->foodName;
-                    // echo $fromTime = $row->fromTime;
-                    // echo $untilTime = $row->untilTime;
                     $data[] = $row;
                     $response['foodProfileData'] = $data;
-                    //$response['foodData'] = $fromTime;
                 }
-                //$response['foodData'] += $foodName;
                 
                 echo json_encode($response);
             }
@@ -163,11 +153,7 @@
                     $response['sharedData'] = $data;
                 }
                 echo json_encode($response);
-            } //else {
-            //     $response['sharedData'] = FALSE;
-            //     //$response['error'] = "You have no shared orders.";
-            //     echo json_encode($response);
-            // }
+            } 
         } else if ($action == "updateStatus"){
             $orderObject = json_decode(file_get_contents('php://input'));
             $id = $orderObject->orderFoodID;
@@ -203,24 +189,24 @@
         }
     }
 
-        if ($action == "getReviews"){
+    if ($action == "getReviews"){
 
-            $reviewObject = json_decode(file_get_contents('php://input'));
+        $reviewObject = json_decode(file_get_contents('php://input'));
 
-            // SQL query to get user information
-            $sql = "SELECT * FROM ratings";  
-            
-            $result = $mySQL->query($sql);
+        // SQL query to get user information
+        $sql = "SELECT * FROM ratings";  
+        
+        $result = $mySQL->query($sql);
 
-            if($result){
-                while($row = $result->fetch_object()){
-                    $data[] = $row;
-                    $response['reviewData'] = $data;
-                }
-                
-                echo json_encode($response);
+        if($result){
+            while($row = $result->fetch_object()){
+                $data[] = $row;
+                $response['reviewData'] = $data;
             }
-        } 
+            
+            echo json_encode($response);
+        }
+    } 
 
 
     if (isset($_GET['action'])) {

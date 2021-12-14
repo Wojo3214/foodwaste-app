@@ -22,8 +22,6 @@ export default class MapBox {
                 zoom: 9 // starting zoom
             });
 
-            
-
             map.addControl(
                 new mapboxgl.GeolocateControl({
                 positionOptions: {
@@ -44,13 +42,6 @@ export default class MapBox {
             new mapboxgl.Marker(el)
             .setLngLat([10.160233998398176 , 56.17225728978783 ]).addTo(map);
 
-
         }, 100);
-
-        
     }
-
-    
-
-    
 }

@@ -1,10 +1,6 @@
 import MapBox from "../components/map.js";
 import router from "../src/router.js";
 
-// if(localStorage.getItem("userIsAuthenticated") !== true) {
-//     router.navigateTo('#/login');
-// }
-
 class ProfilePage {
     constructor(domElement){
         this.domElement = domElement;
@@ -40,7 +36,6 @@ class ProfilePage {
                 <h2 class="padding--top--md padding--bottom--sm">Pick-up location</h2>
                 <p class="address-street">/p>
                 ${this.mapBox.render()}
-
                 <div class="total-review padding--top--md content--horizontal space--between">
                     <h2>Reviews</h2>
                     <div class="content--horizontal align--center">
@@ -51,10 +46,8 @@ class ProfilePage {
                         <h2 class="rating-sum"></h2>
                     </div>
                 </div>
-
                 <div class="user-reviews"></div>
             </div>
-            
         </section>
         `;
 
@@ -64,7 +57,6 @@ class ProfilePage {
         this.getData();
         this.getReviews();
         
-
     } 
 
     init(){
@@ -74,6 +66,7 @@ class ProfilePage {
     async getData(){
         let authUserID = localStorage.getItem("userID");
         let userInfo = {userID : authUserID};
+
         const response = await fetch("http://localhost:3000//backend/login.php?action=getUserData",{
             method: "POST",
             body: JSON.stringify(userInfo)
@@ -94,15 +87,16 @@ class ProfilePage {
         else {
             document.querySelector(".profile-image").innerHTML = "<img class='user-pic' src=" + profileImg + "></img>";
         }
+
         document.querySelector(".profile-username").innerHTML = firstName + " " + lastName;
         document.querySelector(".person-sharing").innerHTML = firstName + " is sharing";
         document.querySelector(".address-street").innerHTML = address;
-    
     };
 
     async getFoodProducts(){
         let authUserID = localStorage.getItem("userID");
         let userProfile = {userID : authUserID};
+
         const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getFoodProductsProfile",{
             method: "POST",
             body: JSON.stringify(userProfile)
@@ -141,6 +135,7 @@ class ProfilePage {
 
     async getReviews(){
         let authUserID = localStorage.getItem("userID");
+
         const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getReviews");
 
         const data = await response.json();
@@ -150,17 +145,11 @@ class ProfilePage {
         
         for (const item of reviewItems) {
             if(item.receiverID == authUserID) {
-                
                 reviewItemTemplate += /*html*/`
                 <div class="review-container">
                     <div class="review-header content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
                         <img class="small--photo" src="${item.profileImg}">
                         <h3>${item.firstName} ${item.lastName}</h3>
-                        <!-- Do we even need that if we can only leave review after booking process? -->
-                        <div class="content--horizontal"> 
-                            <img src="../src/img/shield.svg" class="shield-icon">
-                            <p class="reviewer-status">&nbsp;Exchange verified</p>
-                        </div>
                     </div>
                     <div class="padding--bottom--sm content--horizontal">
                         <div class="star-full"></div>
@@ -175,7 +164,6 @@ class ProfilePage {
         
         document.querySelector(".user-reviews").innerHTML = reviewItemTemplate;
 
-
         // use avatar for the review photo if profile photo is empty
         let reviewImg = document.querySelectorAll(".small--photo");
 
@@ -186,7 +174,6 @@ class ProfilePage {
             }
         }
         
-
         //calculating avarage person's rating from all ratings
         let ratings = document.querySelectorAll('.rating');
         
@@ -198,17 +185,20 @@ class ProfilePage {
 
             //declaring default sum to '0'
             var sum = 0;
+
             //loop through the array and convert to an integer
             for( var i = 0; i < ratingArray.length; i++ ){
                 sum += parseInt( ratingArray[i], 10 );
             }
+
             //calculating the avarage
             var avgRating = sum/ratingArray.length;
+
             //render inhtml
             document.querySelector('.total-rating').innerHTML = avgRating.toFixed(1) ;
             document.querySelector('.rating-sum').innerHTML = '&nbsp;(' + ratingArray.length + ')';
            
-          });
+        });
         
         // calculating % of the total score and displaying it in stars
         let totalRating = document.querySelector(".total-rating").innerHTML;
@@ -216,7 +206,6 @@ class ProfilePage {
         let starPercentageRounded = Math.round(starPercentage / 10) * 10;
         document.querySelector('.stars-inner').style.width = starPercentageRounded + '%'; 
     }
-
 }
 
 export default ProfilePage;

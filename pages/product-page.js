@@ -13,7 +13,6 @@ class ProductPage {
     render(){
         this.domElement.innerHTML +=  /*html*/ `
         <section id="product" class="page">
-        
         </section>
         `;
     }
@@ -24,7 +23,6 @@ class ProductPage {
 
     async getProductContent(productID){
         let specificProductID = sessionStorage.getItem("productID",productID);
-        
         console.log(specificProductID);
 
         let product = {productId : specificProductID};
@@ -45,44 +43,39 @@ class ProductPage {
             let untilTime = item.untilTime;
             let time = fromTime.substring(0, fromTime.length-3) + ' - ' + untilTime.substring(0, untilTime.length-3);
 
-                productTemplate += /*html*/`
-                    <div class="product-header">
-                            <button class="back-button--absolute"><i data-feather="arrow-left"></i></button>
-                            <img class="product-image" src="${item.foodImg}">
+            productTemplate += /*html*/`
+                <div class="product-header">
+                    <button class="back-button--absolute"><i data-feather="arrow-left"></i></button>
+                    <img class="product-image" src="${item.foodImg}">
+                </div>
+                    <div class="profile-content">
+                        <h1 class="profile-username padding--top--md text--left">${item.foodName}</h1>
+                        <h2 class="padding--bottom--sx sub-heading ">Description</h2>
+                        <p>${item.foodDescription}</p>
+                        <div class="content--horizontal margin--top--md gap--8px">
+                            <p class="text--semi-bold ">Expiriting date:</p>
+                            <p>${item.expirationDate}</p>
+                        </div>
+                        <div class="content--horizontal margin--top--xs gap--8px">
+                            <p class="text--semi-bold ">Prefered Pick-up Time:</p>
+                            <p>${time}</p>
+                        </div>
+                        <div class="margin--top--md user-banner">
+                            <img src="${item.profileImg}" class="profile-pic--small">
+                            <p>${item.firstName} ${item.lastName}</p>
+                            <div class="content--horizontal">
+                                <div class="star-full"></div>
+                                <span class="rating">5</span>
+                            </div>
+                        </div>
+                        <h2 class="padding--top--md padding--bottom--sx  sub-heading">Pick-up location</h2>
+                        <p>${item.pickUpAddress}</p>
+                        ${this.mapBox.render()}
+                        <div class="btns-container btns-container--vertical">
+                            <input type="button" value="Book" class="btn btn--primary btn--normal" onclick="getProductBooking()">
+                        </div>  
                     </div>
-                        <div class="profile-content">
-                            <h1 class="profile-username padding--top--md text--left">${item.foodName}</h1>
-
-                            <h2 class="padding--bottom--sx sub-heading ">Description</h2>
-                            <p>${item.foodDescription}</p>
-                            <div class="content--horizontal margin--top--md gap--8px">
-                                <p class="text--semi-bold ">Expiriting date:</p>
-                                <p>${item.expirationDate}</p>
-                            </div>
-                            <div class="content--horizontal margin--top--xs gap--8px">
-                                <p class="text--semi-bold ">Prefered Pick-up Time:</p>
-                                <p>${time}</p>
-                            </div>
-
-                            <div class="margin--top--md user-banner">
-                                <img src="${item.profileImg}" class="profile-pic--small">
-                                <p>${item.firstName} ${item.lastName}</p>
-                                <div class="content--horizontal">
-                                    <div class="star-full"></div>
-                                    <span class="rating">5</span>
-                                </div>
-                            </div>
-
-                            <h2 class="padding--top--md padding--bottom--sx  sub-heading">Pick-up location</h2>
-                            <p>${item.pickUpAddress}</p>
-                            ${this.mapBox.render()}
-
-                            <div class="btns-container btns-container--vertical">
-                                <input type="button" value="Book" class="btn btn--primary btn--normal" onclick="getProductBooking()">
-                            </div>  
-
-                            </div>
-                    </div>
+                </div>
             `;
         }
 
@@ -95,12 +88,10 @@ class ProductPage {
         router.navigateTo("#/booking");
         location.reload();
     }
-    
 
     iconsInit(){
         feather.replace();
     }
-    
 }
 
 export default ProductPage;

@@ -19,7 +19,6 @@ class Router {
             "#/booking" : "booking",
             "#/update" : "update"
         };
-        // this.initRouter();
     }
 
     //Router functionality
@@ -94,15 +93,6 @@ class Router {
         }
     }
 }
-
-// export function hideNav(hide){
-//     if (hide) {
-//         document.querySelector(".nav").style.display = "none";
-//     } else {
-//         document.querySelector(".nav").style.display = "grid";
-//     }
-// }
-
 
 const app = document.querySelector("#app");
 const router = new Router(app, "#/");

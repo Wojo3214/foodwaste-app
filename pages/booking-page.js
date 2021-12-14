@@ -22,123 +22,13 @@ class BookingPage {
                     <h2>Your product list</h2>
                 </header>
                 <div class="choosen-products-container">
-                    <!-- <div class="choosen-food-item container">
-                        <div class="item-info">
-                            <div class="flex--wrap flex--gap space--between">
-                                <h3 class="padding--top--xs text--bold">Banana</h3>
-                                <div class="content--horizontal flex--wrap padding--top--xs">
-                                    <p class="food-amount">2</p>
-                                    <p class="unit">stk</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="btn--delete delete-item">
-                            <i class="delete-icon" data-feather="trash"></i>
-                        </div>
-                    </div>
-                    <div class="choosen-food-item container">
-                        <div class="item-info">
-                            <div class="flex--wrap flex--gap space--between">
-                                <h3 class="padding--top--xs text--bold">Banana</h3>
-                                <div class="content--horizontal flex--wrap padding--top--xs">
-                                    <p class="food-amount">2</p>
-                                    <p class="unit">stk</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="btn--delete delete-item">
-                            <i class="delete-icon" data-feather="trash"></i>
-                        </div>
-                    </div>
-                    <div class="choosen-food-item container">
-                        <div class="item-info">
-                            <div class="flex--wrap flex--gap space--between">
-                                <h3 class="padding--top--xs text--bold">Banana</h3>
-                                <div class="content--horizontal flex--wrap padding--top--xs">
-                                    <p class="food-amount">2</p>
-                                    <p class="unit">stk</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="btn--delete delete-item">
-                            <i class="delete-icon" data-feather="trash"></i>
-                        </div>
-                    </div><div class="choosen-food-item container">
-                        <div class="item-info">
-                            <div class="flex--wrap flex--gap space--between">
-                                <h3 class="padding--top--xs text--bold">Banana</h3>
-                                <div class="content--horizontal flex--wrap padding--top--xs">
-                                    <p class="food-amount">2</p>
-                                    <p class="unit">stk</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="btn--delete delete-item">
-                            <i class="delete-icon" data-feather="trash"></i>
-                        </div>
-                    </div><div class="choosen-food-item container">
-                        <div class="item-info">
-                            <div class="flex--wrap flex--gap space--between">
-                                <h3 class="padding--top--xs text--bold">Banana</h3>
-                                <div class="content--horizontal flex--wrap padding--top--xs">
-                                    <p class="food-amount">2</p>
-                                    <p class="unit">stk</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="btn--delete delete-item">
-                            <i class="delete-icon" data-feather="trash"></i>
-                        </div>
-                    </div><div class="choosen-food-item container">
-                        <div class="item-info">
-                            <div class="flex--wrap flex--gap space--between">
-                                <h3 class="padding--top--xs text--bold">Banana</h3>
-                                <div class="content--horizontal flex--wrap padding--top--xs">
-                                    <p class="food-amount">2</p>
-                                    <p class="unit">stk</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="btn--delete delete-item">
-                            <i class="delete-icon" data-feather="trash"></i>
-                        </div>
-                    </div> -->
                 </div>
                 <h3>Other products of User</h3>
                 <div class="carousel-slider carousel-slider--relative">
-                    <!-- <div class="carousel-slider-item">
-                        <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
-                        <div class="carousel-slider-details">
-                            <p>Pizza</p>
-                            <span><i data-feather="map-pin" class="map-pin icon-small"></i> 1km</span>
-                        </div>
-                    </div>
-                    <div class="carousel-slider-item">
-                        <img src="../src/img/product.png" alt="Food product image">
-                        <div class="carousel-slider-details">
-                            <p>Mint</p>
-                            <span><i data-feather="map-pin" class="map-pin icon-small"></i> 0,5km</span>
-                        </div>
-                    </div>
-                    <div class="carousel-slider-item">
-                        <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
-                        <div class="carousel-slider-details">
-                            <p>Mint</p>
-                            <span><i data-feather="map-pin" class="map-pin icon-small"></i> Haslegardsvej 24A</span>
-                        </div>
-                    </div>
-                    <div class="carousel-slider-item">
-                        <img src="https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Food product image">
-                        <div class="carousel-slider-details">
-                            <p>Mint</p>
-                            <span><i data-feather="map-pin" class="map-pin icon-small"></i> Haslegardsvej 24A</span>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <div class="tab">
                 <header class="settings-header">
-                    <!-- <button class="back-button--normal"><a href="#/profile"><i data-feather="arrow-left"></i></a></button> -->
                     <h2>Pick up details</h2>
                 </header>
                 <form>
@@ -159,6 +49,7 @@ class BookingPage {
                 <input type="button" value="Next" class="btn btn--primary btn--normal next-btn" onclick="nextPrevBook(1)">
             </div>
         </section>`;
+
         this.iconsInit();
     }
 
@@ -190,19 +81,14 @@ class BookingPage {
         } else {
             document.querySelector("#booking .next-btn").value = "Next";
         }
-
-        //progressBar function
-        //this.progressBar(n);
     }
 
     nextPrev(n){
         let tabs = document.querySelectorAll("#booking .tab");
-        //if(n == 1 && !this.validateForm()) return false;
         tabs[this.currentTab].style.display = "none";
         this.currentTab = this.currentTab + n;
         if(this.currentTab >= tabs.length){
             console.log("Form is sent!");
-            // document.getElementById("add-form").submit();
             router.navigateTo('#/home');
             return false;
         } 
@@ -224,6 +110,7 @@ class BookingPage {
         if(valid){
             document.querySelector("bar")[this.currentTab].className += " finish";
         }
+
         return valid;
     }
 
@@ -262,20 +149,17 @@ class BookingPage {
         
         for (const item of productObject) {
             productTemplate += /*html*/`
-                    <div class="choosen-food-item container">
-                        <div class="item-info">
-                            <div class="flex--wrap flex--gap space--between">
-                                <h3 class="padding--top--xs text--bold">${item.foodName}</h3>
-                                <div class="content--horizontal flex--wrap padding--top--xs">
-                                    <p class="food-amount">${item.amount}</p>
-                                    <p class="unit">${item.unit}</p>
-                                </div>
+                <div class="choosen-food-item container">
+                    <div class="item-info">
+                        <div class="flex--wrap flex--gap space--between">
+                            <h3 class="padding--top--xs text--bold">${item.foodName}</h3>
+                            <div class="content--horizontal flex--wrap padding--top--xs">
+                                <p class="food-amount">${item.amount}</p>
+                                <p class="unit">${item.unit}</p>
                             </div>
                         </div>
-                        <!-- <div class="btn--delete delete-item">
-                            <i class="delete-icon" data-feather="trash"></i>
-                        </div> -->
                     </div>
+                </div>
             `;
         }
         
@@ -298,10 +182,7 @@ class BookingPage {
         });
 
         let data = await response.json();
-        //console.log(data);
-        //let basket = [];
         let productObject = data.productsData;
-        //basket = [productObject];
         console.log(productObject);
 
         let productTemplate = "";
@@ -310,9 +191,6 @@ class BookingPage {
             productTemplate += /*html*/`
                 <div class="carousel-slider-item">
                     <img src="${item.foodImg}" alt="Food product image">
-                    <!-- <div class="add-to-list-btn">
-                        <i data-feather="shopping-bag" class="shopping-bag"></i>
-                    </div> -->
                     <div class="carousel-slider-details">
                         <p>${item.foodName}</p>
                         <span><i data-feather="map-pin" class="map-pin icon-small"></i> 0,5km</span>
@@ -344,7 +222,6 @@ class BookingPage {
         console.log(orderData);
 
         let addSuccess = orderData.addOrder;
-        let responseSeller = orderData.seller;
 
         if(addSuccess == true) {
             router.navigateTo('#/home');
@@ -353,9 +230,6 @@ class BookingPage {
         else {
             alert('Please fill out all fields');
         }
-
-        
-
     }
 
     iconsInit(){

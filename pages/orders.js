@@ -7,7 +7,6 @@ class OrderPage {
         this.attachEvents();
         this.getOrdered();
         this.getShared();
-        //this.acceptOrder(orderID);
     }
 
     render(){
@@ -21,7 +20,6 @@ class OrderPage {
             </div>
 
             <div id="ordered-food" class="tab-content"></div>
-
             <div id="food-shared" class="tab-content" style="display:none;"></div>
         </section>
         `;
@@ -37,15 +35,19 @@ class OrderPage {
     switchTabs(tabID, tabContent){
         const tabsContent = document.getElementsByClassName("tab-content");
         let i;
+
         for(i=0; i < tabsContent.length; i++){
             tabsContent[i].style.display = "none";
         }
+
         document.getElementById(tabContent).style.display = "block";
 
         const tabsMenu = document.getElementsByClassName("tabmenu");
+        
         for(i=0; i < tabsMenu.length; i++){
             tabsMenu[i].className = "tabmenu";
         }
+
         document.getElementById(tabID).className = "tabmenu tabmenu--active";
     }
 
@@ -54,6 +56,7 @@ class OrderPage {
         console.log(authUserID);
 
         let loggedInUserID = {userID : authUserID};
+
         const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getOrders", {
             method: "POST",
             body: JSON.stringify(loggedInUserID)
@@ -62,7 +65,6 @@ class OrderPage {
         let data = await response.json();
         let orderObject = data.orderData;
         console.log(orderObject);
-
 
         let orderTemplate = "";
         for (const item of orderObject) {
@@ -183,6 +185,7 @@ class OrderPage {
                 `;
             }
         }
+
         this.iconsInit();
         document.querySelector("#ordered-food").innerHTML = orderTemplate;
     }
@@ -191,8 +194,8 @@ class OrderPage {
 
         let authUserID = localStorage.getItem("userID");
         console.log(authUserID);
-
         let loggedIn = {userID : authUserID};
+
         const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getShared", {
             method: "POST",
             body: JSON.stringify(loggedIn)
@@ -310,47 +313,8 @@ class OrderPage {
                 </div>
                 `;
             }
-
-            // shareTemplate += /*html*/`
-            //     <div class="shared-food container margin--top--xs">
-            //         <div class="shared-header content--horizontal flex--wrap align--center space--between">
-            //             <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
-            //                 <img class="small--photo" src="${item.buyerImg}">
-            //                 <h3 class="text--bold">${item.buyerName}</h3>
-            //             </div>
-            //             <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
-            //                 <p>${item.pickUpDate}</p>
-            //                 <p>${item.pickUpTime}</p>
-            //             </div>
-            //         </div>
-            //         <p class="padding--bottom--xs">Would like to get from you:</p>
-            //         <div class="shared-food-item container">
-            //             <div class="item-info shared-food-container">
-            //                 <div class="content--horizontal flex--wrap flex--gap space--between">
-            //                     <h3 class="padding--top--xs text--bold">${item.foodName}</h3>
-            //                     <div class="content--horizontal flex--wrap padding--top--xs">
-            //                         <p class="food-amount">${item.amount}</p>
-            //                         <p class="unit">${item.unit}</p>
-            //                     </div>
-            //                 </div>
-            //                 <p class="pick-address padding--top--xs padding--bottom--xs">${item.pickUpAddress}</p>
-            //             </div>
-            //         </div>
-            //         <div class="not-accepted content--horizontal flex--wrap space--around">
-            //             <button class="btn btn--small btn--cancel" onclick="cancelOrder(${item.orderID})">Reject</button>
-            //             <button class="btn btn--small btn--primary" onclick="acceptOrder(${item.orderID})">Accept</button>
-            //         </div>
-            //         <div class="accepted">
-            //             <div class="order-accepted container--green margin--top--xs padding--top--xs">
-            //                 <i class="check-mark text--green text--med-bold" data-feather="check"></i>
-            //                 <p class="confirmation-text text--green text--med-bold">You accepted the order</p>
-            //                 <p class="cancel-text padding--bottom--xs">If you want to cancel it, you have:<span class="text--semi-bold"> 30min</span></p>
-            //             </div>
-            //             <button class="btn btn--small btn--cancel content--centered margin--top--sm" onclick="cancelOrder(${item.orderID})">Cancel the order</button>
-            //         </div>
-            //     </div>
-            // `;
         }
+
         this.iconsInit();
         document.querySelector("#food-shared").innerHTML = shareTemplate;
     }
@@ -359,6 +323,7 @@ class OrderPage {
         console.log(orderID);
 
         let orderObject = {orderFoodID : orderID};
+
         const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=updateStatus", {
             method: "POST",
             body: JSON.stringify(orderObject)
@@ -367,7 +332,6 @@ class OrderPage {
         let data = await response.json();
         let feedback = data.orderAccepted;
         console.log(feedback);
-
         this.getShared();
     }
 
@@ -384,15 +348,14 @@ class OrderPage {
         let feedback = data.orderCanceled;
         console.log(feedback);
 
-
         this.getShared();
-        //this.getOrdered();
     }
 
     async cancelOrder(orderID){
         console.log(orderID);
 
         let orderObject = {orderFoodID : orderID};
+
         const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=cancelStatus", {
             method: "POST",
             body: JSON.stringify(orderObject)
@@ -401,7 +364,6 @@ class OrderPage {
         let data = await response.json();
         let feedback = data.orderCanceled;
         console.log(feedback);
-
         this.getOrdered();
     }
 

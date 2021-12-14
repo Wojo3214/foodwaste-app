@@ -6,10 +6,8 @@ class AddItemPage {
         this.currentTab = 0;
         this.render();
         this.showTabs(this.currentTab);
-        //this.getCurrentDate("expiration-date");
         this.attachEvents();
         this.previewFile();
-        // this.addEvent();
     }
 
     render(){
@@ -21,9 +19,6 @@ class AddItemPage {
             </header>
             
             <form id="add-form" class="add-form" enctype="multipart/form-data">
-                <!-- <div class="progress-bar">
-                    <div class="bar"></div>
-                </div> -->
                 <div class="tab">
                     <label class="input-label">Product name
                         <input type="text" id="food-name" name="product-name" class="text-field" placeholder="E.g. Apple" oninput="this.className = ''">
@@ -49,16 +44,16 @@ class AddItemPage {
                             <input type="number" name="amount" id="product-amount" class="text-field">
                         </label>
                         <label class="input-label">Unit
-                        <select name="food-unit" id="food-unit" class="text-field">
-                            <option selected disabled>Choose one</option>
-                            <option value="stk">stk</option>
-                            <option value="kg">kg</option>
-                            <option value="dag">dag</option>
-                            <option value="g">g</option>
-                            <option value="l">l</option>
-                            <option value="ml">ml</option>
-                        </select>
-                    </label>
+                            <select name="food-unit" id="food-unit" class="text-field">
+                                <option selected disabled>Choose one</option>
+                                <option value="stk">stk</option>
+                                <option value="kg">kg</option>
+                                <option value="dag">dag</option>
+                                <option value="g">g</option>
+                                <option value="l">l</option>
+                                <option value="ml">ml</option>
+                            </select>
+                        </label>
                     </div>
                 </div>
                 <div class="tab">
@@ -66,9 +61,6 @@ class AddItemPage {
                         <input type="file" name="image" id="food-image" onchange="previewFile()" class="file-field" accept="image/png, image/jpeg">
                     </label>
                     <img id="img-preview" src="" height="200">
-                    <!-- <label for="image" class="get-file-input">
-                        <i data-feather="plus" class="plus--black"></i>
-                    </label> -->
                 </div>
                 <div class="tab">
                     <div class="content--horizontal">
@@ -94,10 +86,9 @@ class AddItemPage {
             </div>  
         </section>
         `;
+
         this.iconsInit();
-        
         document.querySelector("#add .finish-btn").style.display = "none";
-        
     }
 
     // preview for the uploaded image
@@ -150,19 +141,17 @@ class AddItemPage {
         } else {
             document.querySelector("#add .next-btn").value = "Next";
         }
-
-        //progressBar function
-        //this.progressBar(n);
     }
 
     nextPrev(n){
         let tabs = document.querySelectorAll("#add .tab");
-        //if(n == 1 && !this.validateForm()) return false;
+
         tabs[this.currentTab].style.display = "none";
         this.currentTab = this.currentTab + n;
+
         if(this.currentTab >= tabs.length){
             console.log("Form is sent!");
-            // document.getElementById("add-form").submit();
+            
             document.querySelector("#add .next-btn").href = "#/home";
             return false;
         } 
@@ -184,6 +173,7 @@ class AddItemPage {
         if(valid){
             document.querySelector("bar")[this.currentTab].className += " finish";
         }
+
         return valid;
     }
     
@@ -200,7 +190,7 @@ class AddItemPage {
         const pickUpTimeTo = document.querySelector("#food-time-to").value;
         const foodAddress = document.querySelector("#food-address").value;
 
-        let overviewTemplate = `
+        let overviewTemplate = /*html*/`
             <header>
                 <h2>Overview</h2>
             </header>
@@ -223,9 +213,6 @@ class AddItemPage {
         `;
         document.getElementById("overview").innerHTML = overviewTemplate;
     }
-
-    //Function gets current date to enable users to choose expiration date starting from today
-    
 
     iconsInit(){
         feather.replace();
@@ -264,7 +251,9 @@ class AddItemPage {
         let foodAddress = document.querySelector("#food-address").value;
 
         const FoodItemObject = { foodName, foodDescription, foodAmount, foodUnit, foodImg, foodType, foodExpirationDate, pickUpTimeFrom, pickUpTimeTo, foodAddress, authUserID };
+
         console.log(FoodItemObject);
+
         const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=addFoodItems", {
             method: "POST",
             body: JSON.stringify(FoodItemObject)
@@ -285,27 +274,6 @@ class AddItemPage {
             alert('Please fill out all fields');
         }
     }
-
-   
-
-
-    // goBack(){
-    //     window.history.back();
-    // }
-
-    // progressBar(n){
-    //     let bar = document.querySelector(".bar");
-    //     let nextButton = document.getElementById("next-btn");
-    //     let steps = document.querySelectorAll(".tab");
-    //     let i;
-    //     let width = "5px"
-
-    //     for (i = 0; i < steps.length; i++){
-    //         //bar.style.width = ((100+"%") / (steps.length)) * 100 + "%";
-    //     }
-    // }
-
-    
 }
 
 export default AddItemPage;

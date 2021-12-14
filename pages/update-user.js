@@ -16,9 +16,6 @@ class UpdateUserPage {
                 <h2>Personal information</h2>
             </div>        
             <form id="update-form">
-                <!-- <div class="progress-bar">
-                    <div class="bar"></div>
-                </div> -->
                 <div class="tab-upd">
                     <label class="email input-label">Email</label>
                     <label class="password input-label">Password</label>
@@ -53,8 +50,10 @@ class UpdateUserPage {
             <div class="btns-container btns-container--horizontal">
                 <input type="button" value="Update" id="upd-finish-btn" class="btn btn--primary btn--normal finish-btn" onclick="updateUser()">
             </div>  
+
         </section>
         `;
+
         this.defaultValue();
     }
 
@@ -74,8 +73,6 @@ class UpdateUserPage {
         let city = localStorage.getItem("city");
         let country = localStorage.getItem("country");
 
-
-
         document.querySelector(".tab-upd .email").innerHTML = "<input type='email' id='upd-email' name='mail' class='text-field' value=" + email + ">";
         document.querySelector(".tab-upd .password").innerHTML = "<input type='password' id='upd-password' name='password' class='text-field' value=" + password + ">";
         document.querySelector(".tab-upd .firstname").innerHTML = "<input type='text' name='firstName' id='upd-firstname' class='text-field' value=" + firstName +">";
@@ -89,13 +86,10 @@ class UpdateUserPage {
 
     }
 
-
-
     // add user to pass to php
     async updateUser() {
 
         let authUserID = localStorage.getItem("userID");
-
         let email = document.querySelector("#upd-email").value;
         let password = document.querySelector("#upd-password").value;
         let firstname = document.querySelector("#upd-firstname").value;
@@ -109,6 +103,7 @@ class UpdateUserPage {
 
         const updatedUser = { authUserID, email, password, firstname, lastname, phone, street, buildingNumber, postalCode, city, country};
         console.log(updatedUser);
+
         const response = await fetch("http://localhost:3000//backend/login.php?action=updateUser", {
             method: "POST",
             body: JSON.stringify(updatedUser)
@@ -141,7 +136,6 @@ class UpdateUserPage {
 
         }
     }
-    
 }
 
 export default UpdateUserPage;
