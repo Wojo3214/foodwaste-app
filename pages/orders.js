@@ -71,6 +71,9 @@ class OrderPage {
             console.log(item);
 
             if(`${item.orderStatus}` == 1){
+                let pickTime = item.pickUpTime;
+                let time = pickTime.substring(0, pickTime.length-3);
+
                 orderTemplate += /*html*/`
                     <div class="ordered-food container margin--top--xs">
                         <div class="ordered-header content--horizontal flex--wrap align--center space--between">
@@ -80,13 +83,13 @@ class OrderPage {
                             </div>
                             <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
                                 <p>${item.pickUpDate}</p>
-                                <p>${item.pickUpTime}</p>
+                                <p>${time}</p>
                             </div>
                         </div>
                         <div class="accepted">
                             <div class="pick-up-order container--yellow margin--top--xs">
                                 <i class="check-mark text--yellow text--med-bold" data-feather="clock"></i>
-                                <p>Your orders is waiting for acceptance</p>
+                                <p>Your order is awaiting approval</p>
                             </div>
                         </div>
                         <div class="ordered-food-item container">
@@ -107,6 +110,9 @@ class OrderPage {
                     </div>
                 `;
             } else if(`${item.orderStatus}` == 2){
+                let pickTime = item.pickUpTime;
+                let time = pickTime.substring(0, pickTime.length-3);
+
                 orderTemplate += /*html*/`
                     <div class="ordered-food container margin--top--xs">
                         <div class="ordered-header content--horizontal flex--wrap align--center space--between">
@@ -116,12 +122,12 @@ class OrderPage {
                             </div>
                             <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
                                 <p>${item.pickUpDate}</p>
-                                <p>${item.pickUpTime}</p>
+                                <p>${time}</p>
                             </div>
                             <div class="accepted">
                                 <div class="pick-up-order container--green margin--top--xs">
                                     <i class="check-mark text--green text--med-bold" data-feather="check"></i>
-                                    <p>Your order has been accepted!!!!!</p>
+                                    <p>Your order has been accepted!</p>
                                 </div>
                             </div>
                         </div>
@@ -145,6 +151,9 @@ class OrderPage {
                 `;
 
             } else if(`${item.orderStatus}` == 3){
+                let pickTime = item.pickUpTime;
+                let time = pickTime.substring(0, pickTime.length-3);
+
                 orderTemplate += /*html*/`
                     <div class="ordered-food container margin--top--xs">
                         <div class="ordered-header content--horizontal flex--wrap align--center space--between">
@@ -154,7 +163,7 @@ class OrderPage {
                             </div>
                             <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
                                 <p>${item.pickUpDate}</p>
-                                <p>${item.pickUpTime}</p>
+                                <p>${time}</p>
                             </div>
                         </div>
                         <div class="accepted">
@@ -210,6 +219,9 @@ class OrderPage {
             console.log(item);
 
             if(`${item.orderStatus}` == 1){
+                let pickTime = item.pickUpTime;
+                let time = pickTime.substring(0, pickTime.length-3);
+
                 shareTemplate += /*html*/`
                 <div class="shared-food container margin--top--xs">
                     <div class="shared-header content--horizontal flex--wrap align--center space--between">
@@ -219,7 +231,7 @@ class OrderPage {
                         </div>
                         <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
                             <p>${item.pickUpDate}</p>
-                            <p>${item.pickUpTime}</p>
+                            <p>${time}</p>
                         </div>
                     </div>
                     <p class="padding--bottom--xs">Would like to get from you:</p>
@@ -242,6 +254,9 @@ class OrderPage {
                 </div>
                 `;
             } else if(`${item.orderStatus}` == 2){
+                let pickTime = item.pickUpTime;
+                let time = pickTime.substring(0, pickTime.length-3);
+
                 shareTemplate += /*html*/`
                 <div class="shared-food container margin--top--xs">
                     <div class="shared-header content--horizontal flex--wrap align--center space--between">
@@ -251,7 +266,7 @@ class OrderPage {
                         </div>
                         <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
                             <p>${item.pickUpDate}</p>
-                            <p>${item.pickUpTime}</p>
+                            <p>${time}</p>
                         </div>
                     </div>
                     <div class="accepted margin--bottom--xs">
@@ -280,6 +295,9 @@ class OrderPage {
                 </div>
                 `;
             } else if(`${item.orderStatus}` == 3){
+                let pickTime = item.pickUpTime;
+                let time = pickTime.substring(0, pickTime.length-3);
+
                 shareTemplate += /*html*/`
                 <div class="shared-food container margin--top--xs">
                     <div class="shared-header content--horizontal flex--wrap align--center space--between">
@@ -289,7 +307,7 @@ class OrderPage {
                         </div>
                         <div class="content--horizontal flex--wrap align--center flex--gap padding--bottom--sm">
                             <p>${item.pickUpDate}</p>
-                            <p>${item.pickUpTime}</p>
+                            <p>${time}</p>
                         </div>
                     </div>
                     <div class="accepted margin--bottom--xs">
