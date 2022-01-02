@@ -36,6 +36,7 @@ class ProfilePage {
                 </div>
                 <h2 class="person-sharing padding--bottom--sm"></h2>
                 <div class="profile-shared-container">
+                    <p class="shared-container-message"></p>
                 </div>
                 <h2 class="padding--top--md padding--bottom--sm">Pick-up location</h2>
                 <p class="address-street">/p>
@@ -110,34 +111,40 @@ class ProfilePage {
         });
 
         const data = await response.json();
+        if(data != null) {
+            let foodItems = data.foodProfileData;
+            let foodItemTemplate = "";
+            
+            for (const item of foodItems) {
+                if(item.userID == authUserID) {
+                    let fromTime = item.fromTime;
+                    let untilTime = item.untilTime;
+                    let time = fromTime.substring(0, fromTime.length-3) + ' - ' + untilTime.substring(0, untilTime.length-3);
 
-        let foodItems = data.foodProfileData;
-        let foodItemTemplate = "";
-        
-        for (const item of foodItems) {
-            if(item.userID == authUserID) {
-                let fromTime = item.fromTime;
-                let untilTime = item.untilTime;
-                let time = fromTime.substring(0, fromTime.length-3) + ' - ' + untilTime.substring(0, untilTime.length-3);
-
-                foodItemTemplate += /*html*/`
-                    <div class="sharing-container container margin--bottom--sm" onclick="getProductPage(${item.PK_foodID})">
-                        <img class="food-thumbnail" src="${item.foodImg}">
-                        <div class="food-header content--horizontal flex--wrap space--between">
-                            <h3 class="text--bold">${item.foodName}</h3>
-                            <div class="food-details content--horizontal">
-                                <p class="food-amount">${item.amount}</p>
-                                <p class="unit">${item.unit}</p>
+                    foodItemTemplate += /*html*/`
+                        <div class="sharing-container container margin--bottom--sm" onclick="getProductPage(${item.PK_foodID})">
+                            <img class="food-thumbnail" src="${item.foodImg}">
+                            <div class="food-header content--horizontal flex--wrap space--between">
+                                <h3 class="text--bold">${item.foodName}</h3>
+                                <div class="food-details content--horizontal">
+                                    <p class="food-amount">${item.amount}</p>
+                                    <p class="unit">${item.unit}</p>
+                                </div>
                             </div>
+                            <p class="pick-time">${time}</p>
+                            <p class="pick-address">${item.pickUpAddress}</p>
                         </div>
-                        <p class="pick-time">${time}</p>
-                        <p class="pick-address">${item.pickUpAddress}</p>
-                    </div>
-                `;
+                    `;
+                }
             }
+            
+            document.querySelector(".profile-shared-container").innerHTML = foodItemTemplate;
         }
+        else {
+            document.querySelector(".shared-container-message").innerHTML = "You haven't shared any food yet";
+        }
+
         
-        document.querySelector(".profile-shared-container").innerHTML = foodItemTemplate;
     }
 
     async getReviews(){
@@ -222,7 +229,6 @@ class ProfilePage {
             body: JSON.stringify(sharedFood)
         });
         const data = await response.json();
-        console.log(data);
         if(data != null) {
             document.querySelector(".food-shared").innerHTML = data.statistics.length;
         }
@@ -239,7 +245,6 @@ class ProfilePage {
             body: JSON.stringify(collectedFood)
         });
         const data = await response.json();
-        console.log(data);
         if(data != null) {
             document.querySelector(".collected").innerHTML = data.statistics.length;
         }
@@ -257,7 +262,6 @@ class ProfilePage {
             body: JSON.stringify(requestedFood)
         });
         const data = await response.json();
-        console.log(data);
         if(data != null) {
             document.querySelector(".requested").innerHTML = data.statistics.length;
         }
