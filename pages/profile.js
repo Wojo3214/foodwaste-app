@@ -23,11 +23,15 @@ class ProfilePage {
                 <div id="statistics" class="content--horizontal space--between padding--top--md">
                     <div class="statistics content--vertical padding--top--sm padding--bottom--sm">
                         <p class="statistics-header">Food Shared</p>
-                        <h2 class="food-shared text--bold">05</h2>
+                        <h2 class="food-shared text--bold"></h2>
                     </div>
                     <div class="statistics content--vertical padding--top--sm padding--bottom--sm">
                         <p class="statistics-header">Food Collected</p>
-                        <h2 class="text--bold">12/14</h2>
+                        <div class="content--horizontal">
+                            <h2 class="collected text--bold"></h2>
+                            <h2 class="text--bold">&nbsp / &nbsp</h2>
+                            <h2 class="requested text--bold"></h2>
+                        </div>
                     </div>
                 </div>
                 <h2 class="person-sharing padding--bottom--sm"></h2>
@@ -56,6 +60,9 @@ class ProfilePage {
         this.getFoodProducts();
         this.getData();
         this.getReviews();
+        this.getSharedStatistics();
+        this.getCollectedStatistics();
+        this.getRequestedStatistics();
         
     } 
 
@@ -206,6 +213,59 @@ class ProfilePage {
         let starPercentageRounded = Math.round(starPercentage / 10) * 10;
         document.querySelector('.stars-inner').style.width = starPercentageRounded + '%'; 
     }
+
+    async getSharedStatistics(){
+        let authUserID = localStorage.getItem("userID");
+        let sharedFood = {userID : authUserID};
+        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getSharedStatistics",{
+            method: "POST",
+            body: JSON.stringify(sharedFood)
+        });
+        const data = await response.json();
+        console.log(data);
+        if(data != null) {
+            document.querySelector(".food-shared").innerHTML = data.statistics.length;
+        }
+        else {
+            document.querySelector(".food-shared").innerHTML = "0";
+        }
+    }
+
+    async getCollectedStatistics(){
+        let authUserID = localStorage.getItem("userID");
+        let collectedFood = {userID : authUserID};
+        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getCollectedStatistics",{
+            method: "POST",
+            body: JSON.stringify(collectedFood)
+        });
+        const data = await response.json();
+        console.log(data);
+        if(data != null) {
+            document.querySelector(".collected").innerHTML = data.statistics.length;
+        }
+        else {
+            document.querySelector(".collected").innerHTML = "0";
+
+        }
+    }
+
+    async getRequestedStatistics(){
+        let authUserID = localStorage.getItem("userID");
+        let requestedFood = {userID : authUserID};
+        const response = await fetch("http://localhost:3000//backend/foodproducts.php?action=getRequestedStatistics",{
+            method: "POST",
+            body: JSON.stringify(requestedFood)
+        });
+        const data = await response.json();
+        console.log(data);
+        if(data != null) {
+            document.querySelector(".requested").innerHTML = data.statistics.length;
+        }
+        else {
+            document.querySelector(".requested").innerHTML = document.querySelector(".collected").innerHTML;
+        }
+    }
+
 }
 
 export default ProfilePage;
