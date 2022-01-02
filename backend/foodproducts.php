@@ -208,6 +208,61 @@
         }
     } 
 
+        if ($action == "getSharedStatistics"){
+
+            $statistics = json_decode(file_get_contents('php://input'));
+            $id = $statistics->userID;
+
+            // SQL query to get user information
+            $sql = "SELECT * FROM orders WHERE sellerID = '$id'";  
+            
+            $result = $mySQL->query($sql);
+
+            if($result){
+                while($row = $result->fetch_object()){
+                    $data[] = $row;
+                    $response['statistics'] = $data;
+                }
+                echo json_encode($response);
+            }
+        } 
+
+        if ($action == "getCollectedStatistics"){
+            $statistics = json_decode(file_get_contents('php://input'));
+            $id = $statistics->userID;
+
+            // SQL query to get user information
+            $sql = "SELECT * FROM orders WHERE requestedUserID = '$id' AND orderStatus = '3'";  
+            
+            $result = $mySQL->query($sql);
+
+            if($result){
+                while($row = $result->fetch_object()){
+                    $data[] = $row;
+                    $response['statistics'] = $data;
+                }
+                echo json_encode($response);
+            }
+        } 
+
+        if ($action == "getRequestedStatistics"){
+            $statistics = json_decode(file_get_contents('php://input'));
+            $id = $statistics->userID;
+
+            // SQL query to get user information
+            $sql = "SELECT * FROM orders WHERE requestedUserID = '$id' AND orderStatus = '2'";  
+            
+            $result = $mySQL->query($sql);
+
+            if($result){
+                while($row = $result->fetch_object()){
+                    $data[] = $row;
+                    $response['statistics'] = $data;
+                }
+                echo json_encode($response);
+            }
+        } 
+
 
     if (isset($_GET['action'])) {
         $action = $_GET['action'];
