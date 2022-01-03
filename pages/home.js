@@ -19,7 +19,13 @@ class HomePage {
                 <button id="tabmenu2" class="tabmenu" onclick="switchTabs('tabmenu2', 'food-list')">List</button>
             </div>
             <div class="filters-menu-container">
-                <button id="filter" class="filter"><i data-feather="search" class="icon-medium"></i></button>
+                <div class="content--horizontal">
+                    <div onclick="searchExpand()" id="search-open-button" class="filter"><i data-feather="search" class="icon-medium"></i>
+                        <div class="content--horizontal" id="search-container">
+                            <input type="text" placeholder="Search..">
+                        </div>
+                    </div>
+                </div>
                 <button id="filter" class="filter"><i data-feather="filter" class="icon-medium"></i></button>
                 <button id="filter" class="filter">Sort by: Nearest</button>
                 <button id="filter" class="filter">Category: Vegetarian</button>
@@ -39,11 +45,19 @@ class HomePage {
         this.mapBox.init();
         this.iconsInit();
         this.getFoodProducts();
+
     }
+
+  
 
     attachEvents(){
         window.switchTabs = (tabID, tabContent) => this.switchTabs(tabID, tabContent);
         window.getProductPage = (productID, sellerID) => this.getProductPage(productID, sellerID);
+        window.searchExpand = () => this.searchExpand();
+    }
+
+    searchExpand() {
+        document.getElementById('search-container').classList.toggle('show');
     }
 
     //Functionality for the Tabs chaning on Home Page -> MAP|LIST
