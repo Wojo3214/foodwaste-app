@@ -22,7 +22,7 @@ class HomePage {
                 <div class="content--horizontal">
                     <div onclick="searchExpand()" id="search-open-button" class="filter"><i data-feather="search" class="icon-medium"></i>
                         <div class="content--horizontal" id="search-container">
-                            <input type="text" placeholder="Search..">
+                            <input onkeyup="getFoodProducts()" type="text" id="search-value" placeholder="Search..">
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,6 @@ class HomePage {
         this.mapBox.init();
         this.iconsInit();
         this.getFoodProducts();
-
     }
 
   
@@ -54,6 +53,7 @@ class HomePage {
         window.switchTabs = (tabID, tabContent) => this.switchTabs(tabID, tabContent);
         window.getProductPage = (productID, sellerID) => this.getProductPage(productID, sellerID);
         window.searchExpand = () => this.searchExpand();
+        window.getFoodProducts = () => this.getFoodProducts();
     }
 
     searchExpand() {
@@ -90,12 +90,28 @@ class HomePage {
         });
 
         const data = await response.json();
-        console.log(data);
+
+        let searchValue = document.getElementById('search-value').value;
+        let value = searchValue.toLowerCase();
+        let filteredFoodItems = [];
 
         let foodItems = data.foodData;
         let foodItemTemplate = "";
         let foodItemTemplateSlider = "";
+
+        // search functionality
+        for(const item of foodItems) {
+            let name = item.foodName.toLowerCase();
+            if (name.includes(value)) {
+                filteredFoodItems.push(item);
+            }
+        }
         
+        // redeclaring to the filtered food item array if search input is not empty
+        if(filteredFoodItems != "") {
+            foodItems = filteredFoodItems;
+        }
+
         for (const item of foodItems) {
             foodItemTemplateSlider += /*html*/`
                 <div class="carousel-slider-item" onclick="getProductPage(${item.PK_foodID},${item.userID})">
@@ -132,6 +148,21 @@ class HomePage {
         }
         
         document.querySelector(".food-sharing-area").innerHTML = foodItemTemplate;
+    }
+
+    search() {
+        let searchValue = document.getElementById('search-value').value;
+
+        let value = searchValue.toLowerCase();
+        let filteredFoodItems = [];
+        console.log(value);
+        for(foodItem of foodItems) {
+            let name = foodItem.name.toLowerCase();
+            if (name.includes(value)) {
+                filteredFoodItems.push(foodItem);
+            }
+        }
+        this.getFoodProducts(filteredFoodItems);
     }
 
     getProductPage(productID, sellerID) {
